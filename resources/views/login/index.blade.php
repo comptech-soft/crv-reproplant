@@ -31,6 +31,9 @@
 		<main id="app" role="main" v-if="$app.mounted">
 			<app-login></app-login>
 		</main>
+
+		<script src="{{ config('app.url') }}/plugins/vee-validate/vee-validate.js"></script>
+		<script src="{{config('app.url')}}/js/plugins.bundle.js" type="text/javascript"></script>
 		<script src="{{config('app.url')}}/js/login.bundle.js" type="text/javascript"></script>
 	</body>
 </html>

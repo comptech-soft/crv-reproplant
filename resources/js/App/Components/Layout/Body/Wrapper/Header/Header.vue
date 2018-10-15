@@ -2,11 +2,11 @@
     <div class="m-subheader ">
         <div class="d-flex align-items-center">
             <div class="mr-auto">
-                <h3 class="m-subheader__title m-subheader__title--separator">{{ title }}</h3>
-                <breadcrumbs :breadcrumbs="breadcrumbs"></breadcrumbs>
+                <h3 :class="{'m-subheader__title': true, 'm-subheader__title--separator': has_breadcrumbs}">{{ title }}</h3>
+                <breadcrumbs v-if="has_breadcrumbs" :breadcrumbs="breadcrumbs"></breadcrumbs>
             </div>
 
-            <div>
+            <div v-if="has_actions">
                 <actions :actions="actions"></actions>
             </div>
         </div>
@@ -20,6 +20,19 @@
             title: {type: String, required: true},
             breadcrumbs: {type: Array, default: () => []},
             actions: {type: Object, default: () => {}}
+        },
+
+        computed:
+        {
+            has_actions()
+            {
+                return this.actions && _.keys(this.actions.options).length 
+            },
+
+            has_breadcrumbs()
+            {
+                return this.breadcrumbs.length
+            }
         },
 
         components: {

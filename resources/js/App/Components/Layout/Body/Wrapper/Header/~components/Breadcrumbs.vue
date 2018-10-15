@@ -1,5 +1,5 @@
 <template>
-    <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+    <ul v-if="breadcrumbs.length" class="m-subheader__breadcrumbs m-nav m-nav--inline">
 
         <li v-if="back_is_visible" class="m-nav__item m-nav__item--home">
             <a class="m-nav__link m-nav__link--icon" @click="onClickBack">
@@ -7,7 +7,7 @@
             </a>
         </li>
 
-        <li class="m-nav__item m-nav__item--home">
+        <li v-if="false" class="m-nav__item m-nav__item--home">
             <router-link to="/" class="m-nav__link m-nav__link--icon">
                 <i class="m-nav__link-icon la la-home"></i>
             </router-link>
@@ -35,7 +35,7 @@
         {
             back_is_visible()
             {
-                return window.history.length > 1
+                return false && window.history.length > 1
             }
         },
 

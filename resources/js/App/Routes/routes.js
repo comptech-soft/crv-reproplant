@@ -1,8 +1,6 @@
 const routes = {
     
-    welcome: require('./Main/welcome'),
-    foo: require('./Main/foo'),
-    bar: require('./Main/bar'),
+    farms: require('./Farms/farms')
 
 }
 

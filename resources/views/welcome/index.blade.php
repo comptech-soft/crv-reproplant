@@ -30,6 +30,7 @@
     <body class="m-page--wide m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
 		<main id="app" role="main" v-if="$app.mounted">
 			<app-main></app-main>
+			<app-footer></app-footer>
 			<quick-sidebar></quick-sidebar>
 			<scroll-top></scroll-top>
 			<quick-nav></quick-nav>
@@ -41,6 +42,8 @@
 		<script src="{{config('app.url')}}/js/general/offcanvas.js" type="text/javascript"></script>
 		<script src="{{config('app.url')}}/js/general/quicksearch.js" type="text/javascript"></script>
 		
+		<script src="{{config('app.url')}}/plugins/vee-validate/vee-validate.js"></script>
+		<script src="{{config('app.url')}}/js/plugins.bundle.js" type="text/javascript"></script>
 		<script src="{{config('app.url')}}/js/app.bundle.js" type="text/javascript"></script>
 
 		<script src="{{config('app.url')}}/js/base/app.js" type="text/javascript"></script>

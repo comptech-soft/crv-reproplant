@@ -19,10 +19,10 @@
         "jquery-confirm": "^3.3.2",
         "laravel-mix": "^2.1.14",
         "popper.js": "^1.14.4",
-        "vee-validate": "^2.1.0-beta.9"
+        "vee-validate": "^2.1.0-beta.11"
     },
     "dependencies": {
-        "comptechsoft-app-starter": "^1.0.25",
+        "comptechsoft-app-starter": "^1.0.51",
         "comptechsoft-metronic-layout": "^1.0.0"
     }
 }

@@ -8,6 +8,9 @@ module.exports = {
 
     mounted: false,
 
-    // brand_menu : {},
+    farm: {
+        record: null,
+        loading: false,
+    },
 
 }

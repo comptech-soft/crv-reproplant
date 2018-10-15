@@ -2,8 +2,6 @@ module.exports = {
 
     setConfig: ({ commit }) => commit('setConfig'),
 
-    /*
-    | Pentru "brand-dropdowm-menu"
-    */
-    // setBrandMenu: ({ commit }, menu) => commit('setBrandMenu', menu),
+    getFarm: ({ commit }, id) => commit('getCompany', id),
+    setFarm: ({ commit }, farm) => commit('setCompany', farm),
 }

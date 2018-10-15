@@ -8,9 +8,6 @@
         <page-body>
         </page-body>
 
-        <page-footer>
-        </page-footer>
-
     </div>
 
 </template>

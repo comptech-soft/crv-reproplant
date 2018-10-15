@@ -1,10 +1,5 @@
-/**
- * @class mApp  Metronic App class
- */
-
 var mApp = function() {
 
-    /** @type {object} colors State colors **/
     var colors = {
         brand:      '#716aca',
         metal:      '#c4c5d6',
@@ -18,9 +13,6 @@ var mApp = function() {
         focus:      '#9816f4'
     }
 
-    /**
-    * Initializes bootstrap tooltip
-    */
     var initTooltip = function(el) {
         var skin = el.data('skin') ? 'm-tooltip--skin-' + el.data('skin') : '';
         var width = el.data('width') == 'auto' ? 'm-tooltop--auto-width' : '';
@@ -36,19 +28,12 @@ var mApp = function() {
         });
     }
     
-    /**
-    * Initializes bootstrap tooltips
-    */
     var initTooltips = function() {
-        // init bootstrap tooltips
         $('[data-toggle="m-tooltip"]').each(function() {
             initTooltip($(this));
         });
     }
 
-    /**
-    * Initializes bootstrap popover
-    */
     var initPopover = function(el) {
         var skin = el.data('skin') ? 'm-popover--skin-' + el.data('skin') : '';
         var triggerValue = el.data('trigger') ? el.data('trigger') : 'hover';
@@ -64,41 +49,25 @@ var mApp = function() {
         });
     }
 
-    /**
-    * Initializes bootstrap popovers
-    */
     var initPopovers = function() {
-        // init bootstrap popover
         $('[data-toggle="m-popover"]').each(function() {
             initPopover($(this));
         });
     }
 
-    /**
-    * Initializes bootstrap file input
-    */
     var initFileInput = function() {
-        // init bootstrap popover
         $('.custom-file-input').on('change',function(){
             var fileName = $(this).val();
             $(this).next('.custom-file-label').addClass("selected").html(fileName);
         });
     }           
 
-    /**
-    * Initializes metronic portlet
-    */
     var initPortlet = function(el, options) {
-        // init portlet tools
         var el = $(el);
         var portlet = new mPortlet(el[0], options);
     }
 
-    /**
-    * Initializes metronic portlets
-    */
     var initPortlets = function() {
-        // init portlet tools
         $('[m-portlet="true"]').each(function() {
             var el = $(this);
 
@@ -109,9 +78,6 @@ var mApp = function() {
         });
     }
 
-    /**
-    * Initializes scrollable contents
-    */
     var initScrollers = function() {
         $('[data-scrollable="true"]').each(function(){
             var el = $(this);
@@ -125,21 +91,13 @@ var mApp = function() {
         });
     }
 
-    /**
-    * Initializes bootstrap alerts
-    */
     var initAlerts = function() {
-        // init bootstrap popover
         $('body').on('click', '[data-close=alert]', function() {
             $(this).closest('.alert').hide();
         });
     }
 
-    /**
-    * Initializes Metronic custom tabs
-    */
     var initCustomTabs = function() {
-        // init bootstrap popover
         $('[data-tab-target]').each(function() {
             if ($(this).data('tabs-initialized') == true ) {
                 return;
@@ -198,9 +156,7 @@ var mApp = function() {
 	};
 
     return {
-        /**
-        * Main class initializer
-        */
+
         init: function(options) {
             if (options && options.colors) {
                 colors = options.colors;
@@ -208,9 +164,6 @@ var mApp = function() {
             mApp.initComponents();
         },
 
-        /**
-        * Initializes components
-        */
         initComponents: function() {
             hideTouchWarning();
             initScrollers();
@@ -222,73 +175,35 @@ var mApp = function() {
             initCustomTabs();
         },
 
-
-        /**
-        * Init custom tabs
-        */
         initCustomTabs: function() {
             initCustomTabs();
         },
 
-        /**
-        * 
-        * @param {object} el jQuery element object
-        */
-        // wrJangoer function to scroll(focus) to an element
         initTooltips: function() {
             initTooltips();
         },
 
-        /**
-        * 
-        * @param {object} el jQuery element object
-        */
-        // wrJangoer function to scroll(focus) to an element
         initTooltip: function(el) {
             initTooltip(el);
         },
 
-        /**
-        * 
-        * @param {object} el jQuery element object
-        */
-        // wrJangoer function to scroll(focus) to an element
         initPopovers: function() {
             initPopovers();
         },
 
-        /**
-        * 
-        * @param {object} el jQuery element object
-        */
-        // wrJangoer function to scroll(focus) to an element
         initPopover: function(el) {
             initPopover(el);
         },
 
-        /**
-        * 
-        * @param {object} el jQuery element object
-        */
-        // function to init portlet
         initPortlet: function(el, options) {
             initPortlet(el, options);
         },
 
-        /**
-        * 
-        * @param {object} el jQuery element object
-        */
-        // function to init portlets
+
         initPortlets: function() {
             initPortlets();
         },
 
-        /**
-        * Blocks element with loading indiciator using http://malsup.com/jquery/block/
-        * @param {object} target jQuery element object
-        * @param {object} options 
-        */
         block: function(target, options) {
             var el = $(target);
 
@@ -374,10 +289,6 @@ var mApp = function() {
             }
         },
 
-        /**
-        * Un-blocks the blocked element 
-        * @param {object} target jQuery element object
-        */
         unblock: function(target) {
             if (target && target != 'body') {
                 $(target).unblock();
@@ -386,26 +297,14 @@ var mApp = function() {
             }
         },
 
-        /**
-        * Blocks the page body element with loading indicator
-        * @param {object} options 
-        */
         blockPage: function(options) {
             return mApp.block('body', options);
         },
 
-        /**
-        * Un-blocks the blocked page body element
-        */
         unblockPage: function() {
             return mApp.unblock('body');
         },
 
-        /**
-        * Enable loader progress for button and other elements
-        * @param {object} target jQuery element object
-        * @param {object} options
-        */
         progress: function(target, options) {
             var skin = (options && options.skin) ? options.skin : 'light';
             var alignment = (options && options.alignment) ? options.alignment : 'right'; 
@@ -418,26 +317,16 @@ var mApp = function() {
             $(target).data('progress-classes', classes);
         },
 
-        /**
-        * Disable loader progress for button and other elements
-        * @param {object} target jQuery element object
-        */
         unprogress: function(target) {
             $(target).removeClass($(target).data('progress-classes'));
         },
 
-        /**
-        * Gets state color's hex code by color name
-        * @param {string} name Color name
-        * @returns {string}  
-        */
         getColor: function(name) {
             return colors[name];
         }
     };
 }();
 
-//== Initialize mApp class on document ready
 $(document).ready(function() {
     mApp.init({});
 });

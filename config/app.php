@@ -10,11 +10,11 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Bucharest',
 
-    'locale' => 'en',
+    'locale' => 'ro',
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'ro',
 
     'key' => env('APP_KEY'),
 

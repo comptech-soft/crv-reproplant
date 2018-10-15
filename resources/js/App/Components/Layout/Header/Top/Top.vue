@@ -16,6 +16,8 @@
         components: {
             'brand': require('./Brand/Brand'),
             'top-bar': require('./Bar/Bar'),
-        }
+        },
+
+        name: 'app-header-top'
     }
 </script>

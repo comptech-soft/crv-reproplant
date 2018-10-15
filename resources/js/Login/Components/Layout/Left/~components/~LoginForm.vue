@@ -59,7 +59,7 @@
 </template>
 
 <script>
-    const FormManager = require('comptechsoft-app-starter').FormManager.default
+    import AppCore from 'comptechsoft-app-starter'
 
     export default {
         data(){
@@ -82,7 +82,7 @@
                     {
                         email: 'required|email',
                         password: 'required'
-                    }, 
+                    },
                     data => {
                         this.notySuccess(this.__('Salut :name: !<br/>Bine ai venit!', {name: data.result.payload.user.full_name}))
                         this.redirectTo(this.$app.url, 500)
@@ -94,7 +94,7 @@
 
         mounted()
         {
-            this.formManager = new FormManager('login-form', this)
+            this.formManager = new AppCore.FormManager('login-form', this)
         }
     }
 </script>

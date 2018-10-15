@@ -4,17 +4,15 @@
             <div class="m-stack__item m-topbar__nav-wrapper">
                 <ul class="m-topbar__nav m-nav m-nav--inline">
 
+                    <!-- aici se ma pot baga quick actions si notifications -->
                     <user>
                     </user>
 
-
-
-
-                    
-
-
-
-                    <li id="m_quick_sidebar_toggle" class="m-nav__item">
+                    <!-- 
+                        in dreapta, chestia aia faina cu messages, settings, logs
+                        doar daca avem users 
+                    -->
+                    <li v-if="$app.user" id="m_quick_sidebar_toggle" class="m-nav__item">
                         <a href="#" class="m-nav__link m-dropdown__toggle">
                             <span class="m-nav__link-icon m-nav__link-icon--aside-toggle">
                                 <span class="m-nav__link-icon-wrapper">
@@ -32,7 +30,7 @@
 <script>
     export default {
         components: {
-            'user': require('./~components/User'),
+            'user': require('./~1~User'),
         }
     }
 </script>

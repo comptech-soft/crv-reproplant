@@ -14,6 +14,8 @@
         components: {
 			'horizontal-menu': require('./~components/Menu'),
 			'search': require('./~components/Search'),
-        }
+		},
+		
+		name: 'app-header-bottom'
     }
 </script>

@@ -22,6 +22,6 @@ module.exports = {
         return state.config.base_url + '/'
     },
 
-    // brand_menu: state => state.brand_menu,
+    farm: state => state.farm.record,
 
 }

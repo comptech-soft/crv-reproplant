@@ -12,8 +12,8 @@
 <script>
     export default {
         components: {
-            'logo': require('./~components/Logo'),
-            'tools': require('./~components/Tools'),
+            'logo': require('./~1~Logo'),
+            'tools': require('./~2~Tools'),
         }
     }
 </script>

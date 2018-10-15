@@ -25,7 +25,7 @@
     {
         props:
         {
-            type: {default: 'm-alert--default'},
+            type: {default: ''},
             title: {default: ''},
             content: {default: ''},
         },

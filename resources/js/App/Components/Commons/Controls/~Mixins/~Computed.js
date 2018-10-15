@@ -6,11 +6,10 @@ module.exports = {
         {
             let r = this.makeClass('formGroupClass', {
                 'form-group': true,
-                'm-form__group': true,
             })
             if( this.has_error )
             {
-                r['has-danger'] = true
+                r['has-error'] = true
             }
             return r
         },
@@ -19,7 +18,6 @@ module.exports = {
         {
             return this.makeClass('formControlClass', {
                 'form-control': true,
-                'm-input': true,
             })
         },
 

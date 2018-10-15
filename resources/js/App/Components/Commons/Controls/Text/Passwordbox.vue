@@ -19,7 +19,6 @@
             :value="value"
             autocomplete="off"
             type="password" 
-            style="font-family: Poppins"
             
             @input="$emit('input', $event.target.value)"
         />
