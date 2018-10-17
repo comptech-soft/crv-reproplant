@@ -42,19 +42,31 @@
 
             <div class="m-widget3__body">
                 <p class="m-widget3__text">
-                    <a href="javascript:void(0);" class="btn btn-sm btn-outline-primary m-btn m-btn--icon">
+                    <a 
+                        href="javascript:void(0);" 
+                        class="btn btn-sm btn-outline-primary m-btn m-btn--icon"
+                        @click="$emit('action', {action: 'update', record: user})"
+                    >
                         <span>
                             <i class="la la-pencil"></i>
                             <span>{{ __('Editează') }}</span>
                         </span>
                     </a>
-                    <a href="javascript:void(0);" class="btn btn-sm btn-outline-warning m-btn m-btn--icon">
+                    <a 
+                        href="javascript:void(0);" 
+                        class="btn btn-sm btn-outline-warning m-btn m-btn--icon"
+                        @click="$emit('action', {action: 'change-password', record: user})"
+                    >
                         <span>
                             <i class="la la-key"></i>
                             <span>{{ __('Schimbă parola') }}</span>
                         </span>
                     </a>
-                    <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger m-btn m-btn--icon">
+                    <a 
+                        href="javascript:void(0);" 
+                        class="btn btn-sm btn-outline-danger m-btn m-btn--icon"
+                        @click="$emit('action', {action: 'delete', record: user})"
+                    >
                         <span>
                             <i class="la la-trash"></i>
                             <span>{{ __('Șterge') }}</span>

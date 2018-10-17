@@ -22,6 +22,6 @@ class FarmController extends Controller
      */
     public function saveUser(Request $request)
     {
-        return Farm::saveUser($request->only(['action', 'record', 'farm_id']));
+        return Farm::saveUser($request->only(['action', 'record', 'farm_id', 'old']));
     }
 }

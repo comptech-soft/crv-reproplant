@@ -1,7 +1,26 @@
 <template>
     <div v-if="farm && fm">
+
+        <div style="background-color:#000; color:yellow">
+            {{ action }}
+            <hr/>
+            {{ old }}
+        </div>
+
+        <div style="background-color:blue; color:yellow">
+            {{ record }}
+        </div>
+
+        <div v-if="action=='delete'" class="alert alert-danger alert-dismissible m-alert m-alert--air m-alert--square" role="alert">
+            <strong>{{__('Confirmare!')}}</strong> 
+            {{ __('Sunteți sigur că doriți ștergerea utilizatorului :name: de la ferma :farm:?', {
+                name: old.user.full_name,
+                farm: farm.farm,
+            }) }}
+        </div>
+
         <form-box :formManager="fm">
-            <div class="row">
+            <div v-if="action != 'change-password'" class="row">
                 <div class="col col-md-2">
                     <simple-select
                         id="role"
@@ -39,7 +58,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div v-if="action != 'change-password'" class="row">
                 <div class="col col-md-6">                
                     <textbox
                         id="email"
@@ -66,7 +85,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" v-if="(action == 'insert') || (action == 'change-password')">
                 <div class="col col-md-6">                
                     <passwordbox
                         id="password"
@@ -86,11 +105,11 @@
             <div class="col">
                 <button 
                     type="button" 
-                    :class="'btn btn-primary' + (fm.submitting ? ' m-loader m-loader--light m-loader--right': '')" 
+                    :class="buttonType + (fm.submitting ? ' m-loader m-loader--light m-loader--right': '')" 
                     @click="save"
                 >
-                    <i class="la la-save"></i>
-                    {{ __('Salvează') }}
+                    <i :class="buttonIcon"></i>
+                    {{ __(buttonCaption) }}
                 </button>
                 <button 
                     type="button" 
@@ -133,6 +152,15 @@
         },
 
         methods: {
+            fillRecord()
+            {
+                _.each(this.record, (value, field) => this.record[field] = this.old[field])
+                this.record.first_name = this.old.user.first_name
+                this.record.last_name = this.old.user.last_name
+                this.record.email = this.old.user.email
+                this.record.role = this.old.user.roles[0].id
+            },
+
             save()
             {
                 this.fm.onClickSubmit(
@@ -167,7 +195,7 @@
                     email: 'required|email',
                     role: 'required',
                 }
-                if(this.action == 'insert')
+                if( (this.action == 'insert') || (this.action == 'change-password') )
                 {
                     r['password'] = 'required'
                 }
@@ -195,12 +223,17 @@
 
         mounted()
         {
+            if( this.action != 'insert')
+            {
+                this.fillRecord()
+            }
             this.fm = new AppCore.FormManager('farm-users-form', this)
             this.fm.getData = () => {
                 return {
                     action: this.action,
                     record: this.record,
                     farm_id: this.farm.id,
+                    old: this.old
                 }
             }
         }

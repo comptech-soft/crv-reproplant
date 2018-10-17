@@ -26,7 +26,11 @@
         </div>
 
         <div v-else>
-            <user-list :farm="farm"></user-list>
+            <user-list 
+                :farm="farm"
+                @action="onClickAction"
+            >
+            </user-list>
         </div>
     </div>
 </template>
@@ -58,6 +62,11 @@
                 this.visible = false
                 this.action = null
                 this.record = null
+            },
+
+            onClickAction(e)
+            {
+                this.showForm(e.action, e.record)
             }
         },
 

@@ -14,10 +14,10 @@ class User extends Model
 {
 	use
 		SoftDeletes
-		// Relations
-		// Actions,
-		// Validator,
-		// Datatable
+	// 	// Relations
+	// 	// Actions,
+	// 	// Validator,
+	// 	// Datatable
 	;
 
 	protected $table = 'farms_users';
