@@ -1,6 +1,7 @@
 const routes = {
     
-    farms: require('./Farms/farms')
+    farms: require('./Farms/farms'),
+    farm: require('./Farms/farm')
 
 }
 

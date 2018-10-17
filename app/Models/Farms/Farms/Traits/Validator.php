@@ -11,8 +11,7 @@ trait Validator
             return [];
         }
         $result = [
-            'name' => 'required|max:128|unique:companies,name',
-            'type' => 'required',
+            'farm' => 'required|max:191|unique:farms,farm',
         ];
         if($record['email'])
         {
@@ -20,7 +19,7 @@ trait Validator
         }
         if( $action == 'update')
         {
-            $result['name'] .= (',' . $record['id']);
+            $result['farm'] .= (',' . $record['id']);
         }
         return $result;
     }
@@ -28,11 +27,9 @@ trait Validator
 	protected static function Messages($action)
     {
         return [
-            'name.required' => 'Numele companiei trebuie completat.',
-            'name.max' => 'Numele companiei nu poate conține mai mult de 128 caractere.',
-            'name.unique' => 'Numele companiei este deja înregistrat.',
-
-            'type.required' => 'Categoria companiei trebuie completată.',
+            'farm.required' => 'Numele fermei trebuie completat.',
+            'farm.max' => 'Numele fermei nu poate conține mai mult de 191 caractere.',
+            'farm.unique' => 'Numele fermei este deja înregistrat.',
 
             'email.email' => 'Adresa de email nu pare să fie corectă.',
         ];

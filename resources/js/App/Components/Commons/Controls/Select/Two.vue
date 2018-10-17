@@ -73,7 +73,7 @@
             require('./~Computed'),  
         ],
 
-        name: 'simple-select-box'
+        name: 'two-select-box'
     }
 </script>
 

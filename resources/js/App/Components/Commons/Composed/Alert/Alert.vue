@@ -41,39 +41,17 @@
         {
             alert_class()
             {
-                //alert m-alert--default
                 let r = {
                     alert: true,
+                    'alert-dismissible': true,
+                    'm-alert': true, 
+                    'm-alert--air': true, 
+                    'm-alert--outline': true,
                 }
                 r[this.type] = true
                 return r
             }
         },
-
-        methods:
-        {
-
-        },
-
-        mounted()
-        {
-
-        },
-
-        created()
-        {
-
-        },
-
-        components:
-        {
-
-        },
-
-        mixins:
-        [
-
-        ],
 
         name: 'alert-box'
     }

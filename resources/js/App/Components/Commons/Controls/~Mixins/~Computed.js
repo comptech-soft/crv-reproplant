@@ -6,10 +6,11 @@ module.exports = {
         {
             let r = this.makeClass('formGroupClass', {
                 'form-group': true,
+                'm-form__group': true,
             })
             if( this.has_error )
             {
-                r['has-error'] = true
+                r['has-danger'] = true
             }
             return r
         },

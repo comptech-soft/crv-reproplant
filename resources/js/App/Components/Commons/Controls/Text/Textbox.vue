@@ -4,7 +4,7 @@
         <label
             v-if="label"
             :for="id"
-            class="cs-label"
+            class="form-control-label cs-label"
         >
             {{ label }}
         </label>
@@ -19,6 +19,7 @@
             :value="value"
             autocomplete="off"
             type="text" 
+            style="font-family:Poppins"
 
             @input="$emit('input', $event.target.value)"
         />

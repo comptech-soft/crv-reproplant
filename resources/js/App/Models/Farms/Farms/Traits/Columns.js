@@ -26,7 +26,14 @@ module.exports = [
         order: {default: false, dir: 'asc', field: 'farms.farm', type: 'alpha'}
     }, {
         component: 'cell-string',
-        render: record => record.farm
+        render: record => record.farm,
+        cell_style: (column, record) => {
+            return {
+                cursor: 'pointer',
+                color: record.status == 'inactiv' ? '#f4516c' : '#5867dd',
+            }
+        },
+        actions: (v, record) => v.$router.push({name: 'farm', params: {id: record.id}})
     }),
 
     Makers.mkColumn('address', {
@@ -70,14 +77,12 @@ module.exports = [
         {
             icon: 'la la-folder-o',
             caption: 'Deschide',
-            click: v => {
-                v.$router.push({
-                    name: 'dashboard', 
-                    params: {
-                        id: v.record.id
-                    }
-                })
-            }
+            click: v => v.$router.push({
+                name: 'farm', 
+                params: {
+                    id: v.record.id
+                }
+            })
         }
     ]),
 

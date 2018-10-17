@@ -8,4 +8,9 @@ trait Datatable
 	{
 		return self::query()->withCount(['regions']);
 	}
+
+	public static function getAllRecords()
+	{
+		return self::query()->get();
+	}
 }

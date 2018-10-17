@@ -27,10 +27,9 @@
         </div>
 
         <div class="m-portlet__foot">
-            
             <button 
                 type="button" 
-                :class="'btn btn-' + am.model.actions.color()"
+                :class="'btn btn-' + am.model.actions.color() + (formManager && formManager.submitting ? ' m-loader m-loader--light m-loader--right' : '')"
                 @click="onSubmit"
             >
                 <i :class="am.model.actions.icon()"></i>
@@ -131,7 +130,10 @@
              */
             resetRecord()
             {
-                _.map(this.record, (value, field) => this.record[field] = this.model.fields[field].value)
+                _.map(this.record, (value, field) => {
+                    console.log(field)
+                    this.record[field] = this.model.fields[field].value
+                })
                 this.formManager.errors = null
             },
 

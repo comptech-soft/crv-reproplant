@@ -14,7 +14,7 @@ module.exports = {
                     text: this.__('---')
                 },
             ]
-            _.map(this.records, record => r.push({
+            _.each(this.records, record => r.push({
                 id: record[this.ajax.map.id],
                 text: record[this.ajax.map.text]
             }))

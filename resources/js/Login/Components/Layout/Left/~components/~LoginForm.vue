@@ -66,8 +66,8 @@
             return {
                 formManager: null,
                 record: {
-                    email: 'ovidiu.andrus@comptech.ro',
-                    password: 'babalean',
+                    email: '',
+                    password: '',
                     remember: 0,
                 }
             }

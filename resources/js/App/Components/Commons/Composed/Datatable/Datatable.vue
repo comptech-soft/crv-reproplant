@@ -64,6 +64,7 @@
             <div class="col-md">
                 <div 
                     class="text-right" 
+                    v-if="dt.total > 0"
                 >
                     {{ __('Se afișează de la :from: la :to: din :total: înregistrări', {
                         from: dt.from, 
@@ -71,13 +72,18 @@
                         total: dt.total
                     })}} ({{dt.count}})
                 </div>
+                <div class="text-right" v-else-if="! dt.loading">
+                    <span class="m-badge m-badge--info m-badge--wide">
+                        {{__('Nu există înregistrări de afișat.')}}
+                    </span>
+                </div>
             </div>
         </div>
 
         <!-- The table -->
         <div class="row">
             <div class="col">
-                <div class="table-responsive" style="margin-top: 6px">
+                <div v-if="dt.total > 0" class="table-responsive" style="margin-top: 6px">
                     <table class="table table-bordered table-sm m-table m-table--head-bg-brand">
                         <dt-header
                             :dt="dt"
@@ -91,6 +97,9 @@
                         </dt-body>
                         
                     </table>
+                </div>
+                <div v-else-if="! dt.loading" style="margin-top: 10px">
+                    <alert-box type="alert-info" :content="__('Nu există înregistrări de afișat.')"></alert-box>
                 </div>
             </div>
         </div>

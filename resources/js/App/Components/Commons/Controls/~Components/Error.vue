@@ -1,10 +1,9 @@
 <template>
-    <span 
-        class="help-block" 
-        style="font-size: 1.2rem"
+    <div 
+        class="form-control-feedback" 
         v-html="error"
     >
-    </span>
+    </div>
 </template>
 
 <script>

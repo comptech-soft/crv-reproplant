@@ -48,7 +48,6 @@
         watch: {
             reload: function(newReload, oldReload)
             {
-                console.log('Reload ' + oldReload + ' --> ' + newReload)
                 this.populate()
             }
         },

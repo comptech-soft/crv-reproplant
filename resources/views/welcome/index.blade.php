@@ -25,6 +25,7 @@
         <link href="{{ config('app.url') }}/css/vendors.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="{{ config('app.url') }}/css/style.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="{{ config('app.url') }}/css/reproplant.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="{{ config('app.url') }}/css/custom.bundle.css" rel="stylesheet" type="text/css" />
     </head>
   
     <body class="m-page--wide m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
