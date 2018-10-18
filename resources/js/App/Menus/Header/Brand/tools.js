@@ -9,17 +9,13 @@ module.exports = {
                 click: v => v.$router.push({name: 'farms'})
             },
         ],
-        // b: 
-        // [
-        //     {
-        //         icon: 'lifebuoy',
-        //         caption: 'Option #2',
-        //     },
-
-        //     {
-        //         icon: 'info',
-        //         caption: 'Option #3',
-        //     }
-        // ] 
+        animale: 
+        [
+            {
+                icon: 'share',
+                caption: 'Lista generală de tauri',
+                click: v => v.$router.push({name: 'animals', params: {type: 'sire', gender: 'male'}})
+            },
+        ],
     }
 }

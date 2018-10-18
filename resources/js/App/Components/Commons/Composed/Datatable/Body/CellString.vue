@@ -2,6 +2,7 @@
     <div 
         class="cs-datatable-cell cs-datatable-cell-string"
         v-html="cell_content"
+        :title="cell_content"
         @click="$emit('click')"
     >
     </div>

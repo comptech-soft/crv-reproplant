@@ -84,7 +84,7 @@
         <div class="row">
             <div class="col">
                 <div v-if="dt.total > 0" class="table-responsive" style="margin-top: 6px">
-                    <table class="table table-bordered table-sm m-table m-table--head-bg-brand">
+                    <table :id="dt.name" class="table table-bordered table-sm m-table m-table--head-bg-brand cs-table">
                         <dt-header
                             :dt="dt"
                         >

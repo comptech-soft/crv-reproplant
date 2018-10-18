@@ -7,7 +7,7 @@ mix
      */
     // .js('resources/js/~Plugins/plugins.js', 'public/js/plugins.bundle.js')
     // .sass('resources/sass/Vendors.scss', 'public/css/reproplant.bundle.css')
-    // .sass('resources/sass/Custom.scss', 'public/css/custom.bundle.css')
+    .sass('resources/sass/Custom.scss', 'public/css/custom.bundle.css')
 
     /**
      * Main application
@@ -18,9 +18,5 @@ mix
      * Login application
      */
     // .js('resources/js/Login/app.js', 'public/js/login.bundle.js')
-    
-    
-    
-    
     
 ;

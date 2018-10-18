@@ -93,8 +93,11 @@ export default {
 
             /**
              * Populez gridul
+             * - vad daca in model am criterii de filtrare
+             * - daca am "per_page"
              */
-            this.dt.setDefaultOrder().populate()   
+            _.each(this.model.filter_by_fields, (filter, field) => this.dt.addFilter(field, filter) )
+            this.dt.setDefaultOrder().changePageLength(this.model.per_page)  
 
             /**
              * Preiau din Action Box (children[1]) Form manager si Record

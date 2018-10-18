@@ -17,6 +17,7 @@ model
     .setColumns(columns)
 
     .setActionsField('farm')
+    .setPerPage(20)
 
     .addFilterByCriteria('status', {
         value: null,

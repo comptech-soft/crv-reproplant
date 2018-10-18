@@ -44,6 +44,10 @@
             {
                 let r = column.source.cell_class
                 let default_class = {}
+                if(column.source.component == 'cell-actions')
+                { 
+                    default_class['cs-cell-actions'] = true
+                }
                 if( ! r )
                 {
                     return default_class
@@ -63,6 +67,8 @@
                 let r = column.source.cell_style
                 let default_style = {
                     width: column.width + '!important',
+                    'max-width': column.width + '!important',
+                    'min-width': column.width + '!important',
                 }
                 if( ! r )
                 {

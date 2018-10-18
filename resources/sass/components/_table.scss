@@ -1,0 +1,37 @@
+table.cs-table
+{
+    table-layout: fixed;
+
+    thead
+    {
+        th
+        {
+            padding: 1px 3px !important;
+            font-size: 11px !important;
+        }
+    }
+
+    tbody
+    {
+        td
+        {
+            padding: 2px 2px !important;
+            font-size: 11px !important;
+            vertical-align: middle !important;
+            white-space: nowrap; 
+            .btn-sm
+            {
+                padding: .30rem .45rem;
+            }
+        }
+        
+        td:not(.cs-cell-actions)
+        {
+            >div
+            {
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+}

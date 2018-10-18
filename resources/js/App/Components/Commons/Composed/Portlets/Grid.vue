@@ -1,7 +1,7 @@
 <template>
     <div class="m-portlet">
         <div class="m-portlet__body">
-            <div v-if="dt.loading" class="m-loader"></div>
+            <div v-if="dt.loading" class="m-loader" style="z-index:999999"></div>
             <datatable
                 v-if="dt"
                 :dt="dt"

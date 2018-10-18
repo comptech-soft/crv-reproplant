@@ -80,6 +80,8 @@
                 let r = column.header.header_style;
                 let default_style = {
                     width: column.width + '!important',
+                    'max-width': column.width + '!important',
+                    'min-width': column.width + '!important',
                     'vertical-align': 'middle !important'
                 }
                 if( ! r )

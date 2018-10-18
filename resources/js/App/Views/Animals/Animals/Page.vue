@@ -1,7 +1,7 @@
 <template>
     <dt-grid-page
-        id="farms"
-        :caption="__('Lista fermelor')"
+        id="animals"
+        :caption="__('Lista generală de tauri')"
         :model="model"
     >
         <!-- criteriile de filtrare -->
@@ -22,12 +22,22 @@
 
 <script>
 
-    import model from './../../../Models/Farms/Farms/Farm'
+    import model from './../../../Models/Animals/Animals/Animal'
+    
 
     export default{
 
         mounted(){
             this.model = model
+            this.model
+                .addFilterByCriteria('type', {
+                    value: this.$route.params.type,
+                    where: 'animals.type=[value]'
+                })
+                .addFilterByCriteria('gender', {
+                    value: this.$route.params.gender,
+                    where: 'animals.gender=[value]'
+                })
         },
 
         components: {
@@ -42,6 +52,6 @@
             require('./../../~Commons/Page/Mixins/components')
         ],
 
-        name: 'farms-page'
+        name: 'animals-page'
     }
 </script>

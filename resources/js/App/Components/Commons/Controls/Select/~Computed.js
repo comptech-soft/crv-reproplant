@@ -11,7 +11,7 @@ module.exports = {
             let r = [
                 {
                     id: '',
-                    text: this.__('---')
+                    text: this.__(this.no_selection_text)
                 },
             ]
             _.each(this.records, record => r.push({

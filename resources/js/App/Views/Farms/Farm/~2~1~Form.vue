@@ -1,16 +1,6 @@
 <template>
     <div v-if="farm && fm">
 
-        <div style="background-color:#000; color:yellow">
-            {{ action }}
-            <hr/>
-            {{ old }}
-        </div>
-
-        <div style="background-color:blue; color:yellow">
-            {{ record }}
-        </div>
-
         <div v-if="action=='delete'" class="alert alert-danger alert-dismissible m-alert m-alert--air m-alert--square" role="alert">
             <strong>{{__('Confirmare!')}}</strong> 
             {{ __('Sunteți sigur că doriți ștergerea utilizatorului :name: de la ferma :farm:?', {
