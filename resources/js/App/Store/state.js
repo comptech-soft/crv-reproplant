@@ -13,4 +13,9 @@ module.exports = {
         loading: false,
     },
 
+    animal: {
+        record: null,
+        loading: false,
+    },
+
 }

@@ -143,7 +143,6 @@
             {
                 this.saving = true
                 this.post('farms/save-ore-mulsori', {farm_id: this.farm_id, ora: this.ora}, data => {
-                    console.log(data)
                     this.saving = false
                     if(data.success)
                     {

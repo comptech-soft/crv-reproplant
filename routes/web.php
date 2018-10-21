@@ -6,4 +6,10 @@ Route::middleware(['is-authenticated'])->group(function(){
         Route::post('save-ore-mulsori', 'FarmController@saveOreMulsori');
         Route::post('save-user', 'FarmController@saveUser');
     });
+
+    Route::namespace('Animals')->prefix('animals')->group(function(){
+        Route::post('crv4-all-import', 'AnimalController@crv4allImport');
+        Route::post('get-animal-characteristics', 'AnimalController@getAnimalCharacteristics');
+    });
+
 });

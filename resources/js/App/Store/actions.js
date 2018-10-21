@@ -4,4 +4,7 @@ module.exports = {
 
     getFarm: ({ commit }, id) => commit('getFarm', id),
     setFarm: ({ commit }, farm) => commit('setFarm', farm),
+
+    getAnimal: ({ commit }, id) => commit('getAnimal', id),
+    setAnimal: ({ commit }, animal) => commit('setAnimal', animal),
 }

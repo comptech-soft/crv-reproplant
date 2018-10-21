@@ -37,4 +37,13 @@ trait Relations
         return $this->belongsTo(\App\Models\Animals\Animals\Animal::class, 'mother_id');
     }
 
+    /**
+     * Ce caracteristici are animalul 
+     * Din tabela animal_traits
+     */
+    public function characteristics()
+    {
+        return $this->hasMany(\App\Models\Animals\Characteristics\Characteristic::class, 'animal_id');
+    }
+
 }

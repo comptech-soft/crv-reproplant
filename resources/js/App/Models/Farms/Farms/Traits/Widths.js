@@ -1,10 +1,9 @@
 module.exports = {
-    recno: 10,
-    id: 10,
+    recno: 5,
     status: 5,
-    farm: 15,
-    address: 30,
+    farm: 25,
+    address: 40,
     cod_exploatatie: 10,
     cif: 10,
-    actions: 10,
+    actions: 5,
 }

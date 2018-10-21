@@ -58,7 +58,7 @@ trait Actions
 
     protected static function getRecord($id)
     {
-        return self::where('id', $id)->with(['locality.judet.region.country', 'oremulsori'])->first();
+        return self::where('id', $id)->with(['rasa', 'company', 'father.father', 'father.mother', 'mother.father', 'mother.mother'])->first();
     }
 
 }

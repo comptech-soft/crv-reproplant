@@ -1,0 +1,61 @@
+div.m-portlet-characteristics
+{
+    margin-bottom: 10px;
+    div.m-portlet__head
+    {
+        height: 1.5rem;
+    }
+    
+    div.m-portlet__body
+    {
+        padding: 0.2rem;
+
+        table.characteristics-table
+        {
+            background-color: #fcfcfc;
+            margin-bottom: 0px;
+
+            tr.m-table__row--brand
+            {
+                th.cell
+                {
+                    background-color: darkgray;
+                }
+            }
+
+            td.cell, th.cell
+            {
+                font-size: 11px;
+                padding: 2px 4px;
+                line-height: 11px;
+                vertical-align: middle;
+                border: 1px solid #f4f5f8;
+
+                .progress.m-progress--sm 
+                {
+                    border-radius: 0;
+                    height: 1rem;
+                    background-color: transparent;
+                    .progress-bar 
+                    {
+                        border-radius: 0;
+                    }
+                }
+            }
+
+            th.cell
+            {
+                text-align: center;
+            }
+
+            td.cell-caption
+            {
+                color: #333;
+                font-weight: bold;
+            
+            }
+        }
+    }
+    
+}
+

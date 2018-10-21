@@ -16,6 +16,12 @@ module.exports = {
                 caption: 'Lista generală de tauri',
                 click: v => v.$router.push({name: 'animals', params: {type: 'sire', gender: 'male'}})
             },
+
+            {
+                icon: 'share',
+                caption: 'Valori de ameliorare',
+                click: v => v.$router.push({name: 'breeding', params: {type: 'sire', gender: 'male'}})
+            },
         ],
     }
 }

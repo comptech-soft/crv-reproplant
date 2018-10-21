@@ -28,6 +28,24 @@ module.exports = {
     setFarm(state, farm)
     {
         state.farm.record = farm
+    },
+
+    getAnimal(state, id)
+    {
+        state.animal.loading = true
+        csApp.Http.Post('api/get-record', {
+            model: '\\App\\Models\\Animals\\Animals\\Animal',
+            id
+        },  data => {
+            state.animal.record = data.result.payload.record
+            state.animal.loading = false
+        })
+       
+    },
+
+    setAnimal(state, animal)
+    {
+        state.animal.record = animal
     }
 
 }

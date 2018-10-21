@@ -11,7 +11,7 @@
             </li>
             <li 
                 :class="{'nav-item': true}"
-                v-if="current_tab == 'list'"
+                v-if="(current_tab == 'list') && has_form"
             >
                 <a :class="{'nav-link': true,  active: current_tab == 'form'}" href="javascript:void(0);" @click.prevent="showForm('insert', null)">
                     <i class="la la-plus-circle"></i>
@@ -58,6 +58,7 @@
             <!-- Boxul cu formuarul -->
             <div
                 :class="{'tab-pane': true, active: current_tab == 'form'}"
+                v-if="has_form"
             >
                 <div class="row">
                     <div class="col">

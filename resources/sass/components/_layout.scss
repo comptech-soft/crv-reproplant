@@ -1,0 +1,74 @@
+.m-subheader
+{
+    padding: 40px 0 0 0;
+}
+
+.m-body 
+{
+    .m-content 
+    {
+        padding: 40px 0 10px 0;
+    }
+}
+
+nav.nav-pills, .nav.nav-tabs 
+{
+    margin-bottom: 10px;
+}
+
+.m-portlet 
+{
+    .m-portlet__body 
+    {
+        padding: 1rem 1rem;
+    }
+}
+
+@media (max-width: 1024px){
+    .m-header
+    {
+        .m-header__top, .m-header__bottom
+        {
+            height: 60px;
+        }
+    }
+}
+
+@media (min-width: 1025px) {
+    .m-header
+    {
+        .m-header__top, .m-header__bottom
+        {
+            height: 60px;
+        }
+    }
+
+    .m-header--fixed 
+    {
+        .m-body 
+        {
+            padding-top: 100px !important;
+        }
+    }
+
+    .m-aside-left--enabled 
+    {
+        .m-body 
+        {
+            .m-wrapper 
+            {
+                padding-right: 20px;
+                padding-left: 20px;
+                margin: 0;
+            }
+        }
+    }
+
+    .m-page 
+    {
+        .m-page__container 
+        {
+            padding: 0;
+        }
+    }
+}

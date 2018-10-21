@@ -24,4 +24,6 @@ module.exports = {
 
     farm: state => state.farm,
 
+    animal: state => state.animal,
+
 }

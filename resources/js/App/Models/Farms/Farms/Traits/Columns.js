@@ -5,9 +5,7 @@ const Makers = AppCore.GridMakers
 module.exports = [
 
     Makers.mkRecnoColumn(),
-
-    Makers.mkIdColumn({default: true, dir: 'asc', field: 'farms.id', type: 'alpha'}),
-    
+   
     Makers.mkColumn('status', {
         caption: 'Stare',
         order: {default: false, dir: 'asc', field: 'farms.status', type: 'alpha'}
@@ -23,7 +21,7 @@ module.exports = [
 
     Makers.mkColumn('farm', {
         caption: 'Nume fermă',
-        order: {default: false, dir: 'asc', field: 'farms.farm', type: 'alpha'}
+        order: {default: true, dir: 'asc', field: 'farms.farm', type: 'alpha'}
     }, {
         component: 'cell-string',
         render: record => record.farm,

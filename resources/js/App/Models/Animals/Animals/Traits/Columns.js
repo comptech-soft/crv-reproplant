@@ -1,19 +1,6 @@
 import AppCore from 'comptechsoft-app-starter'
 
-const Makers = AppCore.GridMakers
-const animalInfo = (animal, field, relation) => {
-
-    if(! animal[field]) 
-    {
-        return '-'
-    }
-    return animal[relation].short_name 
-        || animal[relation].long_name 
-        || animal[relation].interbull_code 
-        || animal[relation].matricol_number 
-        || animal[relation].cod_ro 
-        || animal[relation].naab
-} 
+const Makers = AppCore.GridMakers, Renderers = require('./../../~Commons/renderers')
 
 module.exports = [
 
@@ -26,36 +13,7 @@ module.exports = [
         cell_style: {
             'text-align': 'center'
         },
-        render: record => {
-
-            let statuses = {
-                'adaugat-ferma' : {
-                    caption: 'AF',
-                    color: 'warning',
-                },
-                'valid': {
-                    caption: 'V',
-                    color: 'success',
-                },
-                'invalid': {
-                    caption: 'IV',
-                    color: 'danger',
-                },
-                'inactiv': {
-                    caption: 'IA',
-                    color: 'danger',
-                }
-            }
-            if(record.animal_status)
-            {
-                if(statuses.hasOwnProperty(record.animal_status))
-                {
-                    return '<span class="m-badge m-badge--' + statuses[record.animal_status].color + '">' + statuses[record.animal_status].caption + '</span>'
-                }
-                return record.animal_status
-            }
-            return '?'
-        }
+        render: record => Renderers.animalStatus(record),
     }),
 
     Makers.mkColumn('interbull_code', {
@@ -63,11 +21,11 @@ module.exports = [
         order: {default: true, dir: 'asc', field: 'animals.interbull_code', type: 'alpha'}
     }, {
         component: 'cell-string',
-        render: record => record.interbull_code,
+        render: record => record.interbull_code || '-',
         cell_style: (column, record) => {
             return {
                 cursor: 'pointer',
-                // color: record.status == 'inactiv' ? '#f4516c' : '#5867dd',
+                color: '#5867dd',
             }
         },
         actions: (v, record) => v.$router.push({name: 'animal', params: {id: record.id}})
@@ -78,7 +36,14 @@ module.exports = [
         order: {default: false, dir: 'asc', field: 'animals.short_name', type: 'alpha'}
     }, {
         component: 'cell-string',
-        render: record => record.short_name
+        render: record => record.short_name || '-',
+        cell_style: (column, record) => {
+            return {
+                cursor: 'pointer',
+                color: '#5867dd',
+            }
+        },
+        actions: (v, record) => v.$router.push({name: 'animal', params: {id: record.id}})
     }),
 
     Makers.mkColumn('long_name', {
@@ -86,7 +51,14 @@ module.exports = [
         order: {default: false, dir: 'asc', field: 'animals.long_name', type: 'alpha'}
     }, {
         component: 'cell-string',
-        render: record => record.long_name
+        render: record => record.long_name || '-',
+        cell_style: (column, record) => {
+            return {
+                cursor: 'pointer',
+                color: '#5867dd',
+            }
+        },
+        actions: (v, record) => v.$router.push({name: 'animal', params: {id: record.id}})
     }),
 
     Makers.mkColumn('pedigree', {
@@ -94,7 +66,7 @@ module.exports = [
     }, {
         component: 'cell-string',
         render: record => {
-            return animalInfo(record, 'father_id', 'father') + '<i style="font-size:11px" class="la la-times"></i>' + animalInfo(record, 'mother_id', 'mother')
+            return Renderers.animalInfo(record, 'father_id', 'father') + '<i style="font-size:11px" class="la la-times"></i>' + Renderers.animalInfo(record, 'mother_id', 'mother')
         }
     }),
 
@@ -180,16 +152,16 @@ module.exports = [
     Makers.mkActionsColumn([
         Makers.actUpdate('la la-pencil'),
         Makers.actDelete('la la-trash'),
-        // {
-        //     icon: 'la la-folder-o',
-        //     caption: 'Deschide',
-        //     click: v => v.$router.push({
-        //         name: 'farm', 
-        //         params: {
-        //             id: v.record.id
-        //         }
-        //     })
-        // }
+        {
+            icon: 'la la-folder-o',
+            caption: 'Deschide dashboard animal',
+            click: v => v.$router.push({
+                name: 'animal', 
+                params: {
+                    id: v.record.id
+                }
+            })
+        }
     ]),
 
 ]
