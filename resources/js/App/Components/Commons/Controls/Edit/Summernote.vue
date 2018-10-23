@@ -84,7 +84,6 @@
                     if( v.disabled )
                     {
                         this.instance.summernote('disable');
-                        // sn.parent().find('.note-toolbar-wrapper').hide();
                     }
                 }
             }

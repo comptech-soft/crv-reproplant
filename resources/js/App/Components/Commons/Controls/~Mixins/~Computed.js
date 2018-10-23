@@ -38,14 +38,25 @@ module.exports = {
             {
                 return false;
             }
+            if( this.id && this.errors.has(this.id))
+            { 
+                return true
+            }
             let field = this.field ? this.field : this.get_control_name
             return this.errors.has(field)
         },
 
         error_to_string()
         {
+            if( this.errors == null )
+            {
+                return '';
+            }
+            if( this.id && (this.errors.has(this.id)) )
+            {
+                return this.errors.collect(this.id).map(e => this.__(e)).toString();
+            }
             let field = this.field ? this.field : this.get_control_name
-
             if( (this.errors == null) || (! this.errors.has(field) ) )
             {
                 return '';

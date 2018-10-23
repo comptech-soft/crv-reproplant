@@ -12,6 +12,7 @@
         <select 
             :class="form_control_class"
             :disabled="disabled"
+            :id="id"
             style="font-family:Poppins"
             @change="onChange"
         >

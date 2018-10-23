@@ -24,7 +24,6 @@
 
     import model from './../../../Models/Animals/Animals/Animal'
     
-
     export default{
 
         mounted(){

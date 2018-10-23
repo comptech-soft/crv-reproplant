@@ -15,14 +15,26 @@ trait Actions
     protected static function InsertRecord($user_id, $record)
     {
         $record = self::insert($data = [
-            'farm' => $record['farm'],
-            'address' => $record['address'],
-            'locality_id' => $record['locality_id'],
-            'cod_exploatatie' => $record['cod_exploatatie'],
-            'cif' => $record['cif'],
-            'status' => $record['status'],
-            'email' => $record['email'],
+            'type' => $record['type'],
+            'gender' => $record['gender'],
+            'animal_status' => $record['animal_status'],
 
+            'long_name' => $record['long_name'],
+            'short_name' => $record['short_name'],
+
+            'interbull_code' => $record['interbull_code'],
+            'naab' => $record['naab'],
+            'matricol_number' => $record['matricol_number'],
+            'cod_ro' => $record['cod_ro'],
+            
+            'birth_date' => $record['birth_date'] ? Carbon::createFromFormat('d.m.Y', $record['birth_date'])->format('Y-m-d') : NULL,
+            'breed_id' => $record['breed_id'],
+            'color_id' => $record['color_id'],
+            'company_id' => $record['company_id'],
+            
+            'father_id' => $record['father_id'],
+            'mother_id' => $record['mother_id'],
+            
             'created_at' => Carbon::now(),
             'created_by' => $user_id,
             'updated_at' => Carbon::now(),

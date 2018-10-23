@@ -11,6 +11,7 @@
         <select 
             :class="form_control_class"
             :disabled="disabled"
+            :id="id"
             @change="onChange"
         >
             <option 

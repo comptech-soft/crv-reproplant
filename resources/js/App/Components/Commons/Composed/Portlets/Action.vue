@@ -114,6 +114,7 @@
             action: function(newAction, oldAction)
             {
                 this.$children[0].action = newAction
+                // console.log('Action. New action > ' + newAction)
             }
         },
 
@@ -131,7 +132,6 @@
             resetRecord()
             {
                 _.map(this.record, (value, field) => {
-                    console.log(field)
                     this.record[field] = this.model.fields[field].value
                 })
                 this.formManager.errors = null
@@ -149,7 +149,7 @@
 
         mounted()
         {
-            this.formManager = new AppCore.ActionFormManager('country-form', this)
+            this.formManager = new AppCore.ActionFormManager('grid-action-form', this)
             let i = setInterval( () => {
                 if(this.$children.length)
                 {
@@ -160,6 +160,12 @@
                      * Sa nu uitam de id
                      */
                     this.record = this.$children[0].record
+                    // console.log('Action::mounted()');
+                    // console.log('Sunt in: ' + this.$options._componentTag + ' (' + this.$options.__file  + ')')
+                    // console.log('Childern[0]: ' + this.$children[0].$options._componentTag + ' (' + this.$children[0].$options.__file  + ')')
+                    _.map(this.record, (value, field) => {
+                        // console.log(field + ' == ' + value)
+                    })
                 }
             }, 100) 
         }

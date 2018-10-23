@@ -9,20 +9,18 @@
             <i v-if="loading" class="fa fa-spinner fa-spin"></i>
         </label>
 
-        <select 
-            class="form-control"
-            :disabled="disabled"
-            @change="onChange"
+        <select
+            v-if="! loading"
+            :class="inputClass"
+            :id="id"
+            :value="value"
+            style="width: 100%; font-family:Poppins"
+            @change="$emit('change', $event.target.value)"
         >
-            <option 
-                v-for="(o, i) in get_options"
-                :key="'option-' + i"
-                :value="o.id"
-                :selected="o.id == value"
-            >
-                {{ o.text }}
+			<option v-for="option in get_options" :value="option.id" :key="'option-' + option.id">
+                {{ option.text }}
             </option>
-        </select>
+		</select>
 
         <error-label
             v-if="error_to_string"
@@ -35,12 +33,41 @@
 <script>
     export default
     {
+        props: {
+            help: {default: ''},
+            disabled: {default: false},
+            // initialSelectOptions: {default: () => []},
+            defaultPluginOptions: {default: () => {
+                return {
+                    allowClear: true,
+                    escapeMarkup: markup => markup,
+                    minimumInputLength: 2,
+                    ajax: {}
+                }
+            }},
+            selectable: {required: true},
+            selected: {default: null},
+            label: {type: String, default: ''},
+            inputClass: {type: Object, default: () => {
+                return {
+                    'form-control': true,
+                    'm-select2': true,
+                }
+            }},
+        },
+
+        model:
+        {
+            prop: 'value',
+            event: 'change'
+        },
         
         data()
         {
             return {
                 loading: false,
-                records: [],
+                options: [],
+                instance: null,
             }
         },
 
@@ -49,18 +76,92 @@
             {
                 this.$emit('input', e.target.value ? e.target.value : null)
             },
+
+            init()
+            {
+                let v = this
+                this.instance = $('#' + this.id).select2(this.plugin_options)
+                
+                this.instance.on('select2:select', function(e) {
+                    v.$emit('change', e.params.data.id)
+                    v.$emit('selected', e.params.data)
+                })
+                this.instance.on('select2:unselect', function(e){
+                    v.$emit('change', null)
+                    v.$emit('selected', null)
+                    let s = v.instance.data('select2')
+                    var opts = s.options;
+                    opts.set('disabled', true);
+                    setTimeout(function() {
+                        opts.set('disabled', false);
+                    }, 5);
+                })
+                this.instance.on('select2:open', function(params){
+                    let s = v.instance.data('select2')
+                    s.results.clear();
+                    s.dropdown._resizeDropdown();
+                    s.dropdown._positionDropdown();
+                });
+                console.log('SelectTwo::init', this.selected)
+                if( this.selected )
+                {
+                    let newOption = new Option(this.selected.text, this.selected.id, false, false);
+                    this.instance.append(newOption).trigger('change');
+                }
+            }
         },
 
         mounted()
         {
-            if( this.ajax )
+            let i = setInterval(() => {
+                if( $('#' + this.id).length == 1)
+                {
+                    clearInterval(i)
+                    this.init()
+                }
+            }, 10)
+        },
+
+        computed: {
+            
+            get_options()
             {
-                this.loading = true
-                this.post( this.ajax.endpoint, this.ajax.data, data => {
-                    this.loading = false
-                    this.records = data
-                })
-            }
+                if( this.selected )
+                {
+                    return [this.selected]
+                }
+                return [];
+            },
+            
+            plugin_options()
+            {
+                let v = this, r = this.defaultPluginOptions
+
+                r.disabled = this.disabled
+
+                r.placeholder = this.selectable.placeholder
+                r.dropdownParent = $('#' + this.id).parent()
+                r.templateResult = this.selectable.templateResult
+                r.templateSelection = this.selectable.templateSelection
+
+                r.ajax.delay = 250
+                r.ajax.url = 'api/get-options-items'
+                r.ajax.cache = false
+                r.ajax.dataType = 'json'
+                r.ajax.processResults = this.selectable.processResults
+
+                r.ajax.data = function(params) {
+                    var q = {
+                        searched: params.term,
+                        source_type: 'search',
+                        model: v.selectable.model,
+                        search_by: v.selectable.search_by,
+                        order_by: v.selectable.order_by,
+                    }
+                    return q;
+                }
+                return r
+            },
         },
 
         mixins:
@@ -68,9 +169,6 @@
             require('./../~Mixins/~Props'),
             require('./../~Mixins/~Computed'),  
             require('./../~Mixins/~Components'), 
-
-            require('./~Props'),
-            require('./~Computed'),  
         ],
 
         name: 'two-select-box'

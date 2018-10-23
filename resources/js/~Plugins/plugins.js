@@ -6,6 +6,8 @@ try
     require('jquery-confirm')
     require('block-ui')
     window.PerfectScrollbar = require('perfect-scrollbar').default
+    require('bootstrap-datepicker')
+    require('select2')
 } 
 catch(e)
 {

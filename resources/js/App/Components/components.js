@@ -16,6 +16,7 @@ const components = {
      */
     'alert-box': require('./../../App/Components/Commons/Composed/Alert/Alert'),
     'form-box': require('./../../App/Components/Commons/Composed/Form/Form'),
+    'modal-box': require('./../../App/Components/Commons/Composed/Modal/Modal'),
 
      /**
      * Controls
@@ -29,6 +30,7 @@ const components = {
     'year-select': require('./../../App/Components/Commons/Controls/Select/Year'),
     'two-select': require('./../../App/Components/Commons/Controls/Select/Two'),
     'editbox': require('./../../App/Components/Commons/Controls/Edit/Edit'),
+    'datebox': require('./../../App/Components/Commons/Controls/Text/Date'),
 
 }
 
