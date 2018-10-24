@@ -102,7 +102,6 @@
                     s.dropdown._resizeDropdown();
                     s.dropdown._positionDropdown();
                 });
-                console.log('SelectTwo::init', this.selected)
                 if( this.selected )
                 {
                     let newOption = new Option(this.selected.text, this.selected.id, false, false);
@@ -157,6 +156,7 @@
                         model: v.selectable.model,
                         search_by: v.selectable.search_by,
                         order_by: v.selectable.order_by,
+                        filter_by: v.selectable.filter_by,
                     }
                     return q;
                 }

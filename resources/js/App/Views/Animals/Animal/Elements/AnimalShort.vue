@@ -4,8 +4,7 @@
         <div v-if="animal">
             <div class="animal-short-long-name">
                 <a href="javascript:void(0);" @click="onClick">
-                    <span class="m-badge m-badge--brand m-badge--wide m-badge--rounded" v-if="animal.long_name">
-                        {{ animal.long_name }}
+                    <span class="m-badge m-badge--brand m-badge--wide m-badge--rounded" v-if="animal.long_name" v-html="animal.long_name">
                     </span>
                     <span v-else class="m--font-info">{{ __('Necompletat') }}</span>
                 </a>

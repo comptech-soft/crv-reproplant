@@ -155,7 +155,7 @@
                 <two-select
                     id="father_id"
                     :label="__('Sire (Tatăl)')"
-                    :selectable="animal_selectable(__('Selectați tatăl'))"
+                    :selectable="animal_selectable(__('Selectați tatăl'), 'sire', 'male')"
                     :selected="selected_father"
                     :disabled="action == 'delete'"
                     :errors="errors"
@@ -179,7 +179,7 @@
                 <two-select
                     id="mother_id"
                     :label="__('Dam (Mama)')"
-                    :selectable="animal_selectable(__('Selectați mama'))"
+                    :selectable="animal_selectable(__('Selectați mama'), 'cow', 'female')"
                     :selected="selected_mother"
                     :disabled="action == 'delete'"
                     :errors="errors"
@@ -205,7 +205,7 @@
             :visible="quick_add_form.visible"
             :type="quick_add_form.type"
             :gender="quick_add_form.gender"
-            @close="quick_add_form.visible = false"
+            @close="hideQuickAddForm"
         >
         </quick-add-form>
         <!-- adaugarea rapida a unei copanii -->
@@ -269,6 +269,22 @@
                 this.quick_add_form.gender = gender
             },
 
+            hideQuickAddForm(animal = null)
+            {
+                this.quick_add_form.visible = false
+                if(animal)
+                {
+                    if( (animal.type == 'sire') && (animal.gender == 'male') )
+                    {
+                        this.father = animal
+                    }
+                    if( (animal.type == 'cow') && (animal.gender == 'female') )
+                    {
+                        this.mother = animal
+                    }
+                }
+            },
+
             showAddCompany()
             {
                 this.add_company.visible = true
@@ -284,13 +300,17 @@
                 }
             },
 
-            animal_selectable(caption)
+            animal_selectable(caption, type, gender)
             {
                 return {
                     placeholder: caption,
                     model: '\\App\\Models\\Animals\\Animals\\Animal',
                     search_by: ['animals.long_name', 'animals.short_name', 'animals.interbull_code'],
                     order_by: 'animals.long_name',
+                    filter_by: [
+                        "animals.type = '" + type + "'",
+                        "animals.gender = '" + gender + "'" 
+                    ],
                     processResults: data => {
                         return {
                             results: _.map(data.results, record => {

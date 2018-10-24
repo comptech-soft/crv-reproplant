@@ -132,7 +132,10 @@
             resetRecord()
             {
                 _.map(this.record, (value, field) => {
-                    this.record[field] = this.model.fields[field].value
+                    if( this.model.fields.hasOwnProperty(field) )
+                    {
+                        this.record[field] = this.model.fields[field].value
+                    }
                 })
                 this.formManager.errors = null
             },

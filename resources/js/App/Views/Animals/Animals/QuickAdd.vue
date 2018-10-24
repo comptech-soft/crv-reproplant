@@ -155,17 +155,22 @@
                     names: '',
                     codes: '',
                 },
+                created: null,
             }
         },
 
         methods: {
             onClickAdd()
             {
-                this.fm.onClickSubmit(this.model.rules[this.am.action].rules)
+                this.fm.onClickSubmit(this.model.rules[this.am.action].rules, data => {
+                    this.created = data.result.payload.result
+                    this.resetRecord()
+                })
             },
 
             resetRecord()
             {
+                this.$emit('close', this.created)
                 this.record.type = ''
                 this.record.gender = ''
                 this.record.short_name = ''
@@ -174,7 +179,7 @@
                 this.record.matricol_number = ''
                 this.record.naab = ''
                 this.record.cod_ro = ''
-                this.$emit('close')
+                this.created = null
             }
         },
 
