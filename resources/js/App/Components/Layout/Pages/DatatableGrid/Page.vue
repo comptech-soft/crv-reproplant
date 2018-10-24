@@ -82,12 +82,6 @@
 </template>
 
 <script>
-
-    import ComputedMix from './Mixins/computed'
-    import DataMix from './Mixins/data'
-    import MethodsMix from './Mixins/methods'
-    import PropsMix from './Mixins/props'
-
     export default {
 
         mounted() {
@@ -105,7 +99,12 @@
             'action-box-container': require('./../../../Commons/Composed/Portlets/Action'),
         },
 
-        mixins: [PropsMix, ComputedMix, DataMix, MethodsMix],
+        mixins: [
+            require('./Mixins/props'), 
+            require('./Mixins/computed'), 
+            require('./Mixins/data'), 
+            require('./Mixins/methods'),
+        ],
 
         name: 'datatable-grid-page'
     }

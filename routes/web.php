@@ -12,4 +12,10 @@ Route::middleware(['is-authenticated'])->group(function(){
         Route::post('get-animal-characteristics', 'AnimalController@getAnimalCharacteristics');
     });
 
+    Route::namespace('System')->prefix('system')->group(function(){
+        Route::post('upload-image', 'UploadController@uploadImage')->name('upload-image');
+    });
+
+    
+
 });

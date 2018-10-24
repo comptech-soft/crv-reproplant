@@ -1,6 +1,6 @@
 import AppCore from 'comptechsoft-app-starter'
 
-export default {
+module.exports = {
 
     methods: {
 

@@ -31,7 +31,8 @@ const components = {
     'two-select': require('./../../App/Components/Commons/Controls/Select/Two'),
     'editbox': require('./../../App/Components/Commons/Controls/Edit/Edit'),
     'datebox': require('./../../App/Components/Commons/Controls/Text/Date'),
-
+    'vue-image': require('./../../App/Components/Commons/Controls/Images/Image'),
+    'vue-uploader': require('./../../App/Components/Commons/Controls/Images/ImageUploader'),
 }
 
 module.exports = components

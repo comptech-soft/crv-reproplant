@@ -53,6 +53,7 @@ return [
          */
         Comptechsoft\Helpers\HelpersServiceProvider::class,
         Yangqi\Htmldom\HtmldomServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -102,6 +103,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Htmldom' => Yangqi\Htmldom\Htmldom::class,
+        'InterventionImage' => Intervention\Image\Facades\Image::class,
 
     ],
 

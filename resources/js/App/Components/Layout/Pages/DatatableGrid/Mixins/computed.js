@@ -1,4 +1,4 @@
-export default {
+module.exports = {
 
     computed: {
         form_tab_caption()

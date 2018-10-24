@@ -135,14 +135,23 @@
                     :ajax="ajax_companies"
                     :disabled="action == 'delete'"
                     v-model="record.company_id"
+                    :reload="add_company.reload"
                     :errors="errors"
                 >
                 </simple-select>
+                <div v-if="action != 'delete'">
+                    <button 
+                        type="button" 
+                        class="btn btn-outline-info btn-sm m-btn m-btn--custom"
+                        @click="showAddCompany"
+                    >
+                        {{ __('Adaugă firmă') }}
+                    </button>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                
                 <two-select
                     id="father_id"
                     :label="__('Sire (Tatăl)')"
@@ -191,13 +200,20 @@
                 </div>
             </div>
         </div>
-        <quick_add_form
+        <!-- adaugarea rapida a unui animal -->
+        <quick-add-form
             :visible="quick_add_form.visible"
             :type="quick_add_form.type"
             :gender="quick_add_form.gender"
             @close="quick_add_form.visible = false"
         >
-        </quick_add_form>
+        </quick-add-form>
+        <!-- adaugarea rapida a unei copanii -->
+        <quick-add-company
+            :visible="add_company.visible"
+            @close="hideCompanyForm"
+        >
+        </quick-add-company>
     </form-box>
 </template>
 
@@ -236,6 +252,10 @@
                     visible: false,
                     type: null,
                     gender: null,
+                },
+                add_company: {
+                    visible: false,
+                    reload: 0,
                 }
             }
         },
@@ -247,6 +267,21 @@
                 this.quick_add_form.visible = true
                 this.quick_add_form.type = type
                 this.quick_add_form.gender = gender
+            },
+
+            showAddCompany()
+            {
+                this.add_company.visible = true
+            },
+
+            hideCompanyForm(company = null)
+            {
+                this.add_company.visible = false
+                this.add_company.reload++;
+                if(company)
+                {
+                    this.record.company_id = company.id
+                }
             },
 
             animal_selectable(caption)
@@ -369,7 +404,8 @@
         },
 
         components: {
-            'quick_add_form': require('./QuickAdd')
+            'quick-add-form': require('./QuickAdd'),
+            'quick-add-company': require('./../Companies/QuickAddCompany')
         },
 
         mixins: [
