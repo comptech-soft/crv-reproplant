@@ -71,8 +71,8 @@
         },
 
         components: {
-            'user-form': require('./~2~1~Form'),
-            'user-list': require('./~2~2~List')
+            'user-form': require('./Form'),
+            'user-list': require('./List')
         }
     }
 </script>

@@ -61,8 +61,11 @@
                     if( ! this.is_initiated)
                     {
                         let d = this.datetime.setFormat('DD.MM.YYYY', newValue)
-                        console.log(oldValue + '>>>>' + newValue + ' (' + d  + ')')
                         $('#' + this.id).val(d) 
+                        if( ! d )
+                        {
+                            d = null
+                        }
                         this.$emit('input', d)
                         this.is_initiated = true
                         this.instance.datepicker('update')
@@ -88,8 +91,13 @@
                     defaultViewDate: {},
                 })
                 this.instance.on('changeDate', function(e) {
-                    // let d =  $('#' + this.id).val() 
-                    v.$emit('input', $('#' + this.id).val() )
+                    // let d =   
+                    let value = $('#' + this.id).val()
+                    if( ! value )
+                    {
+                        value = null
+                    }
+                    v.$emit('input', value)
                 })
             }
         },

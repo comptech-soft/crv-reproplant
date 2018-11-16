@@ -5,6 +5,7 @@ Route::middleware(['is-authenticated'])->group(function(){
     Route::namespace('Farms')->prefix('farms')->group(function(){
         Route::post('save-ore-mulsori', 'FarmController@saveOreMulsori');
         Route::post('save-user', 'FarmController@saveUser');
+        Route::post('save-cow', 'FarmController@saveCow');
     });
 
     Route::namespace('Animals')->prefix('animals')->group(function(){
@@ -16,6 +17,5 @@ Route::middleware(['is-authenticated'])->group(function(){
         Route::post('upload-image', 'UploadController@uploadImage')->name('upload-image');
     });
 
-    
 
 });

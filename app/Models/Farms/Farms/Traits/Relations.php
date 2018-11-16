@@ -29,4 +29,12 @@ trait Relations
         return $this->belongsToMany(\Comptechsoft\Helpers\Models\Cartalyst\Users\User::class, 'farms_users', 'farm_id', 'user_id');
     }
 
+    /**
+     * Animalele fermei
+     */
+    public function animals()
+    {
+        return $this->belongsToMany(\App\Models\Animals\Animals\Animal::class, 'farms_animals', 'farm_id', 'animal_id');
+    }
+
 }

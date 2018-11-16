@@ -1,7 +1,16 @@
 <template>
     <div class="m-portlet m-portlet--tabs m-portlet--brand m-portlet--head-solid-bg m-portlet--head-sm m-portlet--bordered">
-        <farm-head :farm="farm" :current="current" @current="current=$event"></farm-head>
-        <farm-body :farm="farm" :current="current"></farm-body>
+        <farm-head 
+            :farm="farm" 
+            :current="current" 
+            @current="current=$event"
+        >
+        </farm-head>
+        <farm-body 
+            :farm="farm" 
+            :current="current"
+        >
+        </farm-body>
     </div>
 </template>
 

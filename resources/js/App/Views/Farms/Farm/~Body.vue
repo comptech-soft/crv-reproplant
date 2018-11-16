@@ -2,7 +2,7 @@
     <div v-if="farm && ! farm.loading" class="m-portlet__body">
         <div class="tab-content">
             <div v-if="current=='data'" class="tab-pane active show" role="tabpanel">
-                {{ farm}}
+                {{ farm }}
             </div>
             
             <div v-if="current=='users'" class="tab-pane active show" role="tabpanel">
@@ -11,6 +11,14 @@
 
             <div v-if="current=='mulsori'" class="tab-pane active show" role="tabpanel">    
                 <ore-mulsori :farm="farm"></ore-mulsori>
+            </div>
+
+            <div v-if="current=='sire'" class="tab-pane active show" role="tabpanel">    
+                <farm-sires :farm="farm"></farm-sires>
+            </div>
+
+            <div v-if="current=='cow'" class="tab-pane active show" role="tabpanel">    
+                <farm-cows :farm="farm"></farm-cows>
             </div>
         </div>
     </div>
@@ -24,8 +32,11 @@
         },
 
         components: {
-            'ore-mulsori': require('./~3~OreMulsori'),
-            'farm-users': require('./~2~Users')
+            'ore-mulsori': require('./OreMulsori/OreMulsori'),
+            'farm-users': require('./Users/Users'),
+            'farm-cows': require('./Cows/Cows'),
+            'farm-sires': require('./~5~Sires'),
+            
         }
     }
 </script>

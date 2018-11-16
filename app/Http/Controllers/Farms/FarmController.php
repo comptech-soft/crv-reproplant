@@ -24,4 +24,12 @@ class FarmController extends Controller
     {
         return Farm::saveUser($request->only(['action', 'record', 'farm_id', 'old']));
     }
+
+    /**
+     * Actualizeaza informatiile despre o vaca
+     */
+    public function saveCow(Request $request)
+    {
+        return Farm::saveCow($request->only(['action', 'record', 'farm_id', 'old']));
+    }
 }

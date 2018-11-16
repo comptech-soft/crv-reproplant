@@ -14,6 +14,7 @@
         </div>
         <div v-if="farm && ! farm.loading" class="m-portlet__head-tools">
             <ul class="nav nav-tabs m-tabs m-tabs-line  m-tabs-line--right" role="tablist">
+                <!-- Data ferma -->
                 <li 
                     :class="{
                         'nav-item': true, 
@@ -33,6 +34,49 @@
                         {{ __('Date de identificare') }}
                     </a>
                 </li>
+                <!-- Vacile -->
+                <li 
+                    :class="{
+                        'nav-item': true, 
+                        'm-tabs__item': true,
+                    }" 
+                    style="cursor:pointer"
+                >
+                    <a 
+                        :class="{
+                            'nav-link': true, 
+                            'm-tabs__link': true,
+                            'active': current == 'cow',
+                            'show': current == 'cow',
+                        }"
+                        role="tab"
+                        @click="$emit('current', 'cow')"
+                    >
+                        {{ __('Vacile fermei') }}
+                    </a>
+                </li>
+                <!-- Taurii -->
+                <li 
+                    :class="{
+                        'nav-item': true, 
+                        'm-tabs__item': true,
+                    }" 
+                    style="cursor:pointer"
+                >
+                    <a 
+                        :class="{
+                            'nav-link': true, 
+                            'm-tabs__link': true,
+                            'active': current == 'sire',
+                            'show': current == 'sire',
+                        }"
+                        role="tab"
+                        @click="$emit('current', 'sire')"
+                    >
+                        {{ __('Taurii fermei') }}
+                    </a>
+                </li>
+                <!-- Utilizatori -->
                 <li 
                     :class="{
                         'nav-item': true, 
@@ -53,7 +97,8 @@
                         {{ __('Utilizatori') }}
                     </a>
                 </li>
-                 <li 
+                <!-- Ore mulsori -->
+                <li 
                     :class="{
                         'nav-item': true, 
                         'm-tabs__item': true,
