@@ -21,7 +21,7 @@
 				active: function() {sessionStorage.fonts = true;}
 			});
 		</script>
-
+		<link rel="shortcut icon" href="{{ config('app.url') }}/img/logos/favicon.png" />
         <link href="{{ config('app.url') }}/css/vendors.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="{{ config('app.url') }}/css/style.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="{{ config('app.url') }}/css/reproplant.bundle.css" rel="stylesheet" type="text/css" />
