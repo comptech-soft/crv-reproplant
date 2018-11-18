@@ -27,7 +27,7 @@
             >
             </passwordbox>
          
-            <div class="row m-login__form-sub">
+            <div v-if="false" class="row m-login__form-sub">
                 
                 <div class="col m--align-left">
                     <checkbox

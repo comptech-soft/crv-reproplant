@@ -1,7 +1,9 @@
 <template>
     <div class="m-grid__item m-grid__item--fluid  m-grid m-grid--ver-desktop m-grid--desktop m-container m-container--responsive m-container--xxl m-page__container m-body">
         
-        <!-- ce buton o fi asta [m_aside_left_close_btn]??? -->
+        <!-- 
+            ce buton o fi asta [m_aside_left_close_btn]??? 
+        -->
         <button 
             id="m_aside_left_close_btn" 
             class="m-aside-left-close m-aside-left-close--skin-light"
@@ -9,7 +11,13 @@
             <i class="la la-close"></i>
         </button>
 
-        <left-aside v-if="false && $app.user" :menu="menu"></left-aside>
+        <!-- 
+            Left aside este scos 
+        -->
+        <left-aside v-if="false && $app.user" :menu="menu">
+        </left-aside>
+
+        <!-- Wrapper -->
         <wrapper></wrapper>
     </div>
 </template>

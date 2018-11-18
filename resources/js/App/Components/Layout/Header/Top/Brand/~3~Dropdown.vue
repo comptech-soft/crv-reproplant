@@ -21,6 +21,7 @@
                                         <span class="m-nav__link-text">{{ item.caption }}</span>
                                     </a>
                                 </li>
+                                
                                 <li v-if="groupIndex < groups_length - 1" class="m-nav__separator m-nav__separator--fit" :key="'brand-tool-item-separator-' + groupIndex">
                                 </li>
                             </template>
@@ -41,12 +42,11 @@
 
         computed: {
 
-            popup(){
+            popup() {
                 return Tools
             },
 
-            groups_length()
-            {
+            groups_length() {
                 return _.keys(this.popup.options).length
             }
         }

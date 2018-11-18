@@ -1,5 +1,5 @@
 <template>
-    <div class="m-subheader ">
+    <div class="m-subheader" :style="hstyle">
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 :class="{'m-subheader__title': true, 'm-subheader__title--separator': has_breadcrumbs}">{{ title }}</h3>
@@ -19,18 +19,20 @@
         props: {
             title: {type: String, required: true},
             breadcrumbs: {type: Array, default: () => []},
-            actions: {type: Object, default: () => {}}
+            actions: {type: Object, default: () => {}},
+            hstyle: {type: Object, default: () => {
+                return {
+                    padding: '0px'
+                }
+            }}
         },
 
-        computed:
-        {
-            has_actions()
-            {
+        computed: {
+            has_actions() {
                 return this.actions && _.keys(this.actions.options).length 
             },
 
-            has_breadcrumbs()
-            {
+            has_breadcrumbs() {
                 return this.breadcrumbs.length
             }
         },
