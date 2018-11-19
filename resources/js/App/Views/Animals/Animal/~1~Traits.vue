@@ -140,20 +140,17 @@
             }
         },
 
-        mounted()
-        {
+        mounted() {
             this.updateAll()
         },
 
         computed: {
-            current()
-            {
+            current() {
                 let item = _.find(this.calculation_bases, item => item.active)
                 return item.id
             },
 
-            current_characteristics()
-            {
+            current_characteristics() {
                 return _.filter(this.characteristics, item => {
                     return (item.calculation_base == null) || (item.calculation_base == this.current);
                 })

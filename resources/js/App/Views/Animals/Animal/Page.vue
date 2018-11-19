@@ -1,11 +1,13 @@
 <template>
     <div class="m-portlet m-portlet--tabs m-portlet--brand m-portlet--head-solid-bg m-portlet--head-sm m-portlet--bordered">
+        
         <animal-head 
             :animal="animal" 
             :current="current" 
             @current="current=$event"
         >
         </animal-head>
+        
         <animal-body 
             :animal="animal" 
             :current="current" 
@@ -20,15 +22,19 @@
     export default {
 
         data() {
-
             return {
+                /**
+                 * Care tab este activ
+                 */
                 current: 'traits',
             }
         },
 
         computed: {
-            animal()
-            {
+            /**
+             * Animalul selectat via store
+             */
+            animal() {
                 return this.$store.getters.animal.record
             }
         },
@@ -38,8 +44,7 @@
                 'getAnimal'
             ]),
 
-            updated()
-            {
+            updated() {
                 this.getAnimal(this.$route.params.id)
             }
         },
@@ -51,7 +56,8 @@
         },
 
         mounted(){
-            console.log('Mounted.... >>> ' + this.$route.params.id)
+            console.log('Mounted.... >>> ' + this.$route.params.id + '|' + this.$route.params.current)
+            this.current = this.$route.params.current || 'traits'
             this.getAnimal(this.$route.params.id)
         },
 

@@ -1,7 +1,11 @@
 <template>
     <div class="m-portlet__head">
+
+        <!-- loading indicator -->
         <div v-if="! animal || animal.loading" class="m-loader text-center" style="width:100%">
         </div>
+
+        <!-- Caption -->
         <div v-if="animal && ! animal.loading" class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
                 <span class="m-portlet__head-icon">
@@ -12,13 +16,12 @@
                 </h3>
             </div>
         </div>
+
+        <!-- Taburile -->
         <div v-if="animal && ! animal.loading" class="m-portlet__head-tools">
             <ul class="nav nav-tabs m-tabs m-tabs-line  m-tabs-line--right" role="tablist">
                 <li 
-                    :class="{
-                        'nav-item': true, 
-                        'm-tabs__item': true,
-                    }"
+                    :class="{'nav-item': true, 'm-tabs__item': true}"
                     style="cursor:pointer"
                 >
                     <a 
@@ -34,42 +37,36 @@
                     </a>
                 </li>
                 <li 
-                    :class="{
-                        'nav-item': true, 
-                        'm-tabs__item': true,
-                    }" 
+                    :class="{'nav-item': true, 'm-tabs__item': true}"
                     style="cursor:pointer"
                 >
                     <a 
                         :class="{
                             'nav-link': true, 
                             'm-tabs__link': true,
-                            'active': current == 'users',
-                            'show': current == 'users',
+                            'active': current == 'pedigree',
+                            'show': current == 'pedigree',
                         }"
                         role="tab"
-                        @click="$emit('current', 'users')"
+                        @click="$emit('current', 'pedigree')"
                     >
-                        {{ __('????') }}
+                        {{ __('Ascendența') }}
                     </a>
                 </li>
                  <li 
-                    :class="{
-                        'nav-item': true, 
-                        'm-tabs__item': true,
-                    }"
+                    :class="{'nav-item': true, 'm-tabs__item': true}"
                     style="cursor:pointer"
                 >
                     <a 
                         :class="{
                             'nav-link': true, 
                             'm-tabs__link': true,
-                            'active': current == 'mulsori',
-                            'show': current == 'mulsori',
+                            'active': current == 'update',
+                            'show': current == 'update',
                         }" role="tab"
-                        @click="$emit('current', 'mulsori')"
+                        @click="$emit('current', 'update')"
                     >
-                        {{ __('???') }}
+                        {{ __('Editează') }}
                     </a>
                 </li>
             </ul>
@@ -78,10 +75,12 @@
 </template>
 
 <script>
+
     export default {
         props: {
             animal: {required: true},
             current: {required: true}
         }
     }
+
 </script>
