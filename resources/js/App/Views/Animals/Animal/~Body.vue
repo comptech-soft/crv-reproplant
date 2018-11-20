@@ -20,7 +20,10 @@
 
             <!-- Continut tab update -->
             <div v-if="current=='update'" class="tab-pane active show" role="tabpanel">
-               Update
+                <animal-update 
+                    :old="animal"
+                >
+                </animal-update>
             </div>
         </div>
     </div>
@@ -35,7 +38,8 @@
 
         components: {
             'animal-traits': require('./~1~Traits'),
-            'animal-pedigree': require('./Pedigree/Pedigree')
+            'animal-pedigree': require('./Pedigree/Pedigree'),
+            'animal-update': require('./Update/Update')
         }
     }
 </script>

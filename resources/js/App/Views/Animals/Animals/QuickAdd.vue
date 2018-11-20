@@ -125,36 +125,12 @@
             gender: {required: true},
         },
 
-        data()
-        {
+        data() {
             return {
-                
                 action: 'insert',
                 am: null,
                 model: null,
                 fm: null,
-                record: {
-                    id: null,
-                    type: '',
-                    gender: '',
-                    animal_status: 'invalid',
-                    short_name: '',
-                    long_name: '',
-                    interbull_code: '',
-                    matricol_number: '',
-                    naab: '',
-                    cod_ro: '',
-
-                    birth_date: null,
-                    breed_id: null,
-                    color_id: null,
-                    company_id: null,
-                    father_id: null,
-                    mother_id: null,
-
-                    names: '',
-                    codes: '',
-                },
                 created: null,
             }
         },
@@ -200,21 +176,24 @@
         },
 
         computed: {
-            errors()
-            {
+            errors() {
                 return this.fm ? this.fm.errors : null
             }
         },
 
-        mounted(){
+        mounted() {
             this.model = model
             this.am = new AppCore.ActionsManager('action-quick-add-sire', this.model, this)
             this.am.setAction(this.action)
-            this.fm = new AppCore.ActionFormManager('quick-animal-form', this)
+            this.fm = new AppCore.ActionFormManager('quick-animal-form', this),
+            this.record.animal_status = 'invalid'
+            this.record.type = ''
+            this.record.gender = ''
         },  
 
         mixins: [
-            require('./~mixins/watch')
+            require('./../~Mixins/Form/Watch'),
+            require('./../~Mixins/Form/Record'),
         ]
     }
 </script>

@@ -72,31 +72,31 @@
         },
 
         methods: {
-            onChange(e)
-            {
+            onChange(e) {
                 this.$emit('input', e.target.value ? e.target.value : null)
             },
 
-            init()
-            {
+            init() {
                 let v = this
                 this.instance = $('#' + this.id).select2(this.plugin_options)
-                
                 this.instance.on('select2:select', function(e) {
+                    console.log('TWO.Select')
                     v.$emit('change', e.params.data.id)
                     v.$emit('selected', e.params.data)
                 })
                 this.instance.on('select2:unselect', function(e){
+                    console.log('TWO.Unselect')
                     v.$emit('change', null)
                     v.$emit('selected', null)
                     let s = v.instance.data('select2')
                     var opts = s.options;
-                    opts.set('disabled', true);
+                    v.setDisabled(true)
                     setTimeout(function() {
-                        opts.set('disabled', false);
-                    }, 5);
+                        v.setDisabled(false)
+                    }, 10);
                 })
                 this.instance.on('select2:open', function(params){
+                    console.log('TWO.Open')
                     let s = v.instance.data('select2')
                     s.results.clear();
                     s.dropdown._resizeDropdown();
@@ -104,14 +104,45 @@
                 });
                 if( this.selected )
                 {
+                    console.log('TWO.HasSelected')
                     let newOption = new Option(this.selected.text, this.selected.id, false, false);
                     this.instance.append(newOption).trigger('change');
                 }
+                this.setDisabled(this.disabled)
+            },
+
+            setDisabled(flag) {
+                if( this.timeout )
+                {
+                    clearTimeout(this.timeout)
+                }
+                this.timeout = setTimeout( () => {
+                    console.log('setDisabled: >>> ' + flag)
+                    let s = this.instance.data('select2').options
+                    let jq = $('#' + this.id).parent().find('span.select2')
+                    s.set('disabled', flag);
+                    if( ! flag )
+                    {
+                        jq.removeClass('select2-container--disabled')
+                        $('#' + this.id).prop('disabled', false)
+                    }
+                    else
+                    {
+                        jq.addClass('select2-container--disabled')
+                        $('#' + this.id).prop('disabled', true)
+                    }
+                }, 5)
             }
         },
 
-        mounted()
-        {
+        watch: {
+            'disabled': function(newDisabled, oldDisabled) {
+                console.log('WATCH: >>> ' + oldDisabled + ' >>> ' + newDisabled)
+                this.setDisabled(newDisabled)
+            }
+        },
+
+        mounted() {
             let i = setInterval(() => {
                 if( $('#' + this.id).length == 1)
                 {
@@ -123,8 +154,7 @@
 
         computed: {
             
-            get_options()
-            {
+            get_options() {
                 if( this.selected )
                 {
                     return [this.selected]
@@ -132,8 +162,7 @@
                 return [];
             },
             
-            plugin_options()
-            {
+            plugin_options() {
                 let v = this, r = this.defaultPluginOptions
 
                 r.disabled = this.disabled

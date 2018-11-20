@@ -1,13 +1,11 @@
 <template>
     <div class="m-portlet m-portlet--tabs m-portlet--brand m-portlet--head-solid-bg m-portlet--head-sm m-portlet--bordered">
-        
         <animal-head 
             :animal="animal" 
             :current="current" 
-            @current="current=$event"
+            @current="setCurrent"
         >
         </animal-head>
-        
         <animal-body 
             :animal="animal" 
             :current="current" 
@@ -44,6 +42,17 @@
                 'getAnimal'
             ]),
 
+            setCurrent(e) {
+                this.current = e
+                this.$router.push({
+                    name: 'animal',
+                    params: {
+                        id: this.animal.id,
+                        current: e
+                    }
+                })
+            },
+
             updated() {
                 this.getAnimal(this.$route.params.id)
             }
@@ -51,18 +60,18 @@
 
         beforeRouteUpdate(to, from, next){
             next()
-            console.log('beforeRouteUpdate.... >>> ' + this.$route.params.id)
+            // console.log('beforeRouteUpdate.... >>> ' + this.$route.params.id)
             this.getAnimal(this.$route.params.id)
         },
 
         mounted(){
-            console.log('Mounted.... >>> ' + this.$route.params.id + '|' + this.$route.params.current)
+            // console.log('Mounted.... >>> ' + this.$route.params.id + '|' + this.$route.params.current)
             this.current = this.$route.params.current || 'traits'
             this.getAnimal(this.$route.params.id)
         },
 
         destroy() {
-            console.log('Destroyyyy')
+            // console.log('Destroyyyy')
         },
 
         components: {

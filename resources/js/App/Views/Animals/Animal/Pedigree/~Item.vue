@@ -5,6 +5,14 @@
         </div>
         <table v-if="animal != null" class="table table-bordered table-sm">
             <tbody>
+                <tr>
+                    <td class="caption">{{__('Nume')}}</td>
+                    <td class="value">
+                        <a style="font-weight:bold; cursor:pointer" @click="openAnimal(animal)">
+                            {{ animal.long_name }}
+                        </a>
+                    </td>
+                </tr>
                 <tr v-for="(cell, index) in cells[animal.gender]" :key="'cell-' + index">
                     <td class="caption">{{ __(cell.caption) }}</td>
                     <td class="value" v-html="cell.value(animal)"></td>
@@ -101,7 +109,7 @@
             return {
                 cells: {
                     male: [
-                        {caption: 'Nume', value: record => record.long_name},
+                        // {caption: 'Nume', value: record => record.long_name},
                         // {caption: 'Nume scurt', value: record => record.short_name},
                         {caption: 'Cod interbull', value: record => record.interbull_code},
                         {caption: 'Număr matricol', value: record => record.matricol_number},
@@ -115,7 +123,7 @@
                     ],
 
                     female: [
-                        {caption: 'Nume', value: record => record.long_name},
+                        // {caption: 'Nume', value: record => record.long_name},
                         // {caption: 'Nume scurt', value: record => record.short_name},
                         {caption: 'Cod interbull', value: record => record.interbull_code},
                         {caption: 'Număr matricol', value: record => record.matricol_number},
@@ -128,6 +136,18 @@
                         {caption: 'Stare animal', value: record => animalStatus(record) },
                     ]
                 }
+            }
+        },
+
+        methods: {
+            openAnimal(animal) {
+                this.$router.push({
+                    name: 'animal',
+                    params: {
+                        id: animal.id,
+                        current: 'pedigree'
+                    }
+                })
             }
         }
     }

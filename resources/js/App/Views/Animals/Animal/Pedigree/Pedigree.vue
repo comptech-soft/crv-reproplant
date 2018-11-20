@@ -121,6 +121,18 @@
         props: {
             animal: {required: true}
         },
+
+        methods: {
+            // openAnimal(animal) {
+            //     this.$router.push({
+            //         name: 'animal',
+            //         params: {
+            //             id: animal.id,
+            //             current: 'pedigree'
+            //         }
+            //     })
+            // }
+        },
         
         components: {
             'pedigree-item': require('./~Item')
