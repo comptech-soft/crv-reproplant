@@ -3,7 +3,7 @@
         <farm-head 
             :farm="farm" 
             :current="current" 
-            @current="current=$event"
+            @current="setCurrent"
         >
         </farm-head>
         <farm-body 
@@ -20,31 +20,43 @@
     export default {
 
         data() {
-
             return {
                 current: 'data',
             }
         },
 
         computed: {
-            farm()
-            {
+            farm() {
                 return this.$store.getters.farm.record
             }
         },
 
         methods: {
-            ...mapActions([
-                'getFarm'
-            ])
+            ...mapActions(['getFarm', 'setFarm']),
+
+            setCurrent(e) {
+                this.current = e
+                this.$router.push({
+                    name: 'farm',
+                    params: {
+                        id: this.farm.id,
+                        current: e
+                    }
+                })
+            },
         },
 
         mounted(){
             this.getFarm(this.$route.params.id)
+            this.current = this.$route.params.current || 'data'
         },
 
-        destroy() {
-            console.log('Destroyyyy')
+        beforeRouteLeave(to, from, next) {
+            this.setFarm(null)
+            next();
+        },
+
+        destroyed() {
         },
 
         components: {

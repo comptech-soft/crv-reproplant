@@ -5,7 +5,7 @@
                 :class="{'nav-item': true}"
             >
                 <a :class="{'nav-link': true,  active: current_tab == 'list'}" href="javascript:void(0);" @click.prevent="showGrid(false)">
-                    <i class="la la-th-list"></i>
+                    <img v-if="icon" :src="$app.url + icon" style="height:20px"/>
                     {{ caption }}
                 </a>
             </li>

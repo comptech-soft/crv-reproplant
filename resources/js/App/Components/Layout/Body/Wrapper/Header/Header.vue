@@ -2,7 +2,10 @@
     <div class="m-subheader" :style="hstyle">
         <div class="d-flex align-items-center">
             <div class="mr-auto">
-                <h3 :class="{'m-subheader__title': true, 'm-subheader__title--separator': has_breadcrumbs}">{{ title }}</h3>
+                <h3 :class="{'m-subheader__title': true, 'm-subheader__title--separator': has_breadcrumbs}">
+                    <img style="height:48px" v-if="icon" :src="$app.url + icon" />
+                    <span>{{ title }}</span>
+                </h3>
                 <breadcrumbs v-if="has_breadcrumbs" :breadcrumbs="breadcrumbs"></breadcrumbs>
             </div>
 
@@ -20,6 +23,7 @@
             title: {type: String, required: true},
             breadcrumbs: {type: Array, default: () => []},
             actions: {type: Object, default: () => {}},
+            icon: {default: ''},
             hstyle: {type: Object, default: () => {
                 return {
                     padding: '0px'

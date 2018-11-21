@@ -2,6 +2,7 @@
     <dt-grid-page
         id="farms"
         :caption="__('Lista fermelor')"
+        icon="/img/icons/farm.png"
         :model="model"
     >
         <!-- criteriile de filtrare -->
@@ -22,12 +23,12 @@
 
 <script>
 
-    import model from './../../../Models/Farms/Farms/Farm'
+    import FarmModel from './../../../Models/Farms/Farms/Farm'
 
     export default{
 
         mounted(){
-            this.model = model
+            this.model = FarmModel
         },
 
         components: {

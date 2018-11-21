@@ -10,7 +10,7 @@ module.exports = {
         
         ferme:  [
             {
-                icon: 'share',
+                icon: '/img/icons/farm.png',
                 caption: 'Lista fermelor',
                 click: v => {
                     v.$router.push({name: 'farms'})
@@ -21,7 +21,7 @@ module.exports = {
 
         animale: [
             {
-                icon: 'share',
+                icon: '/img/icons/bull.png',
                 caption: 'Lista generală de tauri',
                 click: v => {
                     v.$router.push({name: 'animals', params: {type: 'sire', gender: 'male'}})
@@ -30,7 +30,7 @@ module.exports = {
             },
 
             {
-                icon: 'share',
+                icon: '/img/icons/bull.png',
                 caption: 'Valori de ameliorare',
                 click: v => {
                     v.$router.push({name: 'breeding', params: {type: 'sire', gender: 'male'}})

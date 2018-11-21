@@ -42,7 +42,7 @@
 <script>
     export default {
         components: {
-            'tools-dropdown': require('./~3~Dropdown'),
+            'tools-dropdown': require('./~Dropdown'),
         }
     }
 </script>

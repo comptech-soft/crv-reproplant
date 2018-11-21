@@ -5,7 +5,7 @@
         <div v-if="farm && ! farm.loading" class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
                 <span class="m-portlet__head-icon">
-                    <i class="flaticon-multimedia"></i>
+                    <img :src="$app.url + '/img/icons/farm.png'" style="height:32px" />
                 </span>
                 <h3 class="m-portlet__head-text">
                     {{ farm.farm }}
@@ -16,19 +16,12 @@
             <ul class="nav nav-tabs m-tabs m-tabs-line  m-tabs-line--right" role="tablist">
                 <!-- Data ferma -->
                 <li 
-                    :class="{
-                        'nav-item': true, 
-                        'm-tabs__item': true,
-                    }"
+                    :class="{'nav-item': true, 'm-tabs__item': true}"
                     style="cursor:pointer"
                 >
                     <a 
-                        :class="{
-                            'nav-link': true, 
-                            'm-tabs__link': true,
-                            'active': current == 'data',
-                            'show': current == 'data',
-                        }" role="tab"
+                        :class="{'nav-link': true, 'm-tabs__link': true, 'active': current == 'data', 'show': current == 'data'}" 
+                        role="tab"
                         @click="$emit('current', 'data')"
                     >
                         {{ __('Date de identificare') }}
@@ -36,19 +29,11 @@
                 </li>
                 <!-- Vacile -->
                 <li 
-                    :class="{
-                        'nav-item': true, 
-                        'm-tabs__item': true,
-                    }" 
+                    :class="{'nav-item': true, 'm-tabs__item': true}" 
                     style="cursor:pointer"
                 >
                     <a 
-                        :class="{
-                            'nav-link': true, 
-                            'm-tabs__link': true,
-                            'active': current == 'cow',
-                            'show': current == 'cow',
-                        }"
+                        :class="{'nav-link': true, 'm-tabs__link': true, 'active': current == 'cow', 'show': current == 'cow'}"
                         role="tab"
                         @click="$emit('current', 'cow')"
                     >
@@ -57,19 +42,11 @@
                 </li>
                 <!-- Taurii -->
                 <li 
-                    :class="{
-                        'nav-item': true, 
-                        'm-tabs__item': true,
-                    }" 
+                    :class="{'nav-item': true, 'm-tabs__item': true}" 
                     style="cursor:pointer"
                 >
                     <a 
-                        :class="{
-                            'nav-link': true, 
-                            'm-tabs__link': true,
-                            'active': current == 'sire',
-                            'show': current == 'sire',
-                        }"
+                        :class="{'nav-link': true, 'm-tabs__link': true, 'active': current == 'sire', 'show': current == 'sire'}"
                         role="tab"
                         @click="$emit('current', 'sire')"
                     >
@@ -78,19 +55,11 @@
                 </li>
                 <!-- Utilizatori -->
                 <li 
-                    :class="{
-                        'nav-item': true, 
-                        'm-tabs__item': true,
-                    }" 
+                    :class="{'nav-item': true, 'm-tabs__item': true}" 
                     style="cursor:pointer"
                 >
                     <a 
-                        :class="{
-                            'nav-link': true, 
-                            'm-tabs__link': true,
-                            'active': current == 'users',
-                            'show': current == 'users',
-                        }"
+                        :class="{'nav-link': true, 'm-tabs__link': true, 'active': current == 'users', 'show': current == 'users'}"
                         role="tab"
                         @click="$emit('current', 'users')"
                     >
@@ -99,22 +68,28 @@
                 </li>
                 <!-- Ore mulsori -->
                 <li 
-                    :class="{
-                        'nav-item': true, 
-                        'm-tabs__item': true,
-                    }"
+                    :class="{'nav-item': true, 'm-tabs__item': true}"
                     style="cursor:pointer"
                 >
                     <a 
-                        :class="{
-                            'nav-link': true, 
-                            'm-tabs__link': true,
-                            'active': current == 'mulsori',
-                            'show': current == 'mulsori',
-                        }" role="tab"
+                        :class="{'nav-link': true, 'm-tabs__link': true, 'active': current == 'mulsori', 'show': current == 'mulsori'}" 
+                        role="tab"
                         @click="$emit('current', 'mulsori')"
                     >
                         {{ __('Ore mulsori') }}
+                    </a>
+                </li>
+                <!-- Inapoi -->
+                <li 
+                    :class="{'nav-item': true, 'm-tabs__item': true}"
+                    style="cursor:pointer"
+                >
+                    <a 
+                        :class="{'nav-link': true, 'm-tabs__link': true}"
+                        @click="$router.push({name: 'farms'})"
+                    >
+                        <img :src="$app.url + 'img/icons/farm.png'" style="height:28px" />
+                        {{ __('Înapoi') }}
                     </a>
                 </li>
             </ul>

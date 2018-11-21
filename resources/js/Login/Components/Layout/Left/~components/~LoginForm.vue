@@ -73,10 +73,8 @@
             }
         },
 
-        methods:
-        {
-            onSubmit()
-            {
+        methods: {
+            onSubmit() {
                 this.formManager.onClickSubmit(
                     'login', 
                     {
@@ -86,14 +84,15 @@
                     data => {
                         this.notySuccess(this.__('Salut :name: !<br/>Bine ai venit!', {name: data.result.payload.user.full_name}))
                         this.redirectTo(this.$app.url, 500)
+                    },
+                    error => {
+                        console.log('Hmmmm...', error);
                     }
                 )
             }
-            
         },
 
-        mounted()
-        {
+        mounted() {
             this.formManager = new AppCore.FormManager('login-form', this)
         }
     }

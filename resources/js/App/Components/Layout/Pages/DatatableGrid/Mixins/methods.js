@@ -51,11 +51,8 @@ module.exports = {
             this.current_tab='list'
         },
 
-        setRecordValues(record, action)
-        {
+        setRecordValues(record, action) {
             _.map(this.record, (value, field) => this.record[field] = record[field])
-            // console.log('Page::setRecordValues(' + record.id + ')')
-            // console.log(this.$children[1].$children[0].$options.__file)
             /**
              * daca in componenta specifica (cea cu controalele, ex. View/Animals/Animals/Form)
              * avem metoda setRecordValues atunci ea se va apela
@@ -66,13 +63,11 @@ module.exports = {
             }
             else
             {
-                // console.log('No setRecordValues method in ' + this.$children[1].$children[0].$options.__file);
             }
             this.current_tab='form'
         },
 
-        showForm(action, record)
-        {
+        showForm(action, record) {
             /**
              * resetez erorile in Form Manager
              */
@@ -83,9 +78,11 @@ module.exports = {
              */
             this.am.setAction(action).setRecord(record)
 
+            /**
+             * setez valorile controalelor pe baza inregistrarii ce se vrea update|delete
+             */
             if( (action == 'update') || (action == 'delete') )
             {
-                // console.log('Page::showForm(' + action + ')');
                 this.setRecordValues(record, action)
             }
             else

@@ -135,159 +135,29 @@
 <script>
     export default {    
         
-        data()
-        {
+        data() {
             return {
                 errors: null,
-                action: null,
-                record: {
-                    id: null,
-                    farm: '',
-                    cod_exploatatie: '',
-                    cif: '',
-                    status: 'activ',
-                    address: '',
-                    email: '',
-                    country_id: null,
-                    region_id: null,
-                    judet_id: null,
-                    locality_id: null,
-                },
-                region_load: 0,
-                judet_load: 0,
-                locality_load: 0,
+                action: null, 
             }
         },
 
-        watch: {
-
-            'record.country_id': function(newCountryId, oldCountryId)
-            {
-                if( ! newCountryId )
+        methods: {
+            setRecordValues(record, action) {
+                if( record.locality_id )
                 {
-                    this.record.region_id = null
+                    this.record.country_id = record.locality.judet.region.country_id
+                    this.record.region_id = record.locality.judet.region_id
+                    this.record.judet_id = record.locality.judet_id
+                    this.record.locality_id = record.locality_id
                 }
-                this.region_load++
-                this.judet_load++
-                this.locality_load++
-            },
-
-            'record.region_id': function(newRegionId, oldRegionId)
-            {
-                if( ! newRegionId )
-                {
-                    this.record.judet_id = null
-                }
-                this.judet_load++
-                this.locality_load++
-            },
-
-            'record.judet_id': function(newJudetId, oldJudetId)
-            {
-                if( ! newJudetId )
-                {
-                    this.record.locality_id = null
-                }
-                this.locality_load++
             }
         },
 
-        computed: {
-            statuses()
-            {
-                return [
-                    {
-                        id: '',
-                        text: this.__('---'),
-                    },
-                    {
-                        id: 'activ',
-                        text: this.__('Activă'),
-                    },
-                    {
-                        id: 'inactiv',
-                        text: this.__('Inactivă'),
-                    }
-                ]
-            },
-
-            ajax_countries()
-            {
-                return {
-                    endpoint: 'api/get-datatable-rows',
-                    data: {
-                        model: '\\App\\Models\\Locations\\Countries\\Country',
-                        order_by: {field: 'geo_countries.name', dir: 'asc'},
-                    },
-                    map: {id: 'id', text: 'name'}
-                }
-            },
-
-            ajax_regions()
-            {
-                if(! this.region_load)
-                {
-                    return null
-                }
-                return {
-                    endpoint: 'api/get-datatable-rows',
-                    data: {
-                        model: '\\App\\Models\\Locations\\Regions\\Region',
-                        order_by: {field: 'geo_regions.name', dir: 'asc'},
-                        filter_by_fields: {
-                            country_id: { 
-                                value: this.record.country_id ? this.record.country_id : -1,
-                                where: 'geo_regions.country_id = [value]'
-                            }
-                        }
-                    },
-                    map: {id: 'id', text: 'name'}
-                }
-            },
-
-            ajax_judete()
-            {
-                if(! this.judet_load)
-                {
-                    return null
-                }
-                return {
-                    endpoint: 'api/get-datatable-rows',
-                    data: {
-                        model: '\\App\\Models\\Locations\\Judete\\Judet',
-                        order_by: {field: 'geo_judete.name', dir: 'asc'},
-                        filter_by_fields: {
-                            country_id: { 
-                                value: this.record.region_id ? this.record.region_id : -1,
-                                where: 'geo_judete.region_id = [value]'
-                            }
-                        }
-                    },
-                    map: {id: 'id', text: 'name'}
-                }
-            },
-
-            ajax_localities()
-            {
-                if(! this.locality_load )
-                {
-                    return null
-                }
-                return {
-                    endpoint: 'api/get-datatable-rows',
-                    data: {
-                        model: '\\App\\Models\\Locations\\Localities\\Locality',
-                        order_by: {field: 'geo_localities.name', dir: 'asc'},
-                        filter_by_fields: {
-                            country_id: { 
-                                value: this.record.judet_id ? this.record.judet_id : -1,
-                                where: 'geo_localities.judet_id = [value]'
-                            }
-                        }
-                    },
-                    map: {id: 'id', text: 'name'}
-                }
-            },
-        },
+        mixins: [
+            require('./../~Mixins/Form/Record'),
+            require('./../~Mixins/Form/Computed'),
+            require('./../~Mixins/Form/Watch')
+        ]
     }
 </script>

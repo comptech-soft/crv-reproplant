@@ -1,7 +1,6 @@
 module.exports = {
 
-    setConfig(state)
-    {
+    setConfig(state) {
         state.mounted = false
         csApp.Http.Post('app-configuration', {},  data => {
             state.user = data.user
@@ -9,11 +8,9 @@ module.exports = {
             state.role = data.role
             state.mounted = true
         })
-       
     },
 
-    getFarm(state, id)
-    {
+    getFarm(state, id) {
         state.farm.loading = true
         csApp.Http.Post('api/get-record', {
             model: '\\App\\Models\\Farms\\Farms\\Farm',
@@ -25,13 +22,11 @@ module.exports = {
        
     },
 
-    setFarm(state, farm)
-    {
+    setFarm(state, farm) {
         state.farm.record = farm
     },
 
-    getAnimal(state, id)
-    {
+    getAnimal(state, id) {
         state.animal.loading = true
         csApp.Http.Post('api/get-record', {
             model: '\\App\\Models\\Animals\\Animals\\Animal',
@@ -43,8 +38,7 @@ module.exports = {
        
     },
 
-    setAnimal(state, animal)
-    {
+    setAnimal(state, animal) {
         state.animal.record = animal
     }
 

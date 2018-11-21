@@ -4,6 +4,14 @@
             <div class="m-stack__item m-topbar__nav-wrapper">
                 <ul class="m-topbar__nav m-nav m-nav--inline">
 
+                    <li v-if="farm" class="m-nav__item m-topbar__user-profile">
+                        <a class="m-nav__link">
+                            <span class="m-topbar__welcome">
+                                {{ farm.farm }}
+                            </span>
+                        </a>
+                    </li>
+
                     <!-- aici se ma pot baga quick actions si notifications -->
                     <user>
                     </user>
@@ -28,9 +36,19 @@
 </template>
 
 <script>
+
+    // import {mapActions} from 'vuex'
+
     export default {
+        
+        computed: {
+            farm() {
+                return this.$store.getters.farm.record
+            }
+        },
+
         components: {
-            'user': require('./~1~User'),
-        }
+            'user': require('./User'),
+        },
     }
 </script>

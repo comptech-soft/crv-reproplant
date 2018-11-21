@@ -1,6 +1,8 @@
 <template>
     <sub-header
+        v-if="false"
         :title="subheader.title"
+        :icon="subheader.icon"
         :breadcrumbs="subheader.breadcrumbs"
         :actions="subheader.actions"
     >
@@ -8,14 +10,11 @@
 </template>
 
 <script>
-
-    const Subheader = require('./../../../Headers/farms')
-
     export default {
         computed: {
             subheader()
             {
-                return Subheader
+                return require('./../../../Headers/farms')
             }
         }
     }

@@ -1,6 +1,7 @@
 module.exports = {
     title: 'Lista fermelor',
     breadcrumbs: [],
+    icon: '/img/icons/farmer.png',
     actions: {
         caption: 'Acțiuni',
         options: {

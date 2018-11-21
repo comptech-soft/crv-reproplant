@@ -17,8 +17,8 @@
                             <template v-for="(group, key, groupIndex) in popup.options">
                                 <li v-for="(item, itemIndex) in group" :key="'brand-tool-item-' + groupIndex + '-' + itemIndex" class="m-nav__item">
                                     <a href="javascript:void(0);" class="m-nav__link" @click.prevent="onClick(item)">
-                                        <i :class="'m-nav__link-icon flaticon-' + item.icon"></i>
-                                        <span class="m-nav__link-text">{{ item.caption }}</span>
+                                        <img class="m-nav__link-icon" :src="$app.url + item.icon"/>
+                                        <span style="padding-left:40px" class="m-nav__link-text">{{ item.caption }}</span>
                                     </a>
                                 </li>
                                 

@@ -2,7 +2,10 @@
     <div v-if="farm && ! farm.loading" class="m-portlet__body">
         <div class="tab-content">
             <div v-if="current=='data'" class="tab-pane active show" role="tabpanel">
-                {{ farm }}
+                <farm-update
+                    :old="farm"
+                >
+                </farm-update>
             </div>
             
             <div v-if="current=='users'" class="tab-pane active show" role="tabpanel">
@@ -36,7 +39,7 @@
             'farm-users': require('./Users/Users'),
             'farm-cows': require('./Cows/Cows'),
             'farm-sires': require('./~5~Sires'),
-            
+            'farm-update': require('./Update/Update'),            
         }
     }
 </script>
