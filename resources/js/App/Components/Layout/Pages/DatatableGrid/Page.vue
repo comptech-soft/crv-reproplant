@@ -19,13 +19,26 @@
                 </a>
             </li>
             
-            <!-- aici se poate pune un dropdown cu actiuni -->
+            <!-- 
+                aici se poate pune un dropdown cu actiuni
+                actiunile vin via proprietatea "actions" 
+            -->
             <li v-if="current_tab == 'list'" class="nav-item dropdown">
                 <a class="nav-link m-tabs__link dropdown-toggle" data-toggle="dropdown" href="#">
                     {{ __('Acțiuni') }} 
                     <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" style="min-width:20rem">
+                    <li role="presentation" v-for="(action, indexAction) in actions" :key="'action-' + indexAction">
+                        <a
+                            role="menuitem" 
+                            tabindex="-1" href="javascript:void(0);" 
+                            @click.prevent="onClickAction(action)"
+                        >
+                            <i :class="action.icon"></i>
+                            {{ __(action.caption) }}
+                        </a>
+                    </li>
                     <li role="presentation">
                         <a role="menuitem" tabindex="-1" href="javascript:void(0);" @click.prevent="onRefresh">
                             <i class="la la-refresh"></i>

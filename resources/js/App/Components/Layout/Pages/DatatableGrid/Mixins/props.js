@@ -5,7 +5,8 @@ module.exports = {
         icon: {default: ''},
         model: {required: true},
         id: {required: true},
-        has_form: {default: true}
+        has_form: {default: true},
+        actions: {type: Array, default: []}
     },
 
 }

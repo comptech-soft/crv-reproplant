@@ -24,7 +24,8 @@
                         role="tab"
                         @click="$emit('current', 'data')"
                     >
-                        {{ __('Date de identificare') }}
+                        <img :src="$app.url + 'img/icons/details.png'" style="height:28px" />
+                        <span style="margin-left: 4px">{{ __('Ferma') }}</span>
                     </a>
                 </li>
                 <!-- Vacile -->
@@ -37,7 +38,8 @@
                         role="tab"
                         @click="$emit('current', 'cow')"
                     >
-                        {{ __('Vacile fermei') }}
+                        <img :src="$app.url + 'img/icons/cow.png'" style="height:28px" />
+                        <span style="margin-left: 4px">{{ __('Vaci') }}</span>
                     </a>
                 </li>
                 <!-- Taurii -->
@@ -50,7 +52,8 @@
                         role="tab"
                         @click="$emit('current', 'sire')"
                     >
-                        {{ __('Taurii fermei') }}
+                        <img :src="$app.url + 'img/icons/bull.png'" style="height:28px" />
+                        <span style="margin-left: 4px">{{ __('Tauri') }}</span>
                     </a>
                 </li>
                 <!-- Utilizatori -->
@@ -63,7 +66,8 @@
                         role="tab"
                         @click="$emit('current', 'users')"
                     >
-                        {{ __('Utilizatori') }}
+                        <img :src="$app.url + 'img/icons/users.png'" style="height:28px" />
+                        <span style="margin-left: 4px">{{ __('Utilizatori') }}</span>
                     </a>
                 </li>
                 <!-- Ore mulsori -->
@@ -76,7 +80,8 @@
                         role="tab"
                         @click="$emit('current', 'mulsori')"
                     >
-                        {{ __('Ore mulsori') }}
+                        <img :src="$app.url + 'img/icons/clock.png'" style="height:28px" />
+                        <span style="margin-left: 4px">{{ __('Ore mulsori') }}</span>
                     </a>
                 </li>
                 <!-- Inapoi -->
@@ -89,7 +94,7 @@
                         @click="$router.push({name: 'farms'})"
                     >
                         <img :src="$app.url + 'img/icons/farm.png'" style="height:28px" />
-                        {{ __('Înapoi') }}
+                        {{ __('Ferme') }}
                     </a>
                 </li>
             </ul>

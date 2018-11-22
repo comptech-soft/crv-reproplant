@@ -20,9 +20,12 @@ module.exports = {
             }
         },
 
-        onRefresh()
-        {
+        onRefresh() {
             this.dt.populate()
+        },
+
+        onClickAction(action) {
+            action.click()
         },
 
         showGrid(with_refresh = true)

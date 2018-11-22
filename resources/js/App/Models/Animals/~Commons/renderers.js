@@ -26,11 +26,11 @@ module.exports = {
                 color: 'success',
             },
             'invalid': {
-                caption: 'IV',
+                caption: 'INV',
                 color: 'danger',
             },
             'inactiv': {
-                caption: 'IA',
+                caption: 'I',
                 color: 'danger',
             }
         }

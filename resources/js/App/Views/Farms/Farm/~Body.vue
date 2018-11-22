@@ -8,6 +8,14 @@
                 </farm-update>
             </div>
             
+            <div v-if="current=='cow'" class="tab-pane active show" role="tabpanel">    
+                <farm-cows :farm="farm"></farm-cows>
+            </div>
+
+            <div v-if="current=='sire'" class="tab-pane active show" role="tabpanel">    
+                <farm-sires :farm="farm"></farm-sires>
+            </div>
+
             <div v-if="current=='users'" class="tab-pane active show" role="tabpanel">
                 <farm-users :farm="farm"></farm-users>
             </div>
@@ -15,14 +23,7 @@
             <div v-if="current=='mulsori'" class="tab-pane active show" role="tabpanel">    
                 <ore-mulsori :farm="farm"></ore-mulsori>
             </div>
-
-            <div v-if="current=='sire'" class="tab-pane active show" role="tabpanel">    
-                <farm-sires :farm="farm"></farm-sires>
-            </div>
-
-            <div v-if="current=='cow'" class="tab-pane active show" role="tabpanel">    
-                <farm-cows :farm="farm"></farm-cows>
-            </div>
+            
         </div>
     </div>
 </template>
@@ -38,7 +39,7 @@
             'ore-mulsori': require('./OreMulsori/OreMulsori'),
             'farm-users': require('./Users/Users'),
             'farm-cows': require('./Cows/Cows'),
-            'farm-sires': require('./~5~Sires'),
+            'farm-sires': require('./Sires/Sires'),
             'farm-update': require('./Update/Update'),            
         }
     }

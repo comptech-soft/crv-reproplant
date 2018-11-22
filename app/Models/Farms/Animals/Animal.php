@@ -16,7 +16,11 @@ class Animal extends Model
 
 	public static function getDatatableQuery()
 	{
-		return self::query()->with(['animal.father', 'animal.mother', 'animal.father.father', 'animal.father.mother', 'animal.mother.father', 'animal.mother.mother']);
+		return 
+			self::query()
+			->leftJoin('animals', 'farms_animals.animal_id', '=', 'animals.id')
+			->select('farms_animals.*')
+			->with(['animal.father', 'animal.mother', 'animal.father.father', 'animal.father.mother', 'animal.mother.father', 'animal.mother.mother', 'animal.rasa', 'animal.company']);
 	}
 
 	public function animal()
