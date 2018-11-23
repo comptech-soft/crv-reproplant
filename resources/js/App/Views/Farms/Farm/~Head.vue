@@ -94,7 +94,7 @@
                         @click="$router.push({name: 'farms'})"
                     >
                         <img :src="$app.url + 'img/icons/farm.png'" style="height:28px" />
-                        {{ __('Ferme') }}
+                        <span style="margin-left: 4px">{{ __('Ferme') }}</span>
                     </a>
                 </li>
             </ul>

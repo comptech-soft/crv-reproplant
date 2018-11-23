@@ -7,8 +7,27 @@
             icon="/img/icons/bull.png"
             :has_form="false"
             :actions="actions"
+            :refresh="refresh"
+            @refreshed="refresh=false"
         >    
         </dt-grid-page>
+
+        <!-- adaugarea rapida a unui animal -->
+        <quick-add-form
+            :visible="quick_add_form.visible"
+            :type="quick_add_form.type"
+            :gender="quick_add_form.gender"
+            @close="hideQuickAddForm"
+        >
+        </quick-add-form>
+
+        <!-- -->
+        <search-form
+            :visible="search_form.visible"
+            :farm="farm"
+            @close="hideSearchForm"
+        >
+        </search-form>
     </div>
 </template>
 
@@ -23,20 +42,21 @@
 
         data(){
             return {
-               model: null,
-               actions: [
+                model: null,
+                refresh: false,
+                actions: [
                     {
                         caption: 'Caută taur în lista generală',
                         icon: 'la la-search-plus',
                         click: () => {
-                            alert('Cautare....')
+                            this.showSearch()
                         }
                     },
                     {
                         caption: 'Adaugă rapid un taur',
                         icon: 'la la-plus-circle',
                         click: () => {
-                            alert('Adaugare....')
+                            this.showQuickAdd()
                         }
                     },
                     {
@@ -46,12 +66,53 @@
                             alert('Upload....')
                         }
                     }
-               ]
+                ],
+                quick_add_form: {
+                    visible: false,
+                    type: 'sire',
+                    gender: 'male',
+                },
+                search_form: {
+                    visible: false,
+                }
             }
         },
 
         methods: {
-            
+            showQuickAdd() {
+                this.quick_add_form.visible = true
+            },
+
+            showSearch() {
+                this.search_form.visible = true
+            },
+
+            hideQuickAddForm(animal = null) {
+                if(animal)
+                {
+                    this.post('farms/attach-animal', {
+                        farm_id: this.farm.id,
+                        animal_id: animal.id,
+                        status_in_farm: 'inactiv',
+                    }, data => {
+                        this.refresh = true
+                        this.notySuccess(data.result.message)
+                        this.quick_add_form.visible = false
+                    })
+                }
+                else 
+                {
+                    this.quick_add_form.visible = false
+                }
+            },
+
+            hideSearchForm(animal) {
+                if(animal)
+                {
+                    this.refresh = true
+                }
+                this.search_form.visible = false
+            }
         },
 
         mounted() {
@@ -64,6 +125,11 @@
                 value: 'sire',
                 where: 'animals.type=[value]'
             })
+        },
+
+        components: {
+            'quick-add-form': require('./../../../Animals/Animals/QuickAdd'),
+            'search-form': require('./SearchBull'),
         },
 
         mixins: [

@@ -1,11 +1,11 @@
 <template>
     <div v-if="farm && model">
-
         <dt-grid-page
             id="cows"
             :caption="__('Vacile fermei')"
             :model="model"
             icon="/img/icons/cow.png"
+            :actions="actions"
         >    
         </dt-grid-page>
     </div>
@@ -23,6 +23,44 @@
         data(){
             return {
                model: null,
+               actions: [
+                    {
+                        caption: 'Adaugă o vacă',
+                        icon: 'la la-plus-circle',
+                        click: () => {
+                            alert('Adaugare....')
+                        }
+                    },
+                    {
+                        caption: 'Importă din fișier excel',
+                        icon: 'la la-upload',
+                        click: () => {
+                            alert('Upload....')
+                        }
+                    },
+                    {
+                        caption: 'Download',
+                        icon: 'la la-download',
+                        click: () => {
+                            alert('Download....')
+                        }
+                    },
+                    {
+                        caption: 'Corectează numerele matricole',
+                        icon: 'la la-wrench',
+                        click: () => {
+                            alert('Corecteaza....')
+                        }
+                    },
+                    {
+                        caption: 'Șterge',
+                        icon: 'la la-trash',
+                        click: () => {
+                            alert('Sterge...')
+                        }
+                    },
+                    
+               ]
             }
         },
 

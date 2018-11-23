@@ -52,7 +52,6 @@
         watch: {
             visible: function(newVisible, oldVisible)
             {
-                console.log(oldVisible + ' >>>> ' + newVisible)
                 if( newVisible)
                 {
                     $('body').addClass('modal-open')

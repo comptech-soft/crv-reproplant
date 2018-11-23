@@ -40,7 +40,19 @@ module.exports = {
                 }
             },
             deep: true,
-        }
+        },
+
+        refresh: function(newRefresh, oldRefresh) {
+            if( newRefresh )
+            {
+                this.$emit('refreshed')
+                this.dt.changePage(1)
+                if( this.initial_current_tab == 'list')
+                {
+                    this.showGrid()
+                }
+            }
+        },
     }
 
 }

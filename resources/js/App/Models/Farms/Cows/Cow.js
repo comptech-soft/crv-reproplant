@@ -1,5 +1,3 @@
-console.log('MODEL::Farm -> Cows')
-
 import AppCore from 'comptechsoft-app-starter'
 
 const 

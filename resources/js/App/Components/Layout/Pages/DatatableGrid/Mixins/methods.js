@@ -33,8 +33,10 @@ module.exports = {
             /**
              * resetez erorile in Form Manager
              */
-            this.formManager.errors = null
-            
+            if(this.formManager)
+            {
+                this.formManager.errors = null
+            }
             /**
              * Resetez actiunea si recordul
              */

@@ -32,4 +32,12 @@ class FarmController extends Controller
     {
         return Farm::saveCow($request->only(['action', 'record', 'farm_id', 'old']));
     }
+
+    /**
+     * Ataseaza un animal la o ferma
+     */
+    public function attachAnimal(Request $request)
+    {
+        return Farm::attachAnimal($request->only(['animal_id', 'farm_id', 'status_in_farm']));
+    }
 }

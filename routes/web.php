@@ -6,6 +6,7 @@ Route::middleware(['is-authenticated'])->group(function(){
         Route::post('save-ore-mulsori', 'FarmController@saveOreMulsori');
         Route::post('save-user', 'FarmController@saveUser');
         Route::post('save-cow', 'FarmController@saveCow');
+        Route::post('attach-animal', 'FarmController@attachAnimal');
     });
 
     Route::namespace('Animals')->prefix('animals')->group(function(){

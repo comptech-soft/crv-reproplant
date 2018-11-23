@@ -4,11 +4,15 @@ namespace App\Models\Farms\Animals;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Farms\Animals\Traits\Actions;
+use App\Models\Farms\Animals\Traits\Validator;
 
 class Animal extends Model
 {
 	use
-		SoftDeletes
+		SoftDeletes,
+		Actions,
+		Validator
 	;
 
 	protected $table = 'farms_animals';
