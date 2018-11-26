@@ -40,4 +40,12 @@ class FarmController extends Controller
     {
         return Farm::attachAnimal($request->only(['animal_id', 'farm_id', 'status_in_farm']));
     }
+
+    /**
+     * Import tauri la ferma
+     */
+    public function siresImport(Request $request)
+    {
+        return Farm::siresImport($request->all());
+    }
 }

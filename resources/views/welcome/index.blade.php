@@ -26,6 +26,7 @@
 		<link href="{{ config('app.url') }}/css/style.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="{{ config('app.url') }}/css/reproplant.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="{{ config('app.url') }}/css/custom.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="{{ config('app.url') }}/plugins/fileinput/css/fileinput.min.css" rel="stylesheet" type="text/css" />
     </head>
   
     <body class="m-page--wide m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
@@ -50,6 +51,9 @@
 		<script src="{{config('app.url')}}/js/base/app.js" type="text/javascript"></script>
 		<script src="{{config('app.url')}}/js/base/layout.js" type="text/javascript"></script>
 		<script src="{{config('app.url')}}/js/base/quick-sidebar.js" type="text/javascript"></script>
+		<script src="{{config('app.url')}}/plugins/fileinput/js/piexif.min.js" type="text/javascript"></script>
+		<script src="{{config('app.url')}}/plugins/fileinput/js/fileinput.min.js" type="text/javascript"></script>
+		<script src="{{config('app.url')}}/plugins/fileinput/js/themes/fa/theme.min.js" type="text/javascript"></script>
     </body>
 
 </html>

@@ -1,7 +1,15 @@
 <template>
     <div v-if="farm && model">
+
+        <import-animals
+            v-if="import_form.visible"
+            @close="import_form.visible = false"
+        >
+        </import-animals>
+
         <dt-grid-page
-            id="cows"
+            v-if="! import_form.visible"
+            id="sires"
             :caption="__('Taurii fermei')"
             :model="model"
             icon="/img/icons/bull.png"
@@ -63,7 +71,7 @@
                         caption: 'Importă din fișier excel',
                         icon: 'la la-upload',
                         click: () => {
-                            alert('Upload....')
+                            this.import_form.visible = true
                         }
                     }
                 ],
@@ -73,6 +81,9 @@
                     gender: 'male',
                 },
                 search_form: {
+                    visible: false,
+                },
+                import_form: {
                     visible: false,
                 }
             }
@@ -130,6 +141,7 @@
         components: {
             'quick-add-form': require('./../../../Animals/Animals/QuickAdd'),
             'search-form': require('./SearchBull'),
+            'import-animals': require('./Import'),
         },
 
         mixins: [

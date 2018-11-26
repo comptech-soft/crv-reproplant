@@ -7,6 +7,7 @@ Route::middleware(['is-authenticated'])->group(function(){
         Route::post('save-user', 'FarmController@saveUser');
         Route::post('save-cow', 'FarmController@saveCow');
         Route::post('attach-animal', 'FarmController@attachAnimal');
+        Route::post('import/sires-upload', 'FarmController@siresImport');
     });
 
     Route::namespace('Animals')->prefix('animals')->group(function(){

@@ -9,6 +9,7 @@ use Comptechsoft\Helpers\App\Response;
 use Comptechsoft\Helpers\App\Message;
 use DB;
 use Exception;
+use Excel;
 use Sentinel;
 use App\Models\App\Log\Action;
 use Comptechsoft\Helpers\Models\Cartalyst\Users\User;
@@ -19,6 +20,8 @@ use App\Models\Farms\Farms\Traits\Relations;
 use App\Models\Farms\Farms\Traits\Actions;
 use App\Models\Farms\Farms\Traits\Validator;
 use App\Models\Farms\Farms\Traits\Datatable;
+
+use App\Imports\SiresImport;
 
 class Farm extends Model
 {
@@ -428,4 +431,15 @@ class Farm extends Model
 		}
 	}
 
+	/**
+     * Importare tauri
+     */
+	public static function siresImport($data)
+	{		
+		$file = $data['excel-file'];
+
+		return Excel::import(new SiresImport, $file);
+
+		
+	}
 }
