@@ -7,6 +7,14 @@
             icon="/img/icons/cow.png"
             :actions="actions"
         >    
+
+            <!-- controalele formularului -->
+            <div slot="dt-form">
+                <action-form 
+                    :farm="farm"
+                >
+                </action-form>
+            </div>
         </dt-grid-page>
     </div>
 </template>
@@ -22,15 +30,8 @@
 
         data(){
             return {
-               model: null,
-               actions: [
-                    {
-                        caption: 'Adaugă o vacă',
-                        icon: 'la la-plus-circle',
-                        click: () => {
-                            alert('Adaugare....')
-                        }
-                    },
+                model: null,
+                actions: [
                     {
                         caption: 'Importă din fișier excel',
                         icon: 'la la-upload',
@@ -53,19 +54,31 @@
                         }
                     },
                     {
-                        caption: 'Șterge',
+                        caption: 'Șterge toate vacile',
                         icon: 'la la-trash',
                         click: () => {
                             alert('Sterge...')
                         }
-                    },
-                    
-               ]
+                    },    
+                ],
+
+                // add_cow_form: {
+                //     visible: false,
+                //     type: 'cow',
+                //     gender: 'female',
+                // },
             }
         },
 
-        methods: {
-            
+        methods: {  
+
+            // showForm() {
+            //     this.add_cow_form.visible = true
+            // },
+
+            // hideForm() {
+            //     this.add_cow_form.visible = false
+            // }
         },
 
         mounted() {
@@ -78,6 +91,11 @@
                 value: 'cow',
                 where: 'animals.type=[value]'
             })
+        },
+
+        components: {
+            // 'add-cow-form': require('./Form.vue'),
+            'action-form': require('./Form')
         },
 
         mixins: [

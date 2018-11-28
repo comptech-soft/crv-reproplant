@@ -17,7 +17,7 @@ module.exports = [
     }),
 
     Makers.mkColumn('status_in_farm', {
-        caption: 'Stare in ferma',
+        caption: 'Stare în fermă',
     }, {
         component: 'cell-string',
         cell_style: {

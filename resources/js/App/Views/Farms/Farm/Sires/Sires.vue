@@ -3,6 +3,7 @@
 
         <import-animals
             v-if="import_form.visible"
+            :farm="farm"
             @close="import_form.visible = false"
         >
         </import-animals>

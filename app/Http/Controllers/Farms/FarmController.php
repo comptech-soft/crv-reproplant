@@ -42,7 +42,15 @@ class FarmController extends Controller
     }
 
     /**
-     * Import tauri la ferma
+     * Upload fisier cu taurii de la ferma
+     */
+    public function siresUpload(Request $request)
+    {
+        return Farm::siresUpload($request->all());
+    }
+
+    /**
+     * Import fisier cu taurii de la ferma
      */
     public function siresImport(Request $request)
     {

@@ -91,7 +91,7 @@
         {
             if(statuses.hasOwnProperty(record.animal_status))
             {
-                return '<span style="min-height:13px; height:13px; line-height:13px;" class="m-badge m-badge--' + statuses[record.animal_status].color + '">' + statuses[record.animal_status].caption + '</span>'
+                return '<span style="min-height:11px; height:11px; line-height:11px;" class="m-badge m-badge--' + statuses[record.animal_status].color + '">' + statuses[record.animal_status].caption + '</span>'
             }
             return record.animal_status
         }
@@ -168,7 +168,7 @@
                 margin: 0;
                 padding: 0;
                 td {
-                    padding: 0.075rem;
+                    padding: 0.1rem;
                     font-size: 10px;
                     border-color: #cccccc;
                     color: #333333;

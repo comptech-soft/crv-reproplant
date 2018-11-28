@@ -11,6 +11,7 @@ use App\Models\Animals\Animals\Traits\Validator;
 use App\Models\Animals\Animals\Traits\Datatable;
 use App\Models\Animals\Animals\Traits\Attributes;
 use App\Models\Animals\Animals\Traits\Import;
+use App\Models\Animals\Animals\Traits\Search;
 
 class Animal extends Model
 {
@@ -21,7 +22,8 @@ class Animal extends Model
 		Validator,
 		Attributes,
 		Datatable,
-		Import
+		Import,
+		Search
 	;
 
 	protected $table = 'animals';

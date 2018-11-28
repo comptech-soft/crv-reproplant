@@ -145,7 +145,7 @@
     $animal-width: 30%;
     $separator-width: (100% - 3 * $animal-width)/4;
 
-    $animal-height: 122px;
+    $animal-height: 128px;
     $vertical-separator-height: 6px;
 
     $border-color: #cccccc;

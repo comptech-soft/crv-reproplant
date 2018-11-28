@@ -70,7 +70,7 @@
                         from: dt.from, 
                         to: dt.to, 
                         total: dt.total
-                    })}} ({{dt.count}})
+                    })}}
                 </div>
                 <div class="text-right" v-else-if="! dt.loading">
                     <span class="m-badge m-badge--info m-badge--wide">

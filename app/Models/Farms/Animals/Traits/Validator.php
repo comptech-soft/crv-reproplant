@@ -12,9 +12,11 @@ trait Validator
         }
         $result = [
             'farm_id' => 'required|max:191|exists:farms,id',
-            'animal_id' => 'required|exists:animals,id',
-            
         ];
+        if( ! array_key_exists('animal_required', $record) || $record['animal_required'])
+        {
+            $result['animal_id'] = 'required|exists:animals,id';
+        }
         return $result;
     }
 

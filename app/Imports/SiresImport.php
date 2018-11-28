@@ -2,14 +2,16 @@
 
 namespace App\Imports;
 
-// use App\\User;
-use Maatwebsite\Excel\Concerns\ToModel;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\Importable;
 
-class SiresImport implements ToModel
+class SiresImport implements ToCollection
 {
-
-    public function model(array $row)
+    use Importable;
+    
+    public function collection(Collection $collection)
     {
-        dd($row);
+        return $collection;
     }
 }

@@ -57,6 +57,7 @@ trait Actions
                 'value' => $value, 
                 'calculation_base' => $calculation_base, 
                 'percent' => $percent,
+                'error' => $e->getMessage(),
             ]);
         }
     }

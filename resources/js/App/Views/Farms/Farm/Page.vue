@@ -51,7 +51,27 @@
             this.current = this.$route.params.current || 'data'
         },
 
+        beforeRouteEnter (to, from, next) {
+            let user_id = document.head.querySelector('meta[name="has-user"]').content
+            if( user_id == 0)
+            {
+                let i = setTimeout( () => {
+                    location.href = document.head.querySelector('meta[name="base-url"]').content
+                }, 10)
+            }
+            else
+            {
+                next()
+            }
+        },
+
+        beforeRouteUpdate (to, from, next) {
+            console.log('Before Update...')
+            next();
+        },
+
         beforeRouteLeave(to, from, next) {
+            console.log('Before Leave...');
             this.setFarm(null)
             next();
         },

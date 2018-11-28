@@ -13,7 +13,7 @@ model
     .setWidths(widths)
     
     /**
-     * dupa care filduri se poate face "quick search"
+     * dupa care fielduri se poate face "quick search"
      */
     .setSearchByFields([
         // 'animals.interbull_code', 
@@ -45,13 +45,10 @@ model
 //         where: 'animals.breed_id=[value]'
 //     })
 
-//     .addRule('insert', 'names', 'required')
-//     .addRule('insert', 'codes', 'required')
-//     .addRule('insert', 'animal_status', 'required')
+    .addRule('insert', 'matricol_number', 'required')
 
-//     .addRule('update', 'names', 'required')
-//     .addRule('update', 'codes', 'required')
-//     .addRule('update', 'animal_status', 'required')
+
+    .addRule('update', 'matricol_number', 'required')
     
 //     .addField('id')
 //     .addField('short_name', '')
