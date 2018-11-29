@@ -59,6 +59,35 @@ trait Animals
             DB::rollBack();
             return Response::Exception($e, 'Ceva nu a funcționat corect. Acțiunea nu s-a putut efectua', []);
 		}
-	}
+    }
+    
+    protected function animalsDelete($data)
+    {
+        DB::beginTransaction();
+        try
+        {
+			$farm = self::find($data['farm_id']);
+            $animals = $farm->animals()
+                ->where('type', $data['type'])
+                ->where('gender', $data['gender'])
+                ->pluck('farms_animals.animal_id')->toArray();
+
+            $farm->animals()->detach($animals);
+
+			Action::create([
+                'user_id' => Sentinel::check()->id,
+                'model' => '\App\Models\Farms\Farms',
+                'action' => 'delete-all-animals',
+                'record' => json_encode($data),
+            ]);
+            DB::commit();
+            return Response::Success('Acțiunea s-a efectuat cu succes.', ['record' => $data]);
+        }
+        catch(Exception $e)
+        {
+            DB::rollBack();
+            return Response::Exception($e, 'Ceva nu a funcționat corect. Acțiunea nu s-a putut efectua', []);
+		}
+    }
     
 }

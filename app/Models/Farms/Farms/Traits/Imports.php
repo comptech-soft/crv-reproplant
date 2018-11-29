@@ -114,11 +114,3 @@ trait Imports
     }
     
 }
-
-/*
-cod_interbull: 1234556
-cod_ro: null
-crotalie: null
-naab: null
-nume: "Ovidiu"
-nume_lung: "Ovidiu cel lung"

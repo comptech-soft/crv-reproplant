@@ -111,4 +111,5 @@ trait Actions
     //     return self::where('id', $id)->with(['locality.judet.region.country', 'oremulsori'])->first();
     // }
 
+    
 }

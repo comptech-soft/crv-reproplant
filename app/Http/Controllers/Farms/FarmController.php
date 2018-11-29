@@ -56,4 +56,20 @@ class FarmController extends Controller
     {
         return Farm::siresImport($request->all());
     }
+
+    /**
+     * Stergerea animalelor
+     */
+    public function animalsDelete(Request $request)
+    {
+        return Farm::animalsDelete($request->all());
+    }
+
+    /**
+     * Download animale
+     */
+    public function animalsDownload(Request $request)
+    {
+        return Farm::animalsDownload($request->all());
+    }
 }

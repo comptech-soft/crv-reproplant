@@ -6,6 +6,8 @@
             :model="model"
             icon="/img/icons/cow.png"
             :actions="actions"
+            :refresh="refresh"
+            @refreshed="refresh=false"
         >    
 
             <!-- controalele formularului -->
@@ -30,6 +32,7 @@
 
         data(){
             return {
+                refresh: false,
                 model: null,
                 actions: [
                     {
@@ -43,7 +46,7 @@
                         caption: 'Download',
                         icon: 'la la-download',
                         click: () => {
-                            alert('Download....')
+                            this.confirmDownload()
                         }
                     },
                     {
@@ -57,7 +60,7 @@
                         caption: 'Șterge toate vacile',
                         icon: 'la la-trash',
                         click: () => {
-                            alert('Sterge...')
+                            this.confirmDeleteAll()
                         }
                     },    
                 ],
@@ -71,6 +74,38 @@
         },
 
         methods: {  
+
+            deleteAll() {
+                this.post('farms/animals/delete-all', {
+                    farm_id: this.farm.id,
+                    type: 'cow',
+                    gender: 'female',
+                }, data => {
+                    this.refresh = true
+                })
+            },
+
+            download() {
+                this.post('farms/animals/download', {
+                    farm_id: this.farm.id,
+                    type: 'cow',
+                    gender: 'female',
+                }, data => {
+                    location.href = data.url
+                })
+            },
+
+            confirmDeleteAll() {
+                csApp.Messagebox.confirm(this.__('Confirmare'), this.__('Doriți ștergerea tuturor vacilor?'), () => {
+                    this.deleteAll()
+                })
+            },
+
+            confirmDownload() {
+                csApp.Messagebox.confirm(this.__('Confirmare'), this.__('Doriți descărcarea unui fișier excel cu lista vacilor din fermă?'), () => {
+                    this.download()
+                })
+            },
 
             // showForm() {
             //     this.add_cow_form.visible = true

@@ -9,6 +9,8 @@ Route::middleware(['is-authenticated'])->group(function(){
         Route::post('attach-animal', 'FarmController@attachAnimal');
         Route::post('import/sires-upload', 'FarmController@siresUpload');
         Route::post('import/sires-import', 'FarmController@siresImport');
+        Route::post('animals/delete-all', 'FarmController@animalsDelete');
+        Route::post('animals/download', 'FarmController@animalsDownload');
     });
 
     Route::namespace('Animals')->prefix('animals')->group(function(){
