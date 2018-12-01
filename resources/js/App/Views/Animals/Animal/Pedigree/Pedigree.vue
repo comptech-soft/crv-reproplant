@@ -9,7 +9,7 @@
             <div class="animal-item animal-item-current">
                 <pedigree-item 
                     :animal="animal"
-                    :title="__(animal.gender ? 'Taur' : 'Vacă')"
+                    :title="__(animal.gender == 'male' ? 'Taur' : 'Vacă')"
                     variant="blue"
                 >
                 </pedigree-item>
@@ -145,7 +145,7 @@
     $animal-width: 30%;
     $separator-width: (100% - 3 * $animal-width)/4;
 
-    $animal-height: 128px;
+    $animal-height: 116px;
     $vertical-separator-height: 6px;
 
     $border-color: #cccccc;

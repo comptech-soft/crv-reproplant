@@ -9,7 +9,7 @@
         <div v-if="animal && ! animal.loading" class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
                 <span class="m-portlet__head-icon">
-                    <i class="flaticon-multimedia"></i>
+                    <img :src="$app.url + 'img/icons/' + (animal.type == 'cow' ? 'cow' : 'bull') + '.png'" />
                 </span>
                 <h3 class="m-portlet__head-text">
                     {{ animal.short_name || animal.long_name }}
@@ -20,22 +20,7 @@
         <!-- Taburile -->
         <div v-if="animal && ! animal.loading" class="m-portlet__head-tools">
             <ul class="nav nav-tabs m-tabs m-tabs-line  m-tabs-line--right" role="tablist">
-                <li 
-                    :class="{'nav-item': true, 'm-tabs__item': true}"
-                    style="cursor:pointer"
-                >
-                    <a 
-                        :class="{
-                            'nav-link': true, 
-                            'm-tabs__link': true,
-                            'active': current == 'traits',
-                            'show': current == 'traits',
-                        }" role="tab"
-                        @click="$emit('current', 'traits')"
-                    >
-                        {{ __('Caracteristici') }}
-                    </a>
-                </li>
+
                 <li 
                     :class="{'nav-item': true, 'm-tabs__item': true}"
                     style="cursor:pointer"
@@ -53,6 +38,25 @@
                         {{ __('Ascendența') }}
                     </a>
                 </li>
+
+                <li 
+                    :class="{'nav-item': true, 'm-tabs__item': true}"
+                    v-if="animal.type=='sire'"
+                    style="cursor:pointer"
+                >
+                    <a 
+                        :class="{
+                            'nav-link': true, 
+                            'm-tabs__link': true,
+                            'active': current == 'traits',
+                            'show': current == 'traits',
+                        }" role="tab"
+                        @click="$emit('current', 'traits')"
+                    >
+                        {{ __('Caracteristici') }}
+                    </a>
+                </li>
+                
                  <li 
                     :class="{'nav-item': true, 'm-tabs__item': true}"
                     style="cursor:pointer"

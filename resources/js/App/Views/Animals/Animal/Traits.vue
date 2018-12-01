@@ -4,7 +4,7 @@
             <div class="m-alert__icon">
                 <i class="la la-warning"></i>
             </div>
-            <div class="m-alert__text">
+            <div class="m-alert__text" v-if="animal.type=='sire'">
                 <strong>{{ __('Atenție') }}.</strong> 
                 {{ __('Aici se vizualizează caracteristicile animalului :nume: (:interbull_code:).', {nume: animal.long_name || animal.short_name, interbull_code: animal.interbull_code}) }}<br/>
                 <a v-if="animal.interbull_code" :href="'https://apps.crv4all.com/siresearch/us/detail/' + animal.interbull_code" target="_blank" class="m-link m-link--state m-link--info">

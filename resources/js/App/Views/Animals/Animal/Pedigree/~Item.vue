@@ -1,7 +1,7 @@
 <template>
     <div class="animal-item-container">
-        <div :class="'animal-item-header animal-item-' + variant">
-            {{ title }}
+        <div v-if="animal != null" :class="'animal-item-header animal-item-' + variant">
+            {{ title }} <img :src="$app.url + 'img/icons/' + animal.animal_status + '.png'" />
         </div>
         <table v-if="animal != null" class="table table-bordered table-sm">
             <tbody>
@@ -119,21 +119,21 @@
                         {caption: 'Rasa', value: record => Rasa(record)},
                         // {caption: 'Culoare', value: record => Color(record)},
                         // {caption: 'Firma', value: record => Company(record)},
-                        {caption: 'Stare animal', value: record => animalStatus(record) },
+                        // {caption: 'Stare animal', value: record => animalStatus(record) },
                     ],
 
                     female: [
                         // {caption: 'Nume', value: record => record.long_name},
                         // {caption: 'Nume scurt', value: record => record.short_name},
-                        {caption: 'Cod interbull', value: record => record.interbull_code},
+                        // {caption: 'Cod interbull', value: record => record.interbull_code},
                         {caption: 'Număr matricol', value: record => record.matricol_number},
                         // {caption: 'Cod Ro', value: record => record.cod_ro},
                         // {caption: 'NAAB', value: record => record.naab},
                         {caption: 'Data nașterii', value: record => birthDate(this, record) },
                         // {caption: 'Rasa', value: record => Rasa(record)},
                         // {caption: 'Culoare', value: record => Color(record)},
-                        {caption: 'Firma', value: record => Company(record)},
-                        {caption: 'Stare animal', value: record => animalStatus(record) },
+                        // {caption: 'Firma', value: record => Company(record)},
+                        // {caption: 'Stare animal', value: record => animalStatus(record) },
                     ]
                 }
             }
@@ -170,7 +170,7 @@
                 td {
                     padding: 0.1rem;
                     font-size: 10px;
-                    border-color: #cccccc;
+                    border-color: #ededed;
                     color: #333333;
                 }
                 td.caption {

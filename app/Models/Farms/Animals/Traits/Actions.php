@@ -59,7 +59,6 @@ trait Actions
             }
             $animal_id = $animal->id;
         }
-
         $animal_in_farm = self::where('farm_id', $record['farm_id'])->where('animal_id', $animal_id)->first();
         if( ! $animal_in_farm )
         {
@@ -67,6 +66,8 @@ trait Actions
                 'farm_id' => $record['farm_id'],
                 'animal_id' => $animal_id,
                 'status_in_farm' => $record['status_in_farm'],
+                'short_number' => $record['short_number'],
+                'internal_number' => $record['internal_number'],
                 'created_at' => Carbon::now(),
                 'created_by' => $user_id,
                 'updated_at' => Carbon::now(),
@@ -76,6 +77,8 @@ trait Actions
         }
         return $animal_in_farm->update([
             'status_in_farm' => $record['status_in_farm'],
+            'short_number' => $record['short_number'],
+            'internal_number' => $record['internal_number'],
             'updated_at' => Carbon::now(),
             'updated_by' => $user_id,
         ]);

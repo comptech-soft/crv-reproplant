@@ -37,7 +37,7 @@
         },
 
         components: {
-            'animal-traits': require('./~1~Traits'),
+            'animal-traits': require('./Traits'),
             'animal-pedigree': require('./Pedigree/Pedigree'),
             'animal-update': require('./Update/Update')
         }

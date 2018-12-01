@@ -51,7 +51,14 @@ module.exports = [
         order: {default: true, dir: 'asc', field: 'animals.matricol_number', type: 'alpha'}
     }, {
         component: 'cell-string',
-        render: record => record.animal.matricol_number
+        render: record => record.animal.matricol_number,
+        cell_style: (column, record) => {
+            return {
+                cursor: 'pointer',
+                color: '#5867dd',
+            }
+        },
+        actions: (v, record) => v.$router.push({name: 'animal', params: {id: record.animal.id, current: 'pedigree'}})
     }),
     
     Makers.mkColumn('short_number', {

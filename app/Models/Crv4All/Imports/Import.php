@@ -55,6 +55,8 @@ class Import
 
     protected function getLongName()
     {
+        $element = $this->getElementById('div', 'sire-name');
+        dd( $element );
         return trim($this->getElementById('div', 'sire-name')->innertext);
     }
 
@@ -312,13 +314,16 @@ class Import
 
     protected function getResult()
     {
-        $h = $this->html_dom->find('h2',0)->innertext;
-        if($h == 'Unfortunately this sire does not have breeding values')
+        $h = $this->html_dom->find('h2',0);
+        if( is_object($h) && property_exists($h, 'innertext') )
         {
-            return [
-                'success' => false,
-                'message' => $h
-            ];
+            if($h->innertext == 'Unfortunately this sire does not have breeding values')
+            {
+                return [
+                    'success' => false,
+                    'message' => $h
+                ];
+            }
         }
         return [
             'success' => true,

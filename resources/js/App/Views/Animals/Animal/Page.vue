@@ -1,16 +1,19 @@
 <template>
-    <div class="m-portlet m-portlet--tabs m-portlet--brand m-portlet--head-solid-bg m-portlet--head-sm m-portlet--bordered">
+    <div class="m-portlet m-portlet--tabs m-portlet--brand m-portlet--head-solid-bg m-portlet--head-sm m-portlet--bordered">        
+        
         <animal-head 
             :animal="animal" 
             :current="current" 
             @current="setCurrent"
         >
         </animal-head>
+
         <animal-body 
             :animal="animal" 
             :current="current" 
             @updated="updated">
         </animal-body>
+
     </div>
 </template>
 
@@ -24,7 +27,7 @@
                 /**
                  * Care tab este activ
                  */
-                current: 'traits',
+                current: 'pedigree',
             }
         },
 
@@ -60,18 +63,30 @@
 
         beforeRouteUpdate(to, from, next){
             next()
-            // console.log('beforeRouteUpdate.... >>> ' + this.$route.params.id)
             this.getAnimal(this.$route.params.id)
         },
 
+        beforeRouteEnter (to, from, next) {
+            let user_id = document.head.querySelector('meta[name="has-user"]').content
+            if( user_id == 0)
+            {
+                let i = setTimeout( () => {
+                    location.href = document.head.querySelector('meta[name="base-url"]').content
+                }, 10)
+            }
+            else
+            {
+                next()
+            }
+        },
+        
         mounted(){
-            // console.log('Mounted.... >>> ' + this.$route.params.id + '|' + this.$route.params.current)
-            this.current = this.$route.params.current || 'traits'
+            this.current = this.$route.params.current || 'pedigree'
             this.getAnimal(this.$route.params.id)
         },
 
-        destroy() {
-            // console.log('Destroyyyy')
+        destroyed() {
+            console.log('Destroyyyy')
         },
 
         components: {

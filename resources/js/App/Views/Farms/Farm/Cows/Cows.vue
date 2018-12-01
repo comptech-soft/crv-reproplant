@@ -64,12 +64,6 @@
                         }
                     },    
                 ],
-
-                // add_cow_form: {
-                //     visible: false,
-                //     type: 'cow',
-                //     gender: 'female',
-                // },
             }
         },
 
@@ -106,14 +100,6 @@
                     this.download()
                 })
             },
-
-            // showForm() {
-            //     this.add_cow_form.visible = true
-            // },
-
-            // hideForm() {
-            //     this.add_cow_form.visible = false
-            // }
         },
 
         mounted() {
@@ -129,7 +115,6 @@
         },
 
         components: {
-            // 'add-cow-form': require('./Form.vue'),
             'action-form': require('./Form')
         },
 
