@@ -11,6 +11,45 @@ trait Import
     {
         $this->long_name = $data['long_name'];
         $this->short_name = $data['short_name'];
+        
+        if(array_key_exists('general', $data))
+        {
+            foreach($data['general'] as $i => $item)
+            {
+                if( substr($item['caption'], 0, strlen('Genetic defects') ) == 'Genetic defects')
+                {
+                    $this->genetic_defects = $item['value'];
+                }
+                if( substr($item['caption'], 0, strlen('Breed') ) == 'Breed')
+                {
+                    $this->breed = $item['value'];
+                }
+                if( substr($item['caption'], 0, strlen('Breed composition') ) == 'Breed composition')
+                {
+                    $this->breed_composition = $item['value'];
+                }
+                if( substr($item['caption'], 0, strlen('Color') ) == 'Color')
+                {
+                    $this->color = $item['value'];
+                }
+                if( substr($item['caption'], 0, strlen('Born')) == 'Born')
+                {
+                    $this->birth_date = \Carbon\Carbon::createFromFormat('m-d-Y', $item['value']);
+                }
+                if( substr($item['caption'], 0, strlen('Bull code') ) == 'Bull code')
+                {
+                    $this->bull_code = $item['value'];
+                }
+                if( substr($item['caption'], 0, strlen('Sire ID')) == 'Sire ID')
+                {
+                    $this->matricol_number = $item['value'];
+                }
+                if( substr($item['caption'], 0, strlen('Source breedingvalues')) == 'Source breedingvalues')
+                {
+                    $this->source_breedingvalues = $item['value'];
+                }
+            }
+        }
         $this->save();
         $this->saveGeneral($data['general']);
         $this->saveDescendents($data['descendents']);
@@ -110,7 +149,20 @@ trait Import
             {
                 Characteristic::saveCharacteristic($this->id, 'breeding-values', $item['caption'], $item['values'][0]['value'], $calculation_base,  $item['values'][1]['value']);
             }
+            if($item['caption'] == 'NVI')
+            {
+                $this->nvi = $item['values'][0]['value']; 
+            }
+            if($item['caption'] == 'Longevity')
+            {
+                $this->longevity = $item['values'][0]['value']; 
+            }
+            if($item['caption'] == 'Udder')
+            {
+                $this->udder = $item['values'][0]['value']; 
+            }
         }
+        $this->save();
     }
 
     public function saveProduction($data, $calculation_base)
@@ -118,7 +170,24 @@ trait Import
         foreach($data as $i => $item)
         {
             Characteristic::saveCharacteristic($this->id, 'production', $item['caption'], $item['value'], $calculation_base);
+            if($item['caption'] == 'Kg milk')
+            {
+                $this->milk_kg = $item['value']; 
+            }
+            if($item['caption'] == '% fat')
+            {
+                $this->fat_percent = $item['value']; 
+            }
+            if($item['caption'] == '% protein')
+            {
+                $this->protein_percent = $item['value']; 
+            }
+            if($item['caption'] == 'INET')
+            {
+                $this->inet = $item['value']; 
+            }
         }
+        $this->save();
     }
 
     public function saveExterior($data, $calculation_base)
@@ -160,8 +229,17 @@ trait Import
             if( ! $item['error'] )
             {
                 Characteristic::saveCharacteristic($this->id, 'functional-traits', $item['caption'], $item['value'], $calculation_base, $item['percent']);
+                if( $item['caption'] == '&nbsp;&nbsp;<em>Calving ease</em>')
+                {
+                    $this->calving_ease = $item['value'];
+                }
+                if( $item['caption'] == 'Udder health')
+                {
+                    $this->udder_health = $item['value'];
+                }
             }
         }
+        $this->save();
     }
 
     public function saveExteriorTraits($data, $calculation_base)
@@ -171,8 +249,22 @@ trait Import
             if( ! $item['error'] )
             {
                 Characteristic::saveCharacteristic($this->id, 'exterior-traits', $item['caption'], $item['value'], $calculation_base);
+                if( $item['caption'] == 'Frame')
+                {
+                    $this->frame = $item['value'];
+                }
+                if( $item['caption'] == 'Feet & Legs')
+                {
+                    $this->feet_legs = $item['value'];
+                }
+                if( $item['caption'] == 'Final score')
+                {
+                    $this->total_score = $item['value'];
+                }
+                
             }
         }
+        $this->save();
     }
 
 }
