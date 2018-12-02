@@ -66,7 +66,13 @@ module.exports = [
     }, {
         component: 'cell-string',
         render: record => {
-            return Renderers.animalInfo(record, 'father_id', 'father') + '<i style="font-size:11px" class="la la-times"></i>' + Renderers.animalInfo(record, 'mother_id', 'mother')
+            let fatherInfos = Renderers.animalInfo(record, 'father_id', 'father')
+            let separator = '<i style="font-size:11px" class="la la-times"></i>'
+            return fatherInfos + separator + (
+                record.mother_id 
+                ? Renderers.animalInfo(record.mother, 'father_id', 'father')
+                : '-'
+            )
         }
     }),
 

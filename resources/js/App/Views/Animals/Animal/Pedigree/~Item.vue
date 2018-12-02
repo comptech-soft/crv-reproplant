@@ -1,7 +1,8 @@
 <template>
     <div class="animal-item-container">
         <div v-if="animal != null" :class="'animal-item-header animal-item-' + variant">
-            {{ title }} <img :src="$app.url + 'img/icons/' + animal.animal_status + '.png'" />
+            <img :src="$app.url + 'img/icons/' + animal.animal_status + '.png'" />
+            {{ title }} 
         </div>
         <table v-if="animal != null" class="table table-bordered table-sm">
             <tbody>
@@ -110,7 +111,7 @@
                 cells: {
                     male: [
                         // {caption: 'Nume', value: record => record.long_name},
-                        // {caption: 'Nume scurt', value: record => record.short_name},
+                        {caption: 'Nume scurt', value: record => record.short_name},
                         {caption: 'Cod interbull', value: record => record.interbull_code},
                         {caption: 'Număr matricol', value: record => record.matricol_number},
                         // {caption: 'Cod Ro', value: record => record.cod_ro},

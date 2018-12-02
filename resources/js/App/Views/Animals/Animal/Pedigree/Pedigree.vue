@@ -145,10 +145,10 @@
     $animal-width: 30%;
     $separator-width: (100% - 3 * $animal-width)/4;
 
-    $animal-height: 116px;
+    $animal-height: 130px;
     $vertical-separator-height: 6px;
 
-    $border-color: #cccccc;
+    $border-color: #efefef;
 
     div.col-pedigree {
         float: left;

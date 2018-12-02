@@ -6,6 +6,6 @@ trait Datatable
 {
     public static function getDatatableQuery()
 	{
-		return self::query()->with(['rasa', 'company', 'father', 'mother']);
+		return self::query()->with(['rasa', 'company', 'father', 'mother', 'mother.father']);
 	}
 }
