@@ -151,15 +151,24 @@ trait Import
             }
             if($item['caption'] == 'NVI')
             {
-                $this->nvi = $item['values'][0]['value']; 
+                if( is_integer($item['values'][0]['value']) )
+                {
+                    $this->nvi = $item['values'][0]['value']; 
+                }
             }
             if($item['caption'] == 'Longevity')
             {
-                $this->longevity = $item['values'][0]['value']; 
+                if( is_integer($item['values'][0]['value']) )
+                {
+                    $this->longevity = $item['values'][0]['value'];
+                } 
             }
             if($item['caption'] == 'Udder')
             {
-                $this->udder = $item['values'][0]['value']; 
+                if( is_integer($item['values'][0]['value']) )
+                {
+                    $this->udder = $item['values'][0]['value']; 
+                }
             }
         }
         $this->save();
@@ -172,19 +181,31 @@ trait Import
             Characteristic::saveCharacteristic($this->id, 'production', $item['caption'], $item['value'], $calculation_base);
             if($item['caption'] == 'Kg milk')
             {
-                $this->milk_kg = $item['value']; 
+                if( is_integer($item['value']) )
+                {
+                    $this->milk_kg = $item['value']; 
+                }
             }
             if($item['caption'] == '% fat')
             {
-                $this->fat_percent = $item['value']; 
+                if( is_numeric($item['value']) )
+                {
+                    $this->fat_percent = $item['value']; 
+                }
             }
             if($item['caption'] == '% protein')
             {
-                $this->protein_percent = $item['value']; 
+                if( is_numeric($item['value']) )
+                {
+                    $this->protein_percent = $item['value']; 
+                }
             }
             if($item['caption'] == 'INET')
             {
-                $this->inet = $item['value']; 
+                if( is_integer($item['value']) )
+                {
+                    $this->inet = $item['value']; 
+                }
             }
         }
         $this->save();
