@@ -1,3 +1,7 @@
 {
-    "/js/app.bundle.js": "/js/app.bundle.js"
+    "/js/app.bundle.js": "/js/app.bundle.js",
+    "/js/login.bundle.js": "/js/login.bundle.js",
+    "/js/plugins.bundle.js": "/js/plugins.bundle.js",
+    "/css/reproplant.bundle.css": "/css/reproplant.bundle.css",
+    "/css/custom.bundle.css": "/css/custom.bundle.css"
 }

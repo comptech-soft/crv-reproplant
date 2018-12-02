@@ -21,8 +21,5 @@ class Animal extends Model
 
 	protected $table = 'farms_animals';
 	protected $guarded = ['id'];
-
-	
-
-	
+		
 }

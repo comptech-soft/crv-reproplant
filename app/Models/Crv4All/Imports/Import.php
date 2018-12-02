@@ -9,6 +9,7 @@ use Exception;
 use Sentinel;
 use Comptechsoft\Helpers\App\Response;
 use Comptechsoft\Helpers\App\Message;
+use App\Models\App\Log\Action;
 use App\Models\Animals\Imports\Import as ImportAnimal;
 use App\Models\Animals\Imports\Detail;
 use App\Models\Animals\Animals\Animal;
@@ -55,14 +56,28 @@ class Import
 
     protected function getLongName()
     {
-        $element = $this->getElementById('div', 'sire-name');
-        dd( $element );
-        return trim($this->getElementById('div', 'sire-name')->innertext);
+        try
+        {
+            $element = $this->getElementById('div', 'sire-name');
+            return trim($element->innertext);
+        }
+        catch(Exception $e)
+        {
+            return NULL;
+        }
     }
 
     protected function getShortName()
     {
-        return trim($this->getElementById('div', 'sire-short-name')->innertext);
+        try
+        {
+            $element = $this->getElementById('div', 'sire-short-name');
+            return trim($element->innertext);
+        }
+        catch(Exception $e)
+        {
+            return NULL;
+        }
     }
 
     protected function getGeneralInfos()
@@ -314,16 +329,24 @@ class Import
 
     protected function getResult()
     {
-        $h = $this->html_dom->find('h2',0);
-        if( is_object($h) && property_exists($h, 'innertext') )
+        
+        try
         {
-            if($h->innertext == 'Unfortunately this sire does not have breeding values')
+            $h = $this->html_dom->find('h2',0);
+            if( ($h !== NULL) && ($h->innertext == 'Unfortunately this sire does not have breeding values'))
             {
                 return [
                     'success' => false,
                     'message' => $h
                 ];
             }
+        }
+        catch(Exception $e)
+        {
+            return [
+                'success' => false,
+                'message' => $e->getMessage(),
+            ];
         }
         return [
             'success' => true,

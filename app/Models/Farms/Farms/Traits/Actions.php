@@ -7,7 +7,6 @@ use Sentinel;
 use Carbon\Carbon;
 use Comptechsoft\Helpers\App\Response;
 use DB;
-use App\Models\App\Log\Action;
 
 trait Actions
 {
@@ -22,7 +21,6 @@ trait Actions
             'cif' => $record['cif'],
             'status' => $record['status'],
             'email' => $record['email'],
-
             'created_at' => Carbon::now(),
             'created_by' => $user_id,
             'updated_at' => Carbon::now(),
@@ -41,7 +39,6 @@ trait Actions
             'cif' => $record['cif'],
             'status' => $record['status'],
             'email' => $record['email'],
-
             'updated_by' => $user_id,
         ]);
         return self::getRecord($current->id);
