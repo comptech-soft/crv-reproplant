@@ -231,7 +231,54 @@
             },
         },
 
+        watch: {
+
+            'record.matricol_number': {
+                handler: function(newMatricolNumber, oldMatricolNumber) {
+                    if(newMatricolNumber != oldMatricolNumber)
+                    {
+                        let l = newMatricolNumber.length
+                        if( l <= 2)
+                        {
+                            if(newMatricolNumber.substr(0, l) != newMatricolNumber.substr(0, l).toUpperCase())
+                            {
+                                this.record.matricol_number = newMatricolNumber.substr(0, l).toUpperCase()
+                            }
+                        }
+                        else
+                        {
+                            if(newMatricolNumber[2] != ' ')
+                            {
+                                this.record.matricol_number = newMatricolNumber.substr(0, 2).toUpperCase() + ' ' + newMatricolNumber.substr(2).toUpperCase()
+                            }
+                        }
+                    }
+                    this.record.short_number = this.toShortNumber(newMatricolNumber)
+                },
+                deep: true,
+            }
+        },
+
         methods: {            
+
+            toShortNumber(matricolNumber) {
+                let l = matricolNumber.length
+                switch(matricolNumber.substr(0, 2).toUpperCase())
+                {
+                    case 'NL': 
+                        if( l >= 8)
+                        {
+                            return matricolNumber.substr(l - 5, 4)
+                        }
+                        return ''
+                    default: 
+                        if( l >= 7)
+                        {
+                            return matricolNumber.substr(l - 4, 4)
+                        }
+                        return ''
+                }
+            },
 
             /**
              * Completam setarea valorilor recordului astfel incat sa se vada 

@@ -7,4 +7,9 @@ module.exports = {
 
     getAnimal: ({ commit }, id) => commit('getAnimal', id),
     setAnimal: ({ commit }, animal) => commit('setAnimal', animal),
+
+    setAnimal: ({ commit }, animal) => commit('setAnimal', animal),
+
+    saveCurrentPage: ({ commit }, page) => commit('saveCurrentPage', page),
+    
 }

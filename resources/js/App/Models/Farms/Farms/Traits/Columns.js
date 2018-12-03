@@ -5,6 +5,17 @@ const Makers = AppCore.GridMakers
 module.exports = [
 
     Makers.mkRecnoColumn(),
+
+    Makers.mkColumn('external_id', {
+        caption: 'ID Extern',
+        order: {default: false, dir: 'asc', field: 'farms.external_id', type: 'alpha'}
+    }, {
+        component: 'cell-string',
+        cell_style: {
+            'text-align': 'right'
+        },
+        render: record => record.external_id
+    }),
    
     Makers.mkColumn('status', {
         caption: 'Stare',

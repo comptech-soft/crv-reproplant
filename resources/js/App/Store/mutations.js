@@ -40,6 +40,14 @@ module.exports = {
 
     setAnimal(state, animal) {
         state.animal.record = animal
-    }
+    },
 
+    saveCurrentPage(state, page) {
+        let id = page.id.replace('dt-pagination-grid-', '')
+        console.log('Save current page >> ' + id);
+        if( state.grids.hasOwnProperty(id) )
+        {
+            state.grids[id].current_page = page.current_page
+        }
+    }
 }

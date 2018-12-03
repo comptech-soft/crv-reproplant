@@ -135,6 +135,9 @@
 </template>
 
 <script>
+
+    import {mapActions} from 'vuex'
+
     export default
     {
 
@@ -219,6 +222,11 @@
 
         methods:
         {
+
+            ...mapActions([
+                'saveCurrentPage'
+            ]),
+
             onClick(page)
             {
                 if(page == 0)
@@ -230,13 +238,14 @@
                     return null
                 }
                 this.dt.changePage(page)
-            }
+                this.saveCurrentPage({
+                    id: this.id,
+                    current_page: page
+                })
+            },
+
         }
 
 
     }
 </script>
-
-<style scoped lang="scss">
-    
-</style>

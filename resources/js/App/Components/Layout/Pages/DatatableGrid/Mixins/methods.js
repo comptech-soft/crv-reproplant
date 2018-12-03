@@ -114,8 +114,16 @@ module.exports = {
              * - daca am "per_page"
              */
             _.each(this.model.filter_by_fields, (filter, field) => this.dt.addFilter(field, filter) )
-            this.dt.setDefaultOrder().changePageLength(this.model.per_page)  
-
+            this.dt.setDefaultOrder().changePageLength(this.model.per_page)
+            
+            /**
+             * Daca s-a memorat pagina curenta in store
+             */
+            if( this.stored_grid )
+            {
+                this.dt.changePage(this.stored_grid.current_page)
+            }
+        
             /**
              * Preiau din Action Box (children[1]) Form manager si Record
              */

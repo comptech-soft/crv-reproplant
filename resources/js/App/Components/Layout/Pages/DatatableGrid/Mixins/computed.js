@@ -26,6 +26,15 @@ module.exports = {
                 return this.model.filter_by_fields
             }
             return null
+        },
+
+        stored_grid() {
+            let grids = this.$store.getters.grids
+            if( grids.hasOwnProperty(this.id) )
+            {
+                return grids[this.id]
+            } 
+            return null
         }
     },
 

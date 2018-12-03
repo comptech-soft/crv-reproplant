@@ -21,6 +21,7 @@ trait Actions
             'cif' => $record['cif'],
             'status' => $record['status'],
             'email' => $record['email'],
+            'external_id' => $record['external_id'],
             'created_at' => Carbon::now(),
             'created_by' => $user_id,
             'updated_at' => Carbon::now(),
@@ -39,6 +40,7 @@ trait Actions
             'cif' => $record['cif'],
             'status' => $record['status'],
             'email' => $record['email'],
+            'external_id' => $record['external_id'],
             'updated_by' => $user_id,
         ]);
         return self::getRecord($current->id);

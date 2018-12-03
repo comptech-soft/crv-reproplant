@@ -1,6 +1,6 @@
 <template>
     <dt-grid-page
-        id="animals"
+        id="breeding-list"
         :caption="__('Valori de ameliorare')"
         :model="model"
         :has_form="false"

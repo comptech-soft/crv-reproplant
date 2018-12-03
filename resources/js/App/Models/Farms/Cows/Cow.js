@@ -31,6 +31,7 @@ model
 
 //     .setActionsField('short_name')
     .setPerPage(50)
+    .setCurrentPage(1)
 
 //     .addFilterByCriteria('animal_status', {
 //         value: null,

@@ -14,6 +14,7 @@ module.exports = {
                 region_id: null,
                 judet_id: null,
                 locality_id: null,
+                external_id: null,
             },
 
             region_load: 0,

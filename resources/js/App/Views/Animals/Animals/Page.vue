@@ -1,6 +1,6 @@
 <template>
     <dt-grid-page
-        id="animals"
+        id="lista-generala-tauri"
         :caption="__('Lista generală de tauri')"
         :model="model"
     >
@@ -22,12 +22,12 @@
 
 <script>
 
-    import model from './../../../Models/Animals/Animals/Animal'
+    import AnimalsModel from './../../../Models/Animals/Animals/Animal'
     
     export default{
 
         mounted(){
-            this.model = model
+            this.model = AnimalsModel
             this.model
                 .addFilterByCriteria('type', {
                     value: this.$route.params.type,

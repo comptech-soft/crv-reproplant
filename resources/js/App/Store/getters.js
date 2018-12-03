@@ -26,4 +26,6 @@ module.exports = {
 
     animal: state => state.animal,
 
+    grids: state => state.grids,
+
 }

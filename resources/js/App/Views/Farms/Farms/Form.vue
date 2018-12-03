@@ -105,7 +105,7 @@
         </div>
 
         <div class="row">
-            <div class="col col-md-9">
+            <div class="col col-md-6">
                 <textbox
                     id="email"
                     :label="__('Adresa de email')"
@@ -127,6 +127,18 @@
                     :errors="errors"
                 >
                 </simple-select>
+            </div>
+            <div class="col col-md-3">
+                <number-box
+                    id="external_id"
+                    :label="__('ID Extern')"
+                    :placeholder="__('ID Extern')"
+                    :disabled="action == 'delete'"
+                    autonumeric="integerPos"
+                    v-model="record.external_id"
+                    :errors="errors"
+                >
+                </number-box>
             </div>
         </div>
     </form-box>

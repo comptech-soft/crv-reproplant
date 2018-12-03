@@ -20,6 +20,7 @@ Route::middleware(['is-authenticated'])->group(function(){
 
     Route::namespace('System')->prefix('system')->group(function(){
         Route::post('upload-image', 'UploadController@uploadImage')->name('upload-image');
+        // Route::post('user-preferences-save', 'UserpreferencesController@savePreferences')->name('save-user-preferences');
     });
 
 
