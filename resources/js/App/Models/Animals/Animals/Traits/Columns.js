@@ -156,11 +156,11 @@ module.exports = [
 
 
     Makers.mkActionsColumn([
-        Makers.actUpdate('la la-pencil'),
-        Makers.actDelete('la la-trash'),
+        Makers.actUpdate(true, 'la la-pencil'),
+        Makers.actDelete(true, 'la la-trash'),
         {
             icon: 'la la-folder-o',
-            caption: 'Deschide dashboard animal',
+            caption: 'Deschide',
             click: v => v.$router.push({
                 name: 'animal', 
                 params: {

@@ -43,6 +43,18 @@
                 </textbox>
             </div>
 
+            <div class="col">
+                <simple-select
+                    id="status_in_farm"
+                    :label="__('Starea în fermă')"
+                    :options="farm_statuses"
+                    :disabled="action == 'delete'"
+                    v-model="record.status_in_farm"
+                    :errors="errors"
+                >
+                </simple-select>
+            </div>
+
         </div>
 
         <div class="row">
@@ -151,6 +163,7 @@
             :visible="quick_add_form.visible"
             :type="quick_add_form.type"
             :gender="quick_add_form.gender"
+            :farm_id="quick_add_form.type == 'sire' ? null : farm.id"
             @close="hideQuickAddForm"
         >
         </quick-add-form>
@@ -185,7 +198,7 @@
                     mother_id: null,
                     short_number: null,
                     internal_number: null,
-                    status_in_farm: 'activ',
+                    status_in_farm: null,
                     parity: null,
                 },
 
@@ -203,6 +216,20 @@
         },
 
         computed: {
+            farm_statuses() {
+                return [
+                    {
+                        id: '', text: this.__('---'),
+                    },
+                    {
+                        id: 'activ', text: this.__('Activă'),
+                    },
+                    {
+                        id: 'inactiv', text: this.__('Inactivă'),
+                    }
+                ]
+            },
+            
             ajax_breeds() {
                 return {
                     endpoint: 'api/get-datatable-rows',
@@ -219,7 +246,7 @@
                 {
                     return null
                 }
-                return {id: this.father.id, text: this.father.long_name || this.father.short_name}
+                return {id: this.father.id, text: this.father.long_name || this.father.short_name || this.father.matricol_number}
             },
 
             selected_mother() {
@@ -227,7 +254,7 @@
                 {
                     return null
                 }
-                return {id: this.mother.id, text: this.mother.long_name || this.mother.short_name}
+                return {id: this.mother.id, text: this.mother.long_name || this.mother.short_name || this.mother.matricol_number}
             },
         },
 
@@ -235,25 +262,30 @@
 
             'record.matricol_number': {
                 handler: function(newMatricolNumber, oldMatricolNumber) {
-                    if(newMatricolNumber != oldMatricolNumber)
+                    
+                    if(newMatricolNumber != undefined )
                     {
-                        let l = newMatricolNumber.length
-                        if( l <= 2)
+                        if(newMatricolNumber != oldMatricolNumber)
                         {
-                            if(newMatricolNumber.substr(0, l) != newMatricolNumber.substr(0, l).toUpperCase())
+                            let l = newMatricolNumber.length
+                            console.log(oldMatricolNumber + ' >>> ' + newMatricolNumber + ' (' + l + ')')
+                            if( l <= 2)
                             {
-                                this.record.matricol_number = newMatricolNumber.substr(0, l).toUpperCase()
+                                if(newMatricolNumber.substr(0, l) != newMatricolNumber.substr(0, l).toUpperCase())
+                                {
+                                    this.record.matricol_number = newMatricolNumber.substr(0, l).toUpperCase()
+                                }
+                            }
+                            else
+                            {
+                                if(newMatricolNumber[2] != ' ')
+                                {
+                                    this.record.matricol_number = newMatricolNumber.substr(0, 2).toUpperCase() + ' ' + newMatricolNumber.substr(2).toUpperCase()
+                                }
                             }
                         }
-                        else
-                        {
-                            if(newMatricolNumber[2] != ' ')
-                            {
-                                this.record.matricol_number = newMatricolNumber.substr(0, 2).toUpperCase() + ' ' + newMatricolNumber.substr(2).toUpperCase()
-                            }
-                        }
+                        this.record.short_number = this.toShortNumber(newMatricolNumber)
                     }
-                    this.record.short_number = this.toShortNumber(newMatricolNumber)
                 },
                 deep: true,
             }
@@ -286,20 +318,40 @@
              */
             setRecordValues(record, action)
             {
-                this.father = record.father
-                this.mother = record.mother
-                if(record.birth_date)
-                {
-                    this.record.birth_date = this.datetime.setFormat('DD.MM.YYYY', record.birth_date)
-                }
+                this.record.matricol_number = record.animal.matricol_number
+                this.record.animal_required = false
+                this.record.animal_status = record.animal.animal_status
+                this.record.breed_id = record.animal.breed_id
+                this.record.father_id = record.animal.father_id
+                this.record.mother_id = record.animal.mother_id
+                this.record.gender = record.animal.gender
+                this.record.type = record.animal.type
+                this.record.parity = record.animal.parity
+                this.father = record.animal.father
+                this.mother = record.animal.mother
+                this.record.birth_date = (record.animal.birth_date ? this.datetime.setFormat('DD.MM.YYYY', record.animal.birth_date) : null)
+                this.record.last_calving_date = (record.animal.last_calving_date ? this.datetime.setFormat('DD.MM.YYYY', record.animal.last_calving_date) : null)
             },
 
             animal_selectable(caption, type, gender) {
+
+                let search_by = ( 
+                    (type == 'sire') 
+                    ? ['animals.long_name', 'animals.short_name', 'animals.interbull_code']
+                    : ['animals.matricol_number']
+                )
+                let order_by = ( 
+                    (type == 'sire') 
+                    ? 'animals.long_name'
+                    : 'animals.matricol_number'
+                )
+
+
                 return {
                     placeholder: caption,
                     model: '\\App\\Models\\Animals\\Animals\\Animal',
-                    search_by: ['animals.long_name', 'animals.short_name', 'animals.interbull_code'],
-                    order_by: 'animals.long_name',
+                    search_by,
+                    order_by,
                     filter_by: [
                         "animals.type = '" + type + "'",
                         "animals.gender = '" + gender + "'" 
@@ -307,7 +359,14 @@
                     processResults: data => {
                         return {
                             results: _.map(data.results, record => {
-                                record.text = (record.long_name || record.short_name) + ' (' + (record.interbull_code || record.matricol__number) + ')' 
+                                if( type == 'sire')
+                                {
+                                    record.text = (record.long_name || record.short_name) + ' (' + (record.interbull_code || record.matricol_number) + ')'
+                                } 
+                                else
+                                {
+                                    record.text = record.matricol_number
+                                }
                                 return record
                             })
                         };

@@ -22,6 +22,11 @@ module.exports = {
 
                 names: '',
                 codes: '',
+
+                short_number: '',
+                internal_number: '',
+                status_in_farm: '',
+                farm_id: null,
             },
 
             add_company: {

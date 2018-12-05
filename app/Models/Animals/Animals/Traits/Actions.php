@@ -8,13 +8,14 @@ use Carbon\Carbon;
 use Comptechsoft\Helpers\App\Response;
 use DB;
 use App\Models\App\Log\Action;
+use App\Models\Farms\Animals\Animal as Cow;
 
 trait Actions
 {
 
     protected static function InsertRecord($user_id, $record)
     {
-        $record = self::create($data = [
+        $result = self::create($data = [
             'type' => $record['type'],
             'gender' => $record['gender'],
             'animal_status' => $record['animal_status'],
@@ -40,7 +41,24 @@ trait Actions
             'updated_at' => Carbon::now(),
             'updated_by' => $user_id,
         ]);
-        return $record;
+        if( $record['type'] == 'cow')
+        {
+            if( $record['farm_id'] )
+            {
+                Cow::create([
+                    'farm_id' => $record['farm_id'],
+                    'animal_id' => $result->id,
+                    'status_in_farm' => $record['status_in_farm'],
+                    'short_number' => $record['short_number'],
+                    'internal_number' => $record['internal_number'],
+                    'created_at' => Carbon::now(),
+                    'created_by' => $user_id,
+                    'updated_at' => Carbon::now(),
+                    'updated_by' => $user_id,
+                ]);
+            }
+        }
+        return $result;
     }
 
     protected static function UpdateRecord($user_id, $current, $record)

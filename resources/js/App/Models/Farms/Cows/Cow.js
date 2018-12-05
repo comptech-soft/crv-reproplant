@@ -12,57 +12,44 @@ model
     .setGenus('M')
     .setWidths(widths)
     
-    /**
-     * dupa care fielduri se poate face "quick search"
-     */
     .setSearchByFields([
-        // 'animals.interbull_code', 
-        // 'animals.short_name',
-        // 'animals.long_name',
-        // 'animals.matricol_number',
-        // 'animals.naab',
-        // 'animals.cod_ro',
-        // 'animals.breed_composition',
-        // 'animals.breed',
+        'animals.matricol_number',
     ])
 
     .setToolbar(toolbar)
     .setColumns(columns)
 
-//     .setActionsField('short_name')
+    .setActionsField('matricol_number')
+
     .setPerPage(50)
     .setCurrentPage(1)
 
-//     .addFilterByCriteria('animal_status', {
-//         value: null,
-//         where: 'animals.animal_status=[value]'
-//     })
-//     .addFilterByCriteria('company_id', {
-//         value: null,
-//         where: 'animals.company_id=[value]'
-//     })
-//     .addFilterByCriteria('breed_id', {
-//         value: null,
-//         where: 'animals.breed_id=[value]'
-//     })
+    .addFilterByCriteria('status_in_farm', {
+        value: null,
+        where: 'farms_animals.status_in_farm=[value]'
+    })
+    .addFilterByCriteria('animal_status', {
+        value: null,
+        where: 'animals.animal_status=[value]'
+    })
+
 
     .addRule('insert', 'matricol_number', 'required')
-
+    .addRule('insert', 'status_in_farm', 'required')
 
     .addRule('update', 'matricol_number', 'required')
+    .addRule('update', 'status_in_farm', 'required')
     
-//     .addField('id')
-//     .addField('short_name', '')
-//     .addField('long_name', '')
-//     .addField('interbull_code', '')
-//     .addField('matricol_number', '')
-//     .addField('naab', '')
-//     .addField('cod_ro', '')
-//     .addField('birth_date')
-//     .addField('breed_id')
-//     .addField('color_id')
-//     .addField('company_id')
-//     .addField('father_id')
-//     .addField('mother_id')
+    .addField('id')
+    .addField('matricol_number', '')
+    .addField('short_number', '')
+    .addField('internal_number', '')
+    .addField('birth_date')
+    .addField('last_calving_date')
+    .addField('color_id')
+    .addField('breed_id')
+    .addField('father_id')
+    .addField('mother_id')
+    .addField('parity')
 
 export default model

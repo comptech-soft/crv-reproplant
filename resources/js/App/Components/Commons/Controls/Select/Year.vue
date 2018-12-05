@@ -3,7 +3,7 @@
         <label
             v-if="label"
             :for="id"
-            class="cs-label"
+            class="form-control-label cs-label"
         >
             {{ label }} 
         </label>

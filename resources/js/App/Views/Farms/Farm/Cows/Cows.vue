@@ -9,6 +9,13 @@
             :refresh="refresh"
             @refreshed="refresh=false"
         >    
+            <!-- criteriile de filtrare -->
+            <div slot="dt-filter">       
+                <filter-form
+                    @do-filter="onFilter"
+                >
+                </filter-form>
+            </div>
 
             <!-- controalele formularului -->
             <div slot="dt-form">
@@ -115,7 +122,8 @@
         },
 
         components: {
-            'action-form': require('./Form')
+            'action-form': require('./Form'),
+            'filter-form': require('./Filter'),
         },
 
         mixins: [

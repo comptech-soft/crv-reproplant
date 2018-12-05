@@ -114,7 +114,10 @@
             action: function(newAction, oldAction)
             {
                 this.$children[0].action = newAction
-                // console.log('Action. New action > ' + newAction)
+                if( newAction == 'insert' )
+                {
+                    this.resetRecord()
+                }
             }
         },
 
@@ -131,7 +134,10 @@
              */
             resetRecord()
             {
+                console.log('RESET');
                 _.map(this.record, (value, field) => {
+
+                    console.log(field + '=' + value)
                     if( this.model.fields.hasOwnProperty(field) )
                     {
                         this.record[field] = this.model.fields[field].value

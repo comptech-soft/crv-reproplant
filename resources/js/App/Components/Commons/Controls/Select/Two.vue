@@ -3,7 +3,7 @@
         <label
             v-if="label"
             :for="id"
-            class="cs-label"
+            class="form-control-label cs-label"
         >
             {{ label }} 
             <i v-if="loading" class="fa fa-spinner fa-spin"></i>
