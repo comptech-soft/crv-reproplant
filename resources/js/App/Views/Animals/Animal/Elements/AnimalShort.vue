@@ -32,7 +32,6 @@
         methods: {
             onClick()
             {
-                console.log('Vreau sa ajung la >>>> ' + this.animal.id)
                 this.$router.push({name: 'animal', params: {id: this.animal.id}})
             }
         }

@@ -9,8 +9,11 @@
                 <tr>
                     <td class="caption">{{__('Nume')}}</td>
                     <td class="value">
-                        <a style="font-weight:bold; cursor:pointer" @click="openAnimal(animal)">
-                            {{ animal.long_name }}
+                        <a 
+                            style="font-weight:bold; cursor:pointer" 
+                            @click="openAnimal(animal)" 
+                        >
+                            <span v-html="animal.long_name"></span>
                         </a>
                     </td>
                 </tr>

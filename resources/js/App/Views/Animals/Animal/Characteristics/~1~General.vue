@@ -15,11 +15,11 @@
             <template slot="body-before">
                 <tr class="m-table__row--active">
                     <td class="cell cell-caption">{{ __('Nume') }}</td>
-                    <td class="cell">{{ animal.long_name}}</td>
+                    <td class="cell" v-html="animal.long_name"></td>
                 </tr>
                 <tr class="m-table__row--active">
                     <td class="cell cell-caption">{{ __('Nume scurt') }}</td>
-                    <td class="cell">{{ animal.short_name}}</td>
+                    <td class="cell" v-html="animal.short_name"></td>
                 </tr>
             </template>
         </characteristic-body>

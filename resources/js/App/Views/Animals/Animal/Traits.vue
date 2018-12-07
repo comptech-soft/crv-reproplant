@@ -6,7 +6,11 @@
             </div>
             <div class="m-alert__text" v-if="animal.type=='sire'">
                 <strong>{{ __('Atenție') }}.</strong> 
-                {{ __('Aici se vizualizează caracteristicile animalului :nume: (:interbull_code:).', {nume: animal.long_name || animal.short_name, interbull_code: animal.interbull_code}) }}<br/>
+                <span 
+                    v-html="__('Aici se vizualizează caracteristicile animalului :nume: (:interbull_code:).', {nume: animal.long_name || animal.short_name, interbull_code: animal.interbull_code})"
+                >
+                </span>
+                <br/>
                 <a v-if="animal.interbull_code" :href="'https://apps.crv4all.com/siresearch/us/detail/' + animal.interbull_code" target="_blank" class="m-link m-link--state m-link--info">
                     {{ __('Vezi detaliile pe apps.crv4all.com') }}
                 </a>
