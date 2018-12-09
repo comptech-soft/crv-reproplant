@@ -39,7 +39,8 @@ trait Validator
             'type' => 'in:sire,cow',
             'gender' => 'in:male,female',
             'animal_status' => 'in:valid,invalid,adaugat-ferma',
-            'interbull_code' => 'nullable|sometimes|unique:animals,interbull_code',
+            'matricol_number' => 'nullable|sometimes|unique:animals,matricol_number',
+            // 'interbull_code' => 'nullable|sometimes|unique:animals,interbull_code',
         ];
         if( $action == 'update')
         {

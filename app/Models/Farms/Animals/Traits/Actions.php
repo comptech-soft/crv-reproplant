@@ -84,35 +84,41 @@ trait Actions
         ]);
     }
 
-    // protected static function UpdateRecord($user_id, $current, $record)
-    // {
-    //     $current->update([
-    //         'farm' => $record['farm'],
-    //         'address' => $record['address'],
-    //         'locality_id' => $record['locality_id'],
-    //         'cod_exploatatie' => $record['cod_exploatatie'],
-    //         'cif' => $record['cif'],
-    //         'status' => $record['status'],
-    //         'email' => $record['email'],
+    protected static function UpdateRecord($user_id, $current, $record)
+    {
+        $animal_id = $current->animal_id;
+        $animal = Animal::find($animal_id);
+        $animal->update([
+            'matricol_number' => $record['matricol_number'],
+            'birth_date' => $record['birth_date'] ? Carbon::createFromFormat('d.m.Y', $record['birth_date'])->format('Y-m-d') : NULL,
+            'last_calving_date' => $record['last_calving_date'] ? Carbon::createFromFormat('d.m.Y', $record['last_calving_date'])->format('Y-m-d') : NULL,            
+            'father_id' => $record['father_id'],
+            'mother_id' => $record['mother_id'],
+            'parity' =>  $record['parity'],
+            'updated_by' => $user_id,
+        ]);
+        $current->update([
+            'short_number' => $record['short_number'],
+            'internal_number' => $record['internal_number'],
+            'status_in_farm' => $record['status_in_farm'],
+            'updated_by' => $user_id,
+        ]);
+        return self::getRecord($current->id);
+    }
 
-    //         'updated_by' => $user_id,
-    //     ]);
-    //     return self::getRecord($current->id);
-    // }
+    protected static function DeleteRecord($user_id, $current, $record)
+    {
+        $current->update([
+            'deleted_by' => $user_id,
+        ]);
+        $current->delete();
+        return $current;
+    }
 
-    // protected static function DeleteRecord($user_id, $current, $record)
-    // {
-    //     $current->update([
-    //         'deleted_by' => $user_id,
-    //     ]);
-    //     $current->delete();
-    //     return $current;
-    // }
-
-    // protected static function getRecord($id)
-    // {
-    //     return self::where('id', $id)->with(['locality.judet.region.country', 'oremulsori'])->first();
-    // }
+    protected static function getRecord($id)
+    {
+        return self::where('id', $id)->first();
+    }
 
     
 }
