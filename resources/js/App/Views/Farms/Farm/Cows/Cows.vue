@@ -1,5 +1,13 @@
 <template>
     <div v-if="farm && model">
+        <div 
+            v-if="downloading"
+            class="m-spinner m-spinner--brand text-center" 
+            style="width:19.5px; margin:0 auto; display:block; position: absolute; left: calc(50% - 10px)"
+            slot="dt-form"
+        >
+        </div>
+
         <dt-grid-page
             id="cows"
             :caption="__('Vacile fermei')"
@@ -9,6 +17,9 @@
             :refresh="refresh"
             @refreshed="refresh=false"
         >    
+
+            
+            
             <!-- criteriile de filtrare -->
             <div slot="dt-filter">       
                 <filter-form
@@ -41,6 +52,7 @@
             return {
                 refresh: false,
                 model: null,
+                downloading: false,
                 actions: [
                     {
                         caption: 'Importă din fișier excel',
@@ -87,12 +99,14 @@
             },
 
             download() {
+                this.downloading = true
                 this.post('farms/animals/download', {
                     farm_id: this.farm.id,
                     type: 'cow',
                     gender: 'female',
                 }, data => {
                     location.href = data.url
+                    this.downloading = false
                 })
             },
 
