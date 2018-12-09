@@ -29,10 +29,10 @@
         <div class="m-portlet__foot">
             <button 
                 type="button" 
-                :class="'btn btn-' + am.model.actions.color() + (formManager && formManager.submitting ? ' m-loader m-loader--light m-loader--right' : '')"
+                :class="'btn btn-' + button_color + (formManager && formManager.submiting ? ' m-loader m-loader--light m-loader--right' : '')"
                 @click="onSubmit"
             >
-                <i :class="am.model.actions.icon()"></i>
+                <i :class="button_icon"></i>
                 {{am.model.actions.button()}}
             </button>
             
@@ -95,6 +95,38 @@
             action()
             {
                 return this.am ? this.am.action : null
+            },
+
+            button_color() {
+                if(this.action == 'insert') 
+                {
+                    return 'primary'
+                }
+                if(this.action == 'update') 
+                {
+                    return 'primary'
+                }
+                if(this.action == 'delete') 
+                {
+                    return 'danger'
+                }
+                return null
+            },
+
+            button_icon() {
+                if(this.action == 'insert') 
+                {
+                    return 'la la-save'
+                }
+                if(this.action == 'update') 
+                {
+                    return 'la la-save'
+                }
+                if(this.action == 'delete') 
+                {
+                    return 'la la-trash'
+                }
+                return null
             }
         },
 

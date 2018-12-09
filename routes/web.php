@@ -11,6 +11,8 @@ Route::middleware(['is-authenticated'])->group(function(){
         Route::post('import/sires-import', 'FarmController@siresImport');
         Route::post('animals/delete-all', 'FarmController@animalsDelete');
         Route::post('animals/download', 'FarmController@animalsDownload');
+        Route::post('animals/change-status-in-farm', 'FarmController@changeStatusInFarm');
+        Route::post('animals/delete-animal-from-farm', 'FarmController@deleteAnimalFromFarm');
     });
 
     Route::namespace('Animals')->prefix('animals')->group(function(){

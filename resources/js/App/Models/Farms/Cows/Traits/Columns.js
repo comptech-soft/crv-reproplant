@@ -91,19 +91,34 @@ module.exports = [
         }
     }),
 
-    Makers.mkColumn('pedigree', {
-        caption: 'Ascendența',
+    Makers.mkColumn('sire', {
+        caption: 'Tatăl',
     }, {
         component: 'cell-string',
         render: record => {
-            let animal = record.animal
-            let fatherInfos = Renderers.animalInfo(animal, 'father_id', 'father')
-            let separator = '<i style="font-size:11px" class="la la-times"></i>'
-            return fatherInfos + separator + (
-                animal.mother_id 
-                ? Renderers.animalInfo(animal.mother, 'father_id', 'father')
-                : '-'
-            )
+            return Renderers.animalInfo(record.animal, 'father_id', 'father', 'male')
+        }
+    }),
+
+    Makers.mkColumn('dam', {
+        caption: 'Mama',
+    }, {
+        component: 'cell-string',
+        render: record => {
+            return Renderers.animalInfo(record.animal, 'mother_id', 'mother', 'female')
+        }
+    }),
+
+    Makers.mkColumn('maternal_sire', {
+        caption: 'Tatăl mamei',
+    }, {
+        component: 'cell-string',
+        render: record => {
+            if(! record.animal.mother)
+            {
+                return null
+            }
+            return Renderers.animalInfo(record.animal.mother, 'father_id', 'father', 'male')
         }
     }),
 

@@ -9,6 +9,7 @@ use Exception;
 use Sentinel;
 use App\Models\App\Log\Action;
 use App\Models\Animals\Animals\Animal;
+use App\Models\Farms\Animals\Animal as FarmAnimal;
 
 trait Animals
 {
@@ -82,6 +83,59 @@ trait Animals
             ]);
             DB::commit();
             return Response::Success('Acțiunea s-a efectuat cu succes.', ['record' => $data]);
+        }
+        catch(Exception $e)
+        {
+            DB::rollBack();
+            return Response::Exception($e, 'Ceva nu a funcționat corect. Acțiunea nu s-a putut efectua', []);
+		}
+    }
+
+    protected function changeStatusInFarm($data)
+    {
+        DB::beginTransaction();
+        try
+        {
+            $animal = FarmAnimal::find($data['id']);
+            $animal->update([
+                'status_in_farm' => ($animal->status_in_farm == 'activ' ? 'inactiv' : 'activ'),
+                'updated_by' => Sentinel::check()->id,
+				'updated_at' => \Carbon\Carbon::now(),
+            ]);
+			Action::create([
+                'user_id' => Sentinel::check()->id,
+                'model' => '\App\Models\Farms\Farms',
+                'action' => 'change-animal-status-in-farm',
+                'record' => json_encode($data),
+            ]);
+            DB::commit();
+            return Response::Success('Acțiunea s-a efectuat cu succes.', ['record' => $data]);
+        }
+        catch(Exception $e)
+        {
+            DB::rollBack();
+            return Response::Exception($e, 'Ceva nu a funcționat corect. Acțiunea nu s-a putut efectua', []);
+		}
+    }
+
+    protected function deleteAnimalFromFarm($data)
+    {
+        DB::beginTransaction();
+        try
+        {
+            $animal = FarmAnimal::find($data['id']);
+            $animal->update([
+                'deleted_by' => Sentinel::check()->id,
+            ]);
+            $animal->delete();
+			Action::create([
+                'user_id' => Sentinel::check()->id,
+                'model' => '\App\Models\Farms\Farms',
+                'action' => 'delete-animal-from-farm',
+                'record' => json_encode($data),
+            ]);
+            DB::commit();
+            return Response::Success('Ștergerea s-a efectuat cu succes.', ['record' => $data]);
         }
         catch(Exception $e)
         {

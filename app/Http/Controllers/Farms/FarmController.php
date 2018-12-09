@@ -72,4 +72,20 @@ class FarmController extends Controller
     {
         return Farm::animalsDownload($request->all());
     }
+
+    /**
+     * Schimbare status animal in ferma
+     */
+    public static function changeStatusInFarm(Request $request)
+    {
+        return Farm::changeStatusInFarm($request->all());
+    } 
+
+    /**
+     * Stergere animal din ferma
+     */
+    public static function deleteAnimalFromFarm(Request $request)
+    {
+        return Farm::deleteAnimalFromFarm($request->all());
+    } 
 }

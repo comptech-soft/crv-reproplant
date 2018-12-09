@@ -96,7 +96,9 @@
                     }
                     else
                     {
-                        this.$emit('rowclick', {name: e.name, record, column})
+                        let name = e.hasOwnProperty('name') ? e.name : e.click.name
+                        let method = e.hasOwnProperty('click') ? e.click.method : null
+                        this.$emit('rowclick', {name, record, column, method})
                     }
                 }
             }

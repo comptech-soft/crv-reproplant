@@ -102,7 +102,7 @@
                     processResults: data => {
                         return {
                             results: _.map(data.results, record => {
-                                record.text = record.long_name || record.short_name
+                                record.text = (record.long_name || record.short_name) + ' (' + record.interbull_code + ')'
                                 return record
                             })
                         };
@@ -116,9 +116,17 @@
             
             onClickAdd() {
                 this.fm.onClickSubmit(this.model.rules['insert'].rules, data => {
-                    this.created = data.result.payload.result
-                    this.resetRecord()
-                    this.$emit('close', this.created)
+                    if(data.success)
+                    {
+                        this.created = data.result.payload.result
+                        this.resetRecord()
+                        this.$emit('close', this.created)
+                        this.notySuccess(this.__('Adăugarea taurului a fost realizată cu succes.'))
+                    }
+                    else
+                    {
+                        this.notyError(data.result.message)
+                    }
                 })
             },
 

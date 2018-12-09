@@ -18,6 +18,10 @@ module.exports = {
             {
                 return this.showForm(e.name, e.record)
             }
+            if( _.isFunction(e.method) )
+            {
+                e.method(this, e.record)
+            }
         },
 
         onRefresh() {

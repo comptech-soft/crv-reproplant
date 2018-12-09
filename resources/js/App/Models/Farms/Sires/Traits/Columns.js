@@ -191,15 +191,48 @@ module.exports = [
         {
             icon: 'la la-trash',
             caption: 'Șterge taurul din lista fermei',
-            click: v => {
-                alert('Sterge...');
+            click: {
+                name: 'delete-animal-from-farm',
+                method: (v, record) => {
+                    v.post('farms/animals/delete-animal-from-farm', {
+                        id: record.id,
+                        record: record,
+                    }, data => {
+                        if(data.success)
+                        {
+                            v.notySuccess(data.result.message)
+                            v.dt.populate()
+                        }
+                        else
+                        {
+                            v.notyError(data.result.message)
+                        }
+                    })
+                }
             }
         },
         {
             icon: 'la la-exchange',
-            caption: 'Schimbă starea taurului in cadrul fermei',
-            click: v => {
-                alert('Schimb stare...');
+            caption: 'Schimbă starea taurului în cadrul fermei',
+            click: {
+                name: 'change-status-in-farm',
+                method: (v, record) => {
+                    v.post('farms/animals/change-status-in-farm', {
+                        id: record.id,
+                        status_in_farm: record.status_in_farm,
+                        record: record
+                    }, data => {
+                        if(data.success)
+                        {
+                            v.notySuccess(data.result.message)
+                            v.dt.populate()
+                        }
+                        else
+                        {
+                            v.notyError(data.result.message)
+                        }
+                    })
+                }
             }
         }
     ]),

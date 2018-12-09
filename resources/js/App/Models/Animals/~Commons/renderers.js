@@ -1,15 +1,24 @@
 module.exports = {
 
-    animalInfo: (animal, field, relation) => {
+    animalInfo: (animal, field, relation, gender = 'male') => {
 
         if(! animal[field]) 
         {
             return '-'
         }
-        return animal[relation].short_name 
+        if( gender == 'male')
+        {
+            return animal[relation].short_name 
+                || animal[relation].long_name 
+                || animal[relation].interbull_code 
+                || animal[relation].matricol_number 
+                || animal[relation].cod_ro 
+                || animal[relation].naab
+        }
+        return animal[relation].matricol_number 
+            || animal[relation].short_name 
             || animal[relation].long_name 
             || animal[relation].interbull_code 
-            || animal[relation].matricol_number 
             || animal[relation].cod_ro 
             || animal[relation].naab
     }, 
