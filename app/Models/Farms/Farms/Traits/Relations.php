@@ -38,6 +38,7 @@ trait Relations
             $this->belongsToMany(\App\Models\Animals\Animals\Animal::class, 'farms_animals', 'farm_id', 'animal_id')
             ->withPivot([
                 'short_number',
+                'status_in_farm',
                 'deleted_at',
                 'deleted_by'
             ]);

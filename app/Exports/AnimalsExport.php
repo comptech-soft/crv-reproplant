@@ -32,6 +32,7 @@ class AnimalsExport implements FromCollection, WithHeadings, ShouldAutoSize
             'Mother Grandsire',
             'Parity',
             'Last Calving Date',
+            'Status',
         ];
     }
 
@@ -56,7 +57,8 @@ class AnimalsExport implements FromCollection, WithHeadings, ShouldAutoSize
                 'mother' => $item->mother ? ($item->mother->matricol_number ? $item->mother->matricol_number : $item->mother->interbull_code) : NULL,
                 'mother_father' => $item->mother && $item->mother->father ? ($item->mother->father->matricol_number ? $item->mother->father->matricol_number : $item->mother->father->interbull_code) : NULL,
                 'parity' => $item->parity,
-                'last_calving_date' => $item->last_calving_date ? \Carbon\Carbon::createFromFormat('Y-m-d', $item->last_calving_date)->format('m/d/Y') : NULL
+                'last_calving_date' => $item->last_calving_date ? \Carbon\Carbon::createFromFormat('Y-m-d', $item->last_calving_date)->format('m/d/Y') : NULL,
+                'status' => $item->pivot->status_in_farm,
             ];
             return $record;
         });
