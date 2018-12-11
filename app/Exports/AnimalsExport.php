@@ -52,12 +52,12 @@ class AnimalsExport implements FromCollection, WithHeadings, ShouldAutoSize
                 'farm_code' => $this->farm->external_id,
                 'matricol_number' => $item->matricol_number,
                 'short_number' => $item->pivot->short_number,
-                'birth_date' => $item->birth_date ? \Carbon\Carbon::createFromFormat('Y-m-d', $item->birth_date)->format('m/d/Y') : NULL,
+                'birth_date' => $item->birth_date ? \Carbon\Carbon::createFromFormat('Y-m-d', $item->birth_date)->format('d-m-Y') : NULL,
                 'father' => $item->father ? ($item->father->matricol_number ? $item->father->matricol_number : $item->father->interbull_code) : NULL,
                 'mother' => $item->mother ? ($item->mother->matricol_number ? $item->mother->matricol_number : $item->mother->interbull_code) : NULL,
                 'mother_father' => $item->mother && $item->mother->father ? ($item->mother->father->matricol_number ? $item->mother->father->matricol_number : $item->mother->father->interbull_code) : NULL,
                 'parity' => $item->parity,
-                'last_calving_date' => $item->last_calving_date ? \Carbon\Carbon::createFromFormat('Y-m-d', $item->last_calving_date)->format('m/d/Y') : NULL,
+                'last_calving_date' => $item->last_calving_date ? \Carbon\Carbon::createFromFormat('Y-m-d', $item->last_calving_date)->format('d-m-Y') : NULL,
                 'status' => $item->pivot->status_in_farm,
             ];
             return $record;
